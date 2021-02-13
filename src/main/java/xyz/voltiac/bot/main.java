@@ -211,7 +211,7 @@ public class main {
         // LOCKDOWN COMMAND
         // WILL DO LATER
 
-        // TICKETS
+        // TICKETS (STILL NOT DONE CURRENTLY DOING)
 
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
