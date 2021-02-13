@@ -16,6 +16,7 @@ import discord4j.core.object.entity.channel.Channel;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.object.entity.channel.TextChannel;
 import discord4j.core.object.reaction.ReactionEmoji;
+import discord4j.core.object.reaction.*;
 import discord4j.rest.util.Color;
 import discord4j.rest.util.PermissionSet;
 import reactor.core.publisher.Mono;
