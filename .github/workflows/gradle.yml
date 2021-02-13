@@ -26,5 +26,5 @@ jobs:
       if: success()
       with:
           name: Voltiac Bot
-          path: /
+          path: build/libs/
       
