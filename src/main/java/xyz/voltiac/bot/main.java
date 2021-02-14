@@ -165,22 +165,6 @@ public class main {
             }).block();
         }
 
-        if ("!ticket".equalsIgnoreCase(m.getContent())) {
-            final MessageChannel channel = m.getChannel().block();
-            final Optional<Member> member = event.getMember();
-            final Role r = member.get().getHighestRole().block();
-            final Integer role = r.getRawPosition();
-            if (role <= 26){
-
-            } else {
-                channel.createEmbed(embedCreateSpec -> {
-                    embedCreateSpec.setTitle("**Tickets**")
-                            .setDescription("If you wish to contact support, you can open a ticket by reacting to this message, or by emailing support@voltiac.xyz")
-                            .setFooter("Powered by VoltiacBot", "https://cdn.discordapp.com/avatars/787057269903851520/d0a3ade38825e0222c2850d0cbf7ccb2.png")
-                            .setColor(Color.of(51, 153, 255));
-                }).block();
-            }
-        }
 
         if ("!commands".equalsIgnoreCase(m.getContent())) {
             final String username = m.getAuthor().get().getUsername();
@@ -216,14 +200,10 @@ public class main {
 
         // TICKETS (STILL NOT DONE CURRENTLY DOING)
 
-        client.getEventDispatcher().on(MessageCreateEvent.class)
-                .subscribe(event -> {
-
-                });
-
         client.getEventDispatcher().on(ReactionAddEvent.class)
                 .subscribe(event -> {
                     final Snowflake id = event.getMessageId();
+                    final ReactionEmoji reactionemoji = event.getEmoji();
                     final Message message = event.getMessage().block();
                     final Member m = event.getMember().get();
                     final Member member = client.getMemberById(Snowflake.of(808838744203198503L), Snowflake.of(809487051564908576L)).block();
@@ -240,54 +220,48 @@ public class main {
                     final long blacklistedrole = 809243022172356649L;
                     final long staffrole1 = 808838744227446789L;
 
+                    final Void removereaction = message.removeReaction(reactionemoji, userid).block();
+
                     if (id.asLong() == messageid){
                         final Snowflake r = event.getUserId();
                         if (r.asLong() == r.asLong()) {
                            final TextChannel g;
-                            double a = Math.random();
-                            a = a * 452;
-                            double finalA = a;
-                            final Role ticketrole = guild.createRole(RoleCreateSpec -> {
-                                RoleCreateSpec.setColor(Color.BLACK)
-                                        .setName("Ticket.ID(" + String.valueOf(finalA) + ")");
-                            }).block();
-
-                            g = guild1.createTextChannel(TextChannelCreateSpec -> {
+                            final Role role1 = m.getHighestRole().block();
+                            final Integer role = role1.getRawPosition();
+                            final TextChannel create = guild1.createTextChannel(TextChannelCreateSpec -> {
                                 TextChannelCreateSpec.setName("ticket-" + name + "-" + disc)
                                         .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forMember(userid, PermissionSet.of(VIEW_CHANNEL, SEND_MESSAGES), PermissionSet.of(MENTION_EVERYONE, MANAGE_MESSAGES))))
                                         .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forRole(Snowflake.of(blacklistedrole), PermissionSet.of(), PermissionSet.of(VIEW_CHANNEL))))
                                         .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forRole(Snowflake.of(staffrole1), PermissionSet.of(VIEW_CHANNEL, SEND_MESSAGES), PermissionSet.of())));
                             }).block();
-                            long ticketchannelid = g.getId().asLong();
-                            long ticketroleid = ticketrole.getId().asLong();
-                            m.addRole(Snowflake.of(ticketroleid)).block();
-                            client.on(MessageCreateEvent.class)
+                            long ticketchannelid = create.getId().asLong();
+                            System.out.println(ticketchannelid);
+                            client.getEventDispatcher().on(MessageCreateEvent.class)
                                     .subscribe(event1 -> {
                                         final Message message1 = event1.getMessage();
+                                        final long channel = message1.getChannelId().asLong();
+                                        final Channel channel1 = message1.getChannel().block();
                                         final String messagecontent = message1.getContent();
-                                        final Member member1 = event1.getMember().get();
-                                        final Optional<User> author = message1.getAuthor();
-                                        final Role highestrole = member1.getHighestRole().block();
-                                        final int rolepos = highestrole.getRawPosition();
-
-                                        final Mono<Role> role = client.getRoleById(Snowflake.of(808838744203198503L) ,Snowflake.of(808838744227446789L));
-                                        final String icon = author.get().getAvatarUrl();
-                                        final String username = author.get().getUsername();
-                                        final String discriminator = author.get().getDiscriminator();
-                                        final String mentionuser = author.get().getMention();
+                                        final User author = message1.getAuthor().get();
+                                        final String authormention = author.getMention();
+                                        final String username = author.getUsername();
+                                        final String discriminator = author.getDiscriminator();
+                                        final String pfp = author.getAvatarUrl();
                                         final Instant instant = Instant.now();
-                                        if ("!close".equalsIgnoreCase(messagecontent) && rolepos >= 26) {
-                                            final Channel channel1 = (Channel) message1.getChannel().block();
-                                            channel1.delete("Ticket Closed.").block();
-                                            final MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(809196891488518214L)).block();
-                                            channel.createEmbed(embedCreateSpec -> {
-                                               embedCreateSpec.setTitle("**Ticket Closed**")
-                                               .setDescription("Ticket opened by " + mention + " closed by " + mentionuser)
-                                               .setFooter(username + "#" + discriminator, icon)
-                                                       .setColor(Color.of(51, 153, 255))
-                                               .setTimestamp(instant);
-                                            }).block();
+                                        if ("!close".equalsIgnoreCase(messagecontent)) {
+                                            if(String.valueOf(channel).equals(String.valueOf(ticketchannelid))) {
+                                                final TextChannel delete = (TextChannel) client.getChannelById(Snowflake.of(ticketchannelid)).block();
+                                                delete.delete("Ticket Closed.").block();
 
+                                                final MessageChannel channel2 = (MessageChannel) client.getChannelById(Snowflake.of(809196891488518214L)).block();
+                                                channel2.createEmbed(embedCreateSpec -> {
+                                                    embedCreateSpec.setTitle("**Ticket Closed**")
+                                                            .setDescription("Ticket opened by " + mention + " closed by " + authormention)
+                                                            .setFooter(author + "#" + discriminator, pfp)
+                                                            .setColor(Color.of(51, 153, 255))
+                                                            .setTimestamp(instant);
+                                                }).block();
+                                            }
                                         }
                                     });
                             final MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(ticketchannelid)).block();
@@ -297,50 +271,51 @@ public class main {
                             System.out.println("Ticket Created");
                         }
                     }
+
                 });
 
         // LINK BLACKLIST
 
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
-                   final Message m = event.getMessage();
+                    final Message m = event.getMessage();
                     final Optional<Member> member = event.getMember();
                     final Role r = member.get().getHighestRole().block();
                     final Integer role = r.getRawPosition();
-                   final Optional<User> a = m.getAuthor();
+                    final Optional<User> a = m.getAuthor();
                     final String name = a.get().getUsername();
                     final String discriminator = a.get().getDiscriminator();
                     final String pfp = a.get().getAvatarUrl();
-                   final String mention = a.get().getMention();
+                    final String mention = a.get().getMention();
                     final Channel c = (Channel) m.getChannel().block();
                     final Snowflake id = m.getChannelId();
                     final long blacklistedchannel = 808838745541050399L;
-                   final String channelmention = c.getMention();
-                   final String messagecontent = m.getContent();
-                   final Instant instant = Instant.now();
-                   final String reason = "Contains Link";
-                   final String reason2 = "Bad Word Usage";
-                   final String messagecontentlowercase = messagecontent.toLowerCase();
+                    final String channelmention = c.getMention();
+                    final String messagecontent = m.getContent();
+                    final Instant instant = Instant.now();
+                    final String reason = "Contains Link";
+                    final String reason2 = "Bad Word Usage";
+                    final String messagecontentlowercase = messagecontent.toLowerCase();
 
-                if (role >= 27 || id.asLong() == blacklistedchannel) {
+                    if (role >= 27 || id.asLong() == blacklistedchannel) {
 
-                } else {
-                    final MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(808838744609652785L)).block();
-                    if (messagecontentlowercase.contains("https://") || messagecontentlowercase.contains("discord.gg") || messagecontentlowercase.contains(".com")
-                            || messagecontentlowercase.contains(".net") || messagecontentlowercase.contains(".org")) {
-                        m.delete(reason).block();
-                        channel.createEmbed(EmbedCreateSpec -> {
-                            EmbedCreateSpec.setColor(Color.RED)
-                                    .setTitle("**Message Deleted**")
-                                    .setDescription("Message Sent By " + mention + " Deleted in " + channelmention)
-                                    .addField("**Reason**", reason, false)
-                                    .addField("**Message Content**", messagecontent, false)
-                                    .setFooter(name + "#" + discriminator, pfp)
-                                    .setTimestamp(instant);
-                        }).block();
+                    } else {
+                        final MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(808838744609652785L)).block();
+                        if (messagecontentlowercase.contains("https://") || messagecontentlowercase.contains("discord.gg") || messagecontentlowercase.contains(".com")
+                                || messagecontentlowercase.contains(".net") || messagecontentlowercase.contains(".org")) {
+                            m.delete(reason).block();
+                            channel.createEmbed(EmbedCreateSpec -> {
+                                EmbedCreateSpec.setColor(Color.RED)
+                                        .setTitle("**Message Deleted**")
+                                        .setDescription("Message Sent By " + mention + " Deleted in " + channelmention)
+                                        .addField("**Reason**", reason, false)
+                                        .addField("**Message Content**", messagecontent, false)
+                                        .setFooter(name + "#" + discriminator, pfp)
+                                        .setTimestamp(instant);
+                            }).block();
+                        }
+
                     }
-
-                }
 
                 });
 
