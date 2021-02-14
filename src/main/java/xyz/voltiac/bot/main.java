@@ -14,12 +14,7 @@ import discord4j.core.object.entity.*;
 import discord4j.core.object.entity.channel.Channel;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.object.entity.channel.TextChannel;
-import discord4j.core.object.reaction.Reaction;
 import discord4j.core.object.reaction.ReactionEmoji;
-import discord4j.core.spec.TextChannelEditSpec;
-import discord4j.discordjson.json.gateway.ChannelCreate;
-import discord4j.discordjson.json.gateway.ChannelDelete;
-import discord4j.rest.service.ChannelService;
 import discord4j.rest.util.Color;
 import discord4j.rest.util.PermissionSet;
 import reactor.core.publisher.Mono;
@@ -27,13 +22,12 @@ import reactor.core.publisher.Mono;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 
 import static discord4j.rest.util.Permission.*;
 
 public class main {
     public static void main(String[] args) {
-        GatewayDiscordClient client = DiscordClientBuilder.create("ODA5NDg3MDUxNTY0OTA4NTc2.YCVzkA.yUnY72eIQM00kad7bqr497POsbE")
+        GatewayDiscordClient client = DiscordClientBuilder.create("token here")
                 .build()
                 .login()
                 .block();
