@@ -157,7 +157,7 @@ public class main {
                             "> and follow the tutorial for whichever console you use. You can also use this app if you have an android to connect to the server: https://github.com/Hellohi3654/GeyserAndroid/releases/latest\n" +
                             "\n" +
                             "> Java:\n" +
-                            "> If you are on Java, go to multiplayer, click add server, and put `play.voltiac.xyz` in the server addess.")
+                            "> If you are on Java, go to multiplayer, click add server, and put `play.voltiac.xyz` in the server address.")
                     .setColor(Color.of(51, 153, 255))
                     .setFooter("Command Executed By: " + username, avatar)).block();
             System.out.println("Howtojoin Command Executed By: " + username);
