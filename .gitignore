@@ -1,4 +1,3 @@
-# Project exclude paths
-/.gradle/
-/build/
-/build/classes/java/main/
+target/
+src/main/java/xyz/voltiac/bot/main.java~
+src/main/java/xyz/voltiac/bot/main.java.bak
