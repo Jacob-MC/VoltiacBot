@@ -28,7 +28,7 @@ import static discord4j.rest.util.Permission.*;
 
 public class main {
     public static void main(String[] args) {
-        GatewayDiscordClient client = DiscordClientBuilder.create("token here")
+        GatewayDiscordClient client = DiscordClientBuilder.create("ODA5NDg3MDUxNTY0OTA4NTc2.YCVzkA._Bx0Cj9cunezJkifCGM_5kccZBY")
                 .build()
                 .login()
                 .block();
@@ -217,6 +217,7 @@ public class main {
                     final ReactionEmoji reactionemoji = event.getEmoji();
                     final Message message = event.getMessage().block();
                     final Member m = event.getMember().get();
+                    final String user = m.getUsername();
                     final Member member = client.getMemberById(Snowflake.of(808838744203198503L), Snowflake.of(809487051564908576L)).block();
                     assert member != null;
                     final String botpfp = member.getAvatarUrl();
@@ -250,7 +251,6 @@ public class main {
                                     .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forRole(Snowflake.of(staffrole1), PermissionSet.of(VIEW_CHANNEL, SEND_MESSAGES), PermissionSet.of())))).block();
                             assert create != null;
                             long ticketchannelid = create.getId().asLong();
-                            System.out.println(ticketchannelid);
                             client.getEventDispatcher().on(MessageCreateEvent.class)
                                     .subscribe(event1 -> {
                                         final Message message1 = event1.getMessage();
@@ -282,7 +282,7 @@ public class main {
                             final MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(ticketchannelid)).block();
                             assert channel != null;
                             channel.createMessage(messageCreateSpec -> messageCreateSpec.setContent("Please be patient, " + mention + " , " + staffrolemention + " will be with you soon.")).block();
-                            System.out.println("Ticket Created");
+                            System.out.println("Ticket Created By: " + user);
                         }
                     }
                 });

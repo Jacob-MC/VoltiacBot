@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="VoltiacBot2.0" />
+        <module name="VoltiacBot" />
       </profile>
     </annotationProcessing>
   </component>
