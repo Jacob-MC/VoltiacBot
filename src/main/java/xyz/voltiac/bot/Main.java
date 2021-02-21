@@ -28,7 +28,7 @@ import java.util.Optional;
 import static discord4j.rest.util.Permission.*;
 
 public class Main {
-    static GatewayDiscordClient client = DiscordClientBuilder.create("ODA5NDg3MDUxNTY0OTA4NTc2.YCVzkA.f5N1i9oYIS4dojERd_ZzKc-AVqw")
+    static GatewayDiscordClient client = DiscordClientBuilder.create("token here")
             .build()
             .login()
             .block();
