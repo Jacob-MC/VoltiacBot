@@ -172,9 +172,15 @@ public class Commands {
                         MessageChannel channel = Command.getChannel().block();
                         channel.createEmbed(embedCreateSpec -> {
                            embedCreateSpec.setTitle(username + "'s Avatar")
+                                   .setColor(Color.of(51, 153, 255))
                            .setImage(avatarurl);
                         }).block();
-                    } else if (Command.getContent().toLowerCase().contains("!avatar") && Command.getContent().length() <= 26) {
+                    } else {
+                        MessageChannel channel = Command.getChannel().block();
+                        channel.createMessage("Invalid user. Please mention a valid user or enter an ID.").block();
+                    }
+
+                        if (Command.getContent().toLowerCase().contains("!avatar") && Command.getContent().length() <= 26) {
                         String userid = Command.getContent().substring(8);
                         User user = client.getUserById(Snowflake.of(userid)).block();
                         String username = user.getUsername();
@@ -182,9 +188,13 @@ public class Commands {
                         MessageChannel channel = Command.getChannel().block();
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle(username + "'s Avatar")
+                                    .setColor(Color.of(51, 153, 255))
                                     .setImage(avatarurl);
                         }).block();
-                    }
+                    } else {
+                            MessageChannel channel = Command.getChannel().block();
+                            channel.createMessage("Invalid user. Please mention a valid user or enter an ID.").block();
+                        }
                 });
     }
 }
