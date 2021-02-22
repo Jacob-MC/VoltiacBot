@@ -41,7 +41,7 @@ public class Tickets {
                     Guild guild = m.getGuild().block();
                     Snowflake userid = m.getId();
                     long messageid = 809278160704897034L;
-                    long blacklistedrole = 809243022172356649L;
+                    long blacklistedrole = 808838744203198503L;
                     long staffrole1 = 808838744227446789L;
 
                     assert message != null;
