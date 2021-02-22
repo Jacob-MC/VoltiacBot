@@ -7,9 +7,10 @@ import discord4j.core.event.domain.lifecycle.ReadyEvent;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.reaction.ReactionEmoji;
+import xyz.voltiac.bot.*;
 
 public class Main {
-    static GatewayDiscordClient client = DiscordClientBuilder.create("token here")
+    static GatewayDiscordClient client = DiscordClientBuilder.create("ODA5NDg3MDUxNTY0OTA4NTc2.YCVzkA.TvEwiXMFGoVnej5hwBKSqBzJAsY")
             .build()
             .login()
             .block();
