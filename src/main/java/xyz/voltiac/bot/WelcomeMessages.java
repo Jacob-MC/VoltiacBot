@@ -17,18 +17,18 @@ public class WelcomeMessages {
     void WelcomeMessages(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MemberJoinEvent.class)
                 .subscribe(event -> {
-                    final Member m = event.getMember();
-                    final String n = m.getUsername();
-                    final String d = m.getDiscriminator();
-                    final String p = m.getMention();
-                    final String pfp = m.getAvatarUrl();
-                    final Guild guild = client.getGuildById(Snowflake.of(808838744203198503L)).block();
+                    Member m = event.getMember();
+                    String n = m.getUsername();
+                    String d = m.getDiscriminator();
+                    String p = m.getMention();
+                    String pfp = m.getAvatarUrl();
+                    Guild guild = client.getGuildById(Snowflake.of(808838744203198503L)).block();
                     assert guild != null;
                     int count = guild.getMemberCount();
-                    final Mono<Void> r = m.addRole(Snowflake.of(809243022172356649L));
+                    Mono<Void> r = m.addRole(Snowflake.of(809243022172356649L));
                     r.block();
-                    final Instant instant = Instant.now();
-                    final MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(808838744609652782L)).block();
+                    Instant instant = Instant.now();
+                    MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(808838744609652782L)).block();
                     assert channel != null;
                     channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle(n + " **Has Joined the Server**")
                             .setColor(Color.GREEN)
@@ -42,17 +42,17 @@ public class WelcomeMessages {
                 });
         client.getEventDispatcher().on(MemberLeaveEvent.class)
                 .subscribe(event -> {
-                    final User u = event.getUser();
-                    final String n = u.getUsername();
-                    final String d = u.getDiscriminator();
-                    final String p = u.getMention();
-                    final String pfp = u.getAvatarUrl();
-                    final Instant instant = Instant.now();
-                    final Guild guild = client.getGuildById(Snowflake.of(808838744203198503L)).block();
+                    User u = event.getUser();
+                    String n = u.getUsername();
+                    String d = u.getDiscriminator();
+                    String p = u.getMention();
+                    String pfp = u.getAvatarUrl();
+                    Instant instant = Instant.now();
+                    Guild guild = client.getGuildById(Snowflake.of(808838744203198503L)).block();
                     assert guild != null;
                     int count = guild.getMemberCount();
                     System.out.println(count);
-                    final MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(808838744609652782L)).block();
+                    MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(808838744609652782L)).block();
                     assert channel != null;
                     channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle(n + " **Has Left the Server**")
                             .setColor(Color.RED)

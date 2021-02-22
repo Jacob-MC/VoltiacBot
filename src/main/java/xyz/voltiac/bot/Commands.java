@@ -16,9 +16,9 @@ public class Commands {
                     Message Command = event.getMessage();
 
                     if ("!ip".equalsIgnoreCase(Command.getContent())) {
-                        final String username = Command.getAuthor().get().getUsername();
-                        final String avatar = Command.getAuthor().get().getAvatarUrl();
-                        final MessageChannel channel = Command.getChannel().block();
+                        String username = Command.getAuthor().get().getUsername();
+                        String avatar = Command.getAuthor().get().getAvatarUrl();
+                        MessageChannel channel = Command.getChannel().block();
                         assert channel != null;
                         channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("**Server IP**")
                                 .setDescription("IP: play.voltiac.xyz\n"
@@ -30,9 +30,9 @@ public class Commands {
                     }
 
                     if ("!consoles".equalsIgnoreCase(Command.getContent())) {
-                        final String username = Command.getAuthor().get().getUsername();
-                        final String avatar = Command.getAuthor().get().getAvatarUrl();
-                        final MessageChannel channel = Command.getChannel().block();
+                        String username = Command.getAuthor().get().getUsername();
+                        String avatar = Command.getAuthor().get().getAvatarUrl();
+                        MessageChannel channel = Command.getChannel().block();
                         assert channel != null;
                         channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("**How to join on consoles**")
                                 .setDescription("If you want to join the server on console, check this link for a tutorial on whatever console you use:\n" +
@@ -49,9 +49,9 @@ public class Commands {
                     }
 
                     if ("!rules".equalsIgnoreCase(Command.getContent())) {
-                        final String username = Command.getAuthor().get().getUsername();
-                        final String avatar = Command.getAuthor().get().getAvatarUrl();
-                        final MessageChannel channel = Command.getChannel().block();
+                        String username = Command.getAuthor().get().getUsername();
+                        String avatar = Command.getAuthor().get().getAvatarUrl();
+                        MessageChannel channel = Command.getChannel().block();
                         assert channel != null;
                         channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("**Voltiac Server Rules**")
                                 .setDescription("[1] Follow Discord TOS (Ex: Must be over 13 years old)\n" +
@@ -76,7 +76,7 @@ public class Commands {
                                         "[20] Do not DM staff with questions, if you have a question, open a ticket\n" +
                                         "[21] Do not argue with others\n" +
                                         "[22] Do not try to push the rules\n" +
-                                        "[23] Staff have the final say, if you think a punishment was unfair, you can DM the Owner or Co-Owner\n" +
+                                        "[23] Staff have the say, if you think a punishment was unfair, you can DM the Owner or Co-Owner\n" +
                                         "\n" +
                                         "**Minecraft Server Rules:**\n" +
                                         "[1] No Hacking or Cheating (This includes xray)\n" +
@@ -109,10 +109,10 @@ public class Commands {
                     }
 
                     if ("!howtojoin".equalsIgnoreCase(Command.getContent())) {
-                        final String username = Command.getAuthor().get().getUsername();
-                        final String avatar = Command.getAuthor().get().getAvatarUrl();
+                        String username = Command.getAuthor().get().getUsername();
+                        String avatar = Command.getAuthor().get().getAvatarUrl();
 
-                        final MessageChannel channel = Command.getChannel().block();
+                        MessageChannel channel = Command.getChannel().block();
                         assert channel != null;
                         channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("**How to join the server**")
                                 .setDescription("> Mobile:\n" +
@@ -131,9 +131,9 @@ public class Commands {
                     }
 
                     if ("!commands".equalsIgnoreCase(Command.getContent())) {
-                        final String username = Command.getAuthor().get().getUsername();
-                        final String avatar = Command.getAuthor().get().getAvatarUrl();
-                        final MessageChannel channel = Command.getChannel().block();
+                        String username = Command.getAuthor().get().getUsername();
+                        String avatar = Command.getAuthor().get().getAvatarUrl();
+                        MessageChannel channel = Command.getChannel().block();
                         assert channel != null;
                         channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("**Discord Commands**")
                                 .setDescription("!ip\n" +
@@ -147,9 +147,9 @@ public class Commands {
                     }
 
                     if ("!help".equalsIgnoreCase(Command.getContent())) {
-                        final String username = Command.getAuthor().get().getUsername();
-                        final String avatar = Command.getAuthor().get().getAvatarUrl();
-                        final MessageChannel channel = Command.getChannel().block();
+                        String username = Command.getAuthor().get().getUsername();
+                        String avatar = Command.getAuthor().get().getAvatarUrl();
+                        MessageChannel channel = Command.getChannel().block();
 
                         assert channel != null;
                         channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("**Help**")
@@ -175,10 +175,8 @@ public class Commands {
                                    .setColor(Color.of(51, 153, 255))
                            .setImage(avatarurl);
                         }).block();
-                    } else {
-                        MessageChannel channel = Command.getChannel().block();
-                        channel.createMessage("Invalid user. Please mention a valid user or enter an ID.").block();
                     }
+
 
                         if (Command.getContent().toLowerCase().contains("!avatar") && Command.getContent().length() <= 26) {
                         String userid = Command.getContent().substring(8);
@@ -191,10 +189,7 @@ public class Commands {
                                     .setColor(Color.of(51, 153, 255))
                                     .setImage(avatarurl);
                         }).block();
-                    } else {
-                            MessageChannel channel = Command.getChannel().block();
-                            channel.createMessage("Invalid user. Please mention a valid user or enter an ID.").block();
-                        }
+                    }
                 });
     }
 }

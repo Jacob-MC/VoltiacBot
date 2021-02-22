@@ -9,7 +9,7 @@ import discord4j.core.object.entity.User;
 import discord4j.core.object.reaction.ReactionEmoji;
 
 public class Main {
-    static GatewayDiscordClient client = DiscordClientBuilder.create("token here")
+    static GatewayDiscordClient client = DiscordClientBuilder.create("ODA5NDg3MDUxNTY0OTA4NTc2.YCVzkA.TvEwiXMFGoVnej5hwBKSqBzJAsY")
             .build()
             .login()
             .block();
@@ -19,11 +19,11 @@ public class Main {
         assert client != null;
         client.getEventDispatcher().on(ReadyEvent.class)
                 .subscribe(event -> {
-                    final User self = event.getSelf();
+                    User self = event.getSelf();
                     System.out.printf(
                             "Logged in as %s#%s%n", self.getUsername(), self.getDiscriminator()
                    );
-                    final Message message = client.getMessageById(Snowflake.of(808838744609652784L), Snowflake.of(809278160704897034L)).block();
+                    Message message = client.getMessageById(Snowflake.of(808838744609652784L), Snowflake.of(809278160704897034L)).block();
                     assert message != null;
                     message.addReaction(ReactionEmoji.unicode("\u2705")).block();
                 });

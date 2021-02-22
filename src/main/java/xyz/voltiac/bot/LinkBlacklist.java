@@ -18,31 +18,31 @@ public class LinkBlacklist {
     void LinkBlacklist(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
-                    final Message m = event.getMessage();
-                    final Optional<Member> member = event.getMember();
-                    final Role r = member.get().getHighestRole().block();
+                    Message m = event.getMessage();
+                    Optional<Member> member = event.getMember();
+                    Role r = member.get().getHighestRole().block();
                     assert r != null;
-                    final int role = r.getRawPosition();
-                    final Optional<User> a = m.getAuthor();
-                    final String name = a.get().getUsername();
-                    final String discriminator = a.get().getDiscriminator();
-                    final String pfp = a.get().getAvatarUrl();
-                    final String mention = a.get().getMention();
-                    final Channel c = m.getChannel().block();
-                    final Snowflake id = m.getChannelId();
-                    final long blacklistedchannel = 808838745541050399L;
+                    int role = r.getRawPosition();
+                    Optional<User> a = m.getAuthor();
+                    String name = a.get().getUsername();
+                    String discriminator = a.get().getDiscriminator();
+                    String pfp = a.get().getAvatarUrl();
+                    String mention = a.get().getMention();
+                    Channel c = m.getChannel().block();
+                    Snowflake id = m.getChannelId();
+                    long blacklistedchannel = 808838745541050399L;
                     assert c != null;
-                    final String channelmention = c.getMention();
-                    final String messagecontent = m.getContent();
-                    final Instant instant = Instant.now();
-                    final String reason = "Contains Link";
-                    final String reason2 = "Bad Word Usage";
-                    final String messagecontentlowercase = messagecontent.toLowerCase();
+                    String channelmention = c.getMention();
+                    String messagecontent = m.getContent();
+                    Instant instant = Instant.now();
+                    String reason = "Contains Link";
+                    String reason2 = "Bad Word Usage";
+                    String messagecontentlowercase = messagecontent.toLowerCase();
 
                     if (role >= 27 || id.asLong() == blacklistedchannel) {
 
                     } else {
-                        final MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(808838744609652785L)).block();
+                        MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(808838744609652785L)).block();
                         if (messagecontentlowercase.contains("https://") || messagecontentlowercase.contains("discord.gg") || messagecontentlowercase.contains(".com")
                                 || messagecontentlowercase.contains(".net") || messagecontentlowercase.contains(".org")) {
                             m.delete(reason).block();
