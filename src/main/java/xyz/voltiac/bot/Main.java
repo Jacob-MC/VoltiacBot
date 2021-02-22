@@ -9,7 +9,7 @@ import discord4j.core.object.entity.User;
 import discord4j.core.object.reaction.ReactionEmoji;
 
 public class Main {
-    static GatewayDiscordClient client = DiscordClientBuilder.create("ODA5NDg3MDUxNTY0OTA4NTc2.YCVzkA.BPyxOyaHXjV3-O5bV-uhS_P5o1o")
+    static GatewayDiscordClient client = DiscordClientBuilder.create("token here")
             .build()
             .login()
             .block();
