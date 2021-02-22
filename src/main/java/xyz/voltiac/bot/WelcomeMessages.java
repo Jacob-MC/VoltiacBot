@@ -38,8 +38,8 @@ public class WelcomeMessages {
                             .addField("**Members**", "We now have " + count + " members!", false)
                             .setFooter(n + "#" + d, pfp)
                             .setTimestamp(instant)
-                            .setThumbnail(pfp)).block();
-                });
+                            .setThumbnail(pfp));
+                }).block();
         client.getEventDispatcher().on(MemberLeaveEvent.class)
                 .subscribe(event -> {
                     User u = event.getUser();
@@ -60,7 +60,7 @@ public class WelcomeMessages {
                             .addField("**Members**", "We now have " + count + " members.", false)
                             .setFooter(n + "#" + d, pfp)
                             .setTimestamp(instant)
-                            .setThumbnail(pfp)).block();
-                });
+                            .setThumbnail(pfp));
+                }).block();
     }
 }
