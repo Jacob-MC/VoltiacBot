@@ -28,25 +28,13 @@ import java.util.Optional;
 import static discord4j.rest.util.Permission.*;
 
 public class Main {
-    static GatewayDiscordClient client = DiscordClientBuilder.create("token here")
+    static GatewayDiscordClient client = DiscordClientBuilder.create("ODA5NDg3MDUxNTY0OTA4NTc2.YCVzkA.BPyxOyaHXjV3-O5bV-uhS_P5o1o")
             .build()
             .login()
             .block();
     public static void main(String[] args) {
-        Commands commands = new Commands();
-        commands.CommandListeners(client);
-        ModerationCommands moderationCommands = new ModerationCommands();
-        moderationCommands.ModCommandListeners(client);
-        Tickets tickets = new Tickets();
-        tickets.TicketListeners(client);
-        LinkBlacklist linkBlacklist = new LinkBlacklist();
-        linkBlacklist.LinkBlacklist(client);
-        MessageLogs messageLogs = new MessageLogs();
-        messageLogs.MessageLogs(client);
-        ReactionRoles reactionRoles = new ReactionRoles();
-        reactionRoles.ReactionRoles(client);
-        WelcomeMessages welcomeMessages = new WelcomeMessages();
-        welcomeMessages.WelcomeMessages(client);
+        Classes classes = new Classes();
+        classes.Classes(client);
         assert client != null;
         client.getEventDispatcher().on(ReadyEvent.class)
                 .subscribe(event -> {

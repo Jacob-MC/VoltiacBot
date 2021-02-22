@@ -50,15 +50,14 @@ public class Tickets {
                     if (id.asLong() == messageid){
                         final Snowflake r = event.getUserId();
                         if (r.asLong() == r.asLong()) {
-                            final TextChannel g;
                             final Role role1 = m.getHighestRole().block();
                             assert role1 != null;
-                            final Integer role = role1.getRawPosition();
                             final TextChannel create = guild1.createTextChannel(TextChannelCreateSpec -> TextChannelCreateSpec.setName("ticket-" + name + "-" + disc)
                                     .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forMember(userid, PermissionSet.of(VIEW_CHANNEL, SEND_MESSAGES), PermissionSet.of(MENTION_EVERYONE, MANAGE_MESSAGES))))
                                     .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forRole(Snowflake.of(blacklistedrole), PermissionSet.of(), PermissionSet.of(VIEW_CHANNEL))))
                                     .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forRole(Snowflake.of(staffrole1), PermissionSet.of(VIEW_CHANNEL, SEND_MESSAGES), PermissionSet.of())))).block();
                             assert create != null;
+                            System.out.println("Ticket Created By: " + user);
                             long ticketchannelid = create.getId().asLong();
                             client.getEventDispatcher().on(MessageCreateEvent.class)
                                     .subscribe(event1 -> {
@@ -69,8 +68,6 @@ public class Tickets {
                                         final User author = message1.getAuthor().get();
                                         final String authormention = author.getMention();
                                         final String username = author.getUsername();
-                                        final String discriminator = author.getDiscriminator();
-                                        final String pfp = author.getAvatarUrl();
                                         final Instant instant = Instant.now();
                                         if ("!close".equalsIgnoreCase(messagecontent)) {
                                             if(String.valueOf(channel).equals(String.valueOf(ticketchannelid))) {

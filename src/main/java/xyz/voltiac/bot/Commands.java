@@ -1,10 +1,15 @@
 package xyz.voltiac.bot;
 
+import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
+import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
+import discord4j.core.object.entity.User;
+import discord4j.core.object.entity.channel.Channel;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
+import reactor.core.publisher.Mono;
 
 public class Commands {
     void CommandListeners(GatewayDiscordClient client) {
@@ -155,6 +160,33 @@ public class Commands {
                                 .setColor(Color.of(51, 153, 255))
                                 .setFooter("Command Executed By: " + username, avatar)).block();
                         System.out.println("Help Command Executed By: " + username);
+                    }
+
+                    // OTHER COMMANDS
+
+                    if (Command.getContent().toLowerCase().contains("!avatar") && Command.getContent().length() > 26) {
+                        String messagecontent = Command.getContent();
+                        int index = messagecontent.indexOf(' ') + 1;
+                        String mention = messagecontent.substring(index);
+                        Snowflake id = Snowflake.of(mention.substring(3, 21));
+                        User user = client.getUserById(id).block();
+                        String username = user.getUsername();
+                        String avatarurl = user.getAvatarUrl();
+                        MessageChannel channel = Command.getChannel().block();
+                        channel.createEmbed(embedCreateSpec -> {
+                           embedCreateSpec.setTitle(username + "'s Avatar")
+                           .setImage(avatarurl);
+                        }).block();
+                    } else if (Command.getContent().toLowerCase().contains("!avatar") && Command.getContent().length() <= 26) {
+                        String userid = Command.getContent().substring(8);
+                        User user = client.getUserById(Snowflake.of(userid)).block();
+                        String username = user.getUsername();
+                        String avatarurl = user.getAvatarUrl();
+                        MessageChannel channel = Command.getChannel().block();
+                        channel.createEmbed(embedCreateSpec -> {
+                            embedCreateSpec.setTitle(username + "'s Avatar")
+                                    .setImage(avatarurl);
+                        }).block();
                     }
                 });
     }
