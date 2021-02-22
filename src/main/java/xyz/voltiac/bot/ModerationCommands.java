@@ -5,8 +5,6 @@ import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
 
-import javax.swing.*;
-
 public class ModerationCommands {
     void ModCommandListeners(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)

@@ -3,29 +3,10 @@ package xyz.voltiac.bot;
 import discord4j.common.util.Snowflake;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
-import discord4j.core.event.domain.guild.MemberJoinEvent;
-import discord4j.core.event.domain.guild.MemberLeaveEvent;
 import discord4j.core.event.domain.lifecycle.ReadyEvent;
-import discord4j.core.event.domain.message.MessageCreateEvent;
-import discord4j.core.event.domain.message.ReactionAddEvent;
-import discord4j.core.event.domain.message.ReactionRemoveEvent;
-import discord4j.core.object.PermissionOverwrite;
-import discord4j.core.object.entity.*;
-import discord4j.core.object.entity.channel.Channel;
-import discord4j.core.object.entity.channel.MessageChannel;
-import discord4j.core.object.entity.channel.TextChannel;
+import discord4j.core.object.entity.Message;
+import discord4j.core.object.entity.User;
 import discord4j.core.object.reaction.ReactionEmoji;
-import discord4j.rest.util.Color;
-import discord4j.rest.util.PermissionSet;
-import reactor.core.publisher.Mono;
-import sun.awt.image.ImageWatched;
-
-import java.time.Instant;
-import java.util.Collections;
-import java.util.Objects;
-import java.util.Optional;
-
-import static discord4j.rest.util.Permission.*;
 
 public class Main {
     static GatewayDiscordClient client = DiscordClientBuilder.create("ODA5NDg3MDUxNTY0OTA4NTc2.YCVzkA.BPyxOyaHXjV3-O5bV-uhS_P5o1o")

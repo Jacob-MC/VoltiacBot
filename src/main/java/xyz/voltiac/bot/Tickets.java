@@ -45,13 +45,13 @@ public class Tickets {
                     final long staffrole1 = 808838744227446789L;
 
                     assert message != null;
-                    final Void removereaction = message.removeReaction(reactionemoji, userid).block();
 
                     if (id.asLong() == messageid){
                         final Snowflake r = event.getUserId();
                         if (r.asLong() == r.asLong()) {
                             final Role role1 = m.getHighestRole().block();
                             assert role1 != null;
+                            final Void removereaction = message.removeReaction(reactionemoji, userid).block();
                             final TextChannel create = guild1.createTextChannel(TextChannelCreateSpec -> TextChannelCreateSpec.setName("ticket-" + name + "-" + disc)
                                     .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forMember(userid, PermissionSet.of(VIEW_CHANNEL, SEND_MESSAGES), PermissionSet.of(MENTION_EVERYONE, MANAGE_MESSAGES))))
                                     .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forRole(Snowflake.of(blacklistedrole), PermissionSet.of(), PermissionSet.of(VIEW_CHANNEL))))
