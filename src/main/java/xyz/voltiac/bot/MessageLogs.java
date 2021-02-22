@@ -3,7 +3,6 @@ package xyz.voltiac.bot;
 import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
-import discord4j.core.object.Embed;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.Channel;
@@ -11,7 +10,6 @@ import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
 
 import java.time.Instant;
-import java.util.List;
 import java.util.Optional;
 
 public class MessageLogs {
