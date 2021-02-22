@@ -39,7 +39,7 @@ public class WelcomeMessages {
                             .setFooter(n + "#" + d, pfp)
                             .setTimestamp(instant)
                             .setThumbnail(pfp));
-                }).block();
+                });
         client.getEventDispatcher().on(MemberLeaveEvent.class)
                 .subscribe(event -> {
                     User u = event.getUser();
@@ -61,6 +61,6 @@ public class WelcomeMessages {
                             .setFooter(n + "#" + d, pfp)
                             .setTimestamp(instant)
                             .setThumbnail(pfp));
-                }).block();
+                });
     }
 }
