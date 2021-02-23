@@ -7,7 +7,7 @@ import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
 
 public class Help {
-    public void Help(GatewayDiscordClient client) {
+    public static void Help(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
                    Message message = event.getMessage();

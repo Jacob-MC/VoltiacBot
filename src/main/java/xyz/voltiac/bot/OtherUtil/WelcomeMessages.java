@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 import java.time.Instant;
 
 public class WelcomeMessages {
-    public void WelcomeMessages(GatewayDiscordClient client) {
+    public static void WelcomeMessages(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MemberJoinEvent.class)
                 .subscribe(event -> {
                     Member m = event.getMember();

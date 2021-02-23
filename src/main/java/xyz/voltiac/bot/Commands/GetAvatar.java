@@ -9,7 +9,7 @@ import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
 
 public class GetAvatar {
-    public void GetAvatar(GatewayDiscordClient client) {
+    public static void GetAvatar(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
                    Message message = event.getMessage();

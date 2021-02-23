@@ -7,7 +7,7 @@ import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
 
 public class ServerIP {
-    public void ServerIP(GatewayDiscordClient client) {
+    public static void ServerIP(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
                     Message Command = event.getMessage();

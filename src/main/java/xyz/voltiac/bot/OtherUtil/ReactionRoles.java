@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class ReactionRoles {
-    public void ReactionRoles(GatewayDiscordClient client) {
+    public static void ReactionRoles(GatewayDiscordClient client) {
         client.getEventDispatcher().on(ReactionAddEvent.class)
                 .subscribe(event -> {
                     Snowflake id = event.getMessageId();

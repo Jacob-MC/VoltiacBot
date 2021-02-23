@@ -9,7 +9,7 @@ import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
 
 public class CommandHandler {
-    public void CommandHandler(GatewayDiscordClient client) {
+    public static void CommandHandler(GatewayDiscordClient client) {
         Commands commands = new Commands();
         commands.Commands(client);
         Consoles consoles = new Consoles();

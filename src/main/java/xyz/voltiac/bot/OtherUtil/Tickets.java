@@ -15,11 +15,12 @@ import discord4j.rest.util.PermissionSet;
 
 import java.time.Instant;
 import java.util.Collections;
+import java.util.Random;
 
 import static discord4j.rest.util.Permission.*;
 
 public class Tickets {
-    public void TicketListeners(GatewayDiscordClient client) {
+    public static void TicketListeners(GatewayDiscordClient client) {
         client.getEventDispatcher().on(ReactionAddEvent.class)
                 .subscribe(event -> {
                     Snowflake id = event.getMessageId();
@@ -52,7 +53,18 @@ public class Tickets {
                             Role role1 = m.getHighestRole().block();
                             assert role1 != null;
                             Void removereaction = message.removeReaction(reactionemoji, userid).block();
-                            TextChannel create = guild1.createTextChannel(TextChannelCreateSpec -> TextChannelCreateSpec.setName("ticket-" + name + "-" + disc)
+
+                            Random rand = new Random();
+                            int upperbound = 8;
+                            String rand1 = String.valueOf(rand.nextInt(upperbound + 1));
+                            String rand2 = String.valueOf(rand.nextInt(upperbound + 1));
+                            String rand3 = String.valueOf(rand.nextInt(upperbound + 1));
+                            String rand4 = String.valueOf(rand.nextInt(upperbound + 1));
+                            String rand5 = String.valueOf(rand.nextInt(upperbound + 1));
+                            String rand6 = String.valueOf(rand.nextInt(upperbound + 1));
+                            String randomid = rand1 + rand2 + rand3 + rand4 + rand5 + rand6;
+                            System.out.println(randomid);
+                            TextChannel create = guild1.createTextChannel(TextChannelCreateSpec -> TextChannelCreateSpec.setName("ticket-" + name + "-" + randomid)
                                     .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forMember(userid, PermissionSet.of(VIEW_CHANNEL, SEND_MESSAGES), PermissionSet.of(MENTION_EVERYONE, MANAGE_MESSAGES))))
                                     .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forRole(Snowflake.of(blacklistedrole), PermissionSet.of(), PermissionSet.of(VIEW_CHANNEL))))
                                     .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forRole(Snowflake.of(staffrole1), PermissionSet.of(VIEW_CHANNEL, SEND_MESSAGES), PermissionSet.of())))).block();

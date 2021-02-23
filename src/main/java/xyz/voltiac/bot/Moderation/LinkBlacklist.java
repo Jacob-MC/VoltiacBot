@@ -15,7 +15,7 @@ import java.time.Instant;
 import java.util.Optional;
 
 public class LinkBlacklist {
-    public void LinkBlacklist(GatewayDiscordClient client) {
+    public static void LinkBlacklist(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
                     Message m = event.getMessage();
