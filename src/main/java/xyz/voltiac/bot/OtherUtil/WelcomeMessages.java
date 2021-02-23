@@ -1,4 +1,4 @@
-package xyz.voltiac.bot;
+package xyz.voltiac.bot.OtherUtil;
 
 import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;
@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 import java.time.Instant;
 
 public class WelcomeMessages {
-    void WelcomeMessages(GatewayDiscordClient client) {
+    public void WelcomeMessages(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MemberJoinEvent.class)
                 .subscribe(event -> {
                     Member m = event.getMember();

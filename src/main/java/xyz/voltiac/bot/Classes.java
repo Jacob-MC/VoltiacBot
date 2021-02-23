@@ -1,11 +1,13 @@
 package xyz.voltiac.bot;
 
 import discord4j.core.GatewayDiscordClient;
-
+import xyz.voltiac.bot.Commands.*;
+import xyz.voltiac.bot.Moderation.*;
+import xyz.voltiac.bot.OtherUtil.*;
 public class Classes {
     void Classes(GatewayDiscordClient client) {
-        Commands commands = new Commands();
-        commands.CommandListeners(client);
+        CommandHandler commands = new CommandHandler();
+        commands.CommandHandler(client);
         ModerationCommands moderationCommands = new ModerationCommands();
         moderationCommands.ModCommandListeners(client);
         Tickets tickets = new Tickets();

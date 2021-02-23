@@ -1,4 +1,4 @@
-package xyz.voltiac.bot;
+package xyz.voltiac.bot.OtherUtil;
 
 import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;
@@ -19,7 +19,7 @@ import java.util.Collections;
 import static discord4j.rest.util.Permission.*;
 
 public class Tickets {
-    void TicketListeners(GatewayDiscordClient client) {
+    public void TicketListeners(GatewayDiscordClient client) {
         client.getEventDispatcher().on(ReactionAddEvent.class)
                 .subscribe(event -> {
                     Snowflake id = event.getMessageId();

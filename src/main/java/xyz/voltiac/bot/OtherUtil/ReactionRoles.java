@@ -1,4 +1,4 @@
-package xyz.voltiac.bot;
+package xyz.voltiac.bot.OtherUtil;
 
 import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;
@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class ReactionRoles {
-    void ReactionRoles(GatewayDiscordClient client) {
+    public void ReactionRoles(GatewayDiscordClient client) {
         client.getEventDispatcher().on(ReactionAddEvent.class)
                 .subscribe(event -> {
                     Snowflake id = event.getMessageId();

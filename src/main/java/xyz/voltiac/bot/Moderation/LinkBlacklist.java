@@ -1,4 +1,4 @@
-package xyz.voltiac.bot;
+package xyz.voltiac.bot.Moderation;
 
 import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;
@@ -15,7 +15,7 @@ import java.time.Instant;
 import java.util.Optional;
 
 public class LinkBlacklist {
-    void LinkBlacklist(GatewayDiscordClient client) {
+    public void LinkBlacklist(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
                     Message m = event.getMessage();

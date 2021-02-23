@@ -1,4 +1,4 @@
-package xyz.voltiac.bot;
+package xyz.voltiac.bot.Moderation;
 
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
@@ -6,7 +6,7 @@ import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
 
 public class ModerationCommands {
-    void ModCommandListeners(GatewayDiscordClient client) {
+    public void ModCommandListeners(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
                     Message Command = event.getMessage();
