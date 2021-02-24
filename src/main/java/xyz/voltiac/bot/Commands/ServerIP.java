@@ -16,12 +16,14 @@ public class ServerIP {
                         String avatar = Command.getAuthor().get().getAvatarUrl();
                         MessageChannel channel = Command.getChannel().block();
                         assert channel != null;
-                        channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("**Server IP**")
-                                .setDescription("IP: play.voltiac.xyz\n"
-                                        + "\n"
-                                        + "Port: 19132 (Only needed for bedrock)")
-                                .setColor(Color.of(51, 153, 255))
-                                .setFooter("Command Executed By: " + username, avatar)).block();
+                        channel.createEmbed(embedCreateSpec -> {
+                            embedCreateSpec.setTitle("**Server IP**")
+                                    .setDescription("IP: play.voltiac.xyz\n"
+                                            + "\n"
+                                            + "Port: 19132 (Only needed for bedrock)")
+                                    .setColor(Color.of(51, 153, 255))
+                                    .setFooter("Command Executed By: " + username, avatar);
+                        }).block();
                         System.out.println("IP Command Executed By: " + username);
                     }
                 });

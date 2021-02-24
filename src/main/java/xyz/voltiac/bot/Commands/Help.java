@@ -16,10 +16,12 @@ public class Help {
                         String avatar = message.getAuthor().get().getAvatarUrl();
                         MessageChannel channel = message.getChannel().block();
                         assert channel != null;
-                        channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("**Help**")
-                                .setDescription("Hello, " + username + "! If you need help joining the server check <#805640788692303902>. You can view a list of commands by doing !commands")
-                                .setColor(Color.of(51, 153, 255))
-                                .setFooter("Command Executed By: " + username, avatar)).block();
+                        channel.createEmbed(embedCreateSpec -> {
+                            embedCreateSpec.setTitle("**Help**")
+                                    .setDescription("Hello, " + username + "! If you need help joining the server check <#805640788692303902>. You can view a list of commands by doing !commands")
+                                    .setColor(Color.of(51, 153, 255))
+                                    .setFooter("Command Executed By: " + username, avatar);
+                        }).block();
                         System.out.println("Help Command Executed By: " + username);
                     }
                 });

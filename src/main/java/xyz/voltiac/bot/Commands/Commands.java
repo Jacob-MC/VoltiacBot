@@ -16,15 +16,17 @@ public class Commands {
                         String avatar = message.getAuthor().get().getAvatarUrl();
                         MessageChannel channel = message.getChannel().block();
                         assert channel != null;
-                        channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("**Discord Commands**")
-                                .addField("**!ip**", "Displays the server IP", false)
-                                .addField("**!consoles**", "Displays a guide on how to join the server on console", false)
-                                .addField("**!howtojoin**", "Displays a guide on how to join the server", false)
-                                .addField("**!rules**", "Displays the server rules", false)
-                                .addField("**!avatar (user)**", "Gets a user's avatar - Aliases: !av - Works by mentioning the user or by using the user's ID", false)
-                                .addField("**!help**", "Help Command", false)
-                                .setColor(Color.of(51, 153, 255))
-                                .setFooter("Command Executed By: " + username, avatar)).block();
+                        channel.createEmbed(embedCreateSpec -> {
+                            embedCreateSpec.setTitle("**Discord Commands**")
+                                    .addField("**!ip**", "Displays the server IP", false)
+                                    .addField("**!consoles**", "Displays a guide on how to join the server on console", false)
+                                    .addField("**!howtojoin**", "Displays a guide on how to join the server", false)
+                                    .addField("**!rules**", "Displays the server rules", false)
+                                    .addField("**!avatar (user)**", "Gets a user's avatar - Works by mentioning the user or by using the user's ID", false)
+                                    .addField("**!help**", "Help Command", false)
+                                    .setColor(Color.of(51, 153, 255))
+                                    .setFooter("Command Executed By: " + username, avatar);
+                        }).block();
                         System.out.println("Commands Command Executed By: " + username);
                     }
                 });

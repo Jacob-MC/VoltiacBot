@@ -36,12 +36,14 @@ public class MessageLogs {
                     int length = embeds.length();
                     if (channelid.asLong() != blacklistedchannelid && authorid.asLong() != blacklistedauthorid && length == 2) {
                         assert channel != null;
-                        channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("**Message Sent**")
-                                .setDescription("Message Sent In " + cname + " By " + mention)
-                                .addField("**Message Content**", messagecontent, false)
-                                .setFooter(name + "#" + discriminator, pfp)
-                                .setTimestamp(instant)
-                                .setColor(Color.BLUE)).block();
+                        channel.createEmbed(embedCreateSpec -> {
+                            embedCreateSpec.setTitle("**Message Sent**")
+                                    .setDescription("Message Sent In " + cname + " By " + mention)
+                                    .addField("**Message Content**", messagecontent, false)
+                                    .setFooter(name + "#" + discriminator, pfp)
+                                    .setTimestamp(instant)
+                                    .setColor(Color.of(51, 153, 255));
+                        }).block();
                     }
                 });
     }

@@ -55,15 +55,14 @@ public class Tickets {
                             Void removereaction = message.removeReaction(reactionemoji, userid).block();
 
                             Random rand = new Random();
-                            int upperbound = 8;
-                            String rand1 = String.valueOf(rand.nextInt(upperbound + 1));
-                            String rand2 = String.valueOf(rand.nextInt(upperbound + 1));
-                            String rand3 = String.valueOf(rand.nextInt(upperbound + 1));
-                            String rand4 = String.valueOf(rand.nextInt(upperbound + 1));
-                            String rand5 = String.valueOf(rand.nextInt(upperbound + 1));
-                            String rand6 = String.valueOf(rand.nextInt(upperbound + 1));
+                            int upperbound = 9;
+                            String rand1 = String.valueOf(rand.nextInt(upperbound));
+                            String rand2 = String.valueOf(rand.nextInt(upperbound));
+                            String rand3 = String.valueOf(rand.nextInt(upperbound));
+                            String rand4 = String.valueOf(rand.nextInt(upperbound));
+                            String rand5 = String.valueOf(rand.nextInt(upperbound));
+                            String rand6 = String.valueOf(rand.nextInt(upperbound));
                             String randomid = rand1 + rand2 + rand3 + rand4 + rand5 + rand6;
-                            System.out.println(randomid);
                             TextChannel create = guild1.createTextChannel(TextChannelCreateSpec -> TextChannelCreateSpec.setName("ticket-" + name + "-" + randomid)
                                     .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forMember(userid, PermissionSet.of(VIEW_CHANNEL, SEND_MESSAGES), PermissionSet.of(MENTION_EVERYONE, MANAGE_MESSAGES))))
                                     .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forRole(Snowflake.of(blacklistedrole), PermissionSet.of(), PermissionSet.of(VIEW_CHANNEL))))

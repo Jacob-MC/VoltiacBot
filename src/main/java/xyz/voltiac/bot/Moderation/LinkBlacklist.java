@@ -47,13 +47,14 @@ public class LinkBlacklist {
                                 || messagecontentlowercase.contains(".net") || messagecontentlowercase.contains(".org")) {
                             m.delete(reason).block();
                             assert channel != null;
-                            channel.createEmbed(EmbedCreateSpec -> EmbedCreateSpec.setColor(Color.RED)
-                                    .setTitle("**Message Deleted**")
-                                    .setDescription("Message Sent By " + mention + " Deleted in " + channelmention)
-                                    .addField("**Reason**", reason, false)
-                                    .setFooter(name + "#" + discriminator, pfp)
-                                    .setTimestamp(instant)
-                                    .setColor(Color.BLUE)).block();
+                            channel.createEmbed(EmbedCreateSpec -> {
+                                EmbedCreateSpec.setTitle("**Message Deleted**")
+                                        .setDescription("Message Sent By " + mention + " Deleted in " + channelmention)
+                                        .addField("**Reason**", reason, false)
+                                        .setFooter(name + "#" + discriminator, pfp)
+                                        .setTimestamp(instant)
+                                        .setColor(Color.of(51, 153, 255));
+                            }).block();
                         }
                     }
                 });

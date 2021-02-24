@@ -30,15 +30,17 @@ public class WelcomeMessages {
                     Instant instant = Instant.now();
                     MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(808838744609652782L)).block();
                     assert channel != null;
-                    channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle(n + " **Has Joined the Server**")
-                            .setColor(Color.GREEN)
-                            .setDescription("Welcome " + p + " to the Voltiac Network Discord Server!")
-                            .addField("**How to Join**", "If you want to join the minecraft server, check out <#808838744609652776>", false)
-                            .addField("**Support**", "If you have questions or need support, create a ticket in <#808838744609652784>", false)
-                            .addField("**Members**", "We now have " + count + " members!", false)
-                            .setFooter(n + "#" + d, pfp)
-                            .setTimestamp(instant)
-                            .setThumbnail(pfp));
+                    channel.createEmbed(embedCreateSpec -> {
+                        embedCreateSpec.setTitle(n + " **Has Joined the Server**")
+                                .setColor(Color.GREEN)
+                                .setDescription("Welcome " + p + " to the Voltiac Network Discord Server!")
+                                .addField("**How to Join**", "If you want to join the minecraft server, check out <#808838744609652776>", false)
+                                .addField("**Support**", "If you have questions or need support, create a ticket in <#808838744609652784>", false)
+                                .addField("**Members**", "We now have " + count + " members!", false)
+                                .setFooter(n + "#" + d, pfp)
+                                .setTimestamp(instant)
+                                .setThumbnail(pfp);
+                    }).block();
                 });
         client.getEventDispatcher().on(MemberLeaveEvent.class)
                 .subscribe(event -> {
@@ -54,13 +56,15 @@ public class WelcomeMessages {
                     System.out.println(count);
                     MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(808838744609652782L)).block();
                     assert channel != null;
-                    channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle(n + " **Has Left the Server**")
-                            .setColor(Color.RED)
-                            .setDescription(n + "#" + d + " Has Left the Server")
-                            .addField("**Members**", "We now have " + count + " members.", false)
-                            .setFooter(n + "#" + d, pfp)
-                            .setTimestamp(instant)
-                            .setThumbnail(pfp));
+                    channel.createEmbed(embedCreateSpec -> {
+                        embedCreateSpec.setTitle(n + " **Has Left the Server**")
+                                .setColor(Color.RED)
+                                .setDescription(n + "#" + d + " Has Left the Server")
+                                .addField("**Members**", "We now have " + count + " members.", false)
+                                .setFooter(n + "#" + d, pfp)
+                                .setTimestamp(instant)
+                                .setThumbnail(pfp);
+                    }).block();
                 });
     }
 }

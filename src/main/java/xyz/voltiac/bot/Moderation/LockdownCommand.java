@@ -24,10 +24,7 @@ public class LockdownCommand {
                         MessageChannel channel = Command.getChannel().block();
                         Guild guild = (Guild) event.getGuild().block();
                         System.out.println("Lockdown Start Command Executed By: " + username);
-                        while (1 < 9999) {
-                        List<Role> roles = guild.getRoles().collectSortedList().block();
-                        System.out.println(roles);
-                        }
+
                     }
                     if ("!lockdown end".equalsIgnoreCase(Command.getContent())) {
                         String username = Command.getAuthor().get().getUsername();

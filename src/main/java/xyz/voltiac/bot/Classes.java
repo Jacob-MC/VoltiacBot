@@ -6,19 +6,13 @@ import xyz.voltiac.bot.Moderation.*;
 import xyz.voltiac.bot.OtherUtil.*;
 public class Classes {
     public static void Classes(GatewayDiscordClient client) {
-        CommandHandler commands = new CommandHandler();
-        commands.CommandHandler(client);
-        LockdownCommand lockdownCommand = new LockdownCommand();
+        CommandHandler.CommandHandler(client);
         LockdownCommand.LockdownCommand(client);
-        Tickets tickets = new Tickets();
-        tickets.TicketListeners(client);
-        LinkBlacklist linkBlacklist = new LinkBlacklist();
-        linkBlacklist.LinkBlacklist(client);
-        MessageLogs messageLogs = new MessageLogs();
-        messageLogs.MessageLogs(client);
-        ReactionRoles reactionRoles = new ReactionRoles();
-        reactionRoles.ReactionRoles(client);
-        WelcomeMessages welcomeMessages = new WelcomeMessages();
-        welcomeMessages.WelcomeMessages(client);
+        Tickets.TicketListeners(client);
+        LinkBlacklist.LinkBlacklist(client);
+        MessageLogs.MessageLogs(client);
+        ReactionRoles.ReactionRoles(client);
+        WelcomeMessages.WelcomeMessages(client);
+        RollCommand.RollCommand(client);
     }
 }
