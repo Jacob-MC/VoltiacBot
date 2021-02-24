@@ -14,5 +14,6 @@ public class Classes {
         ReactionRoles.ReactionRoles(client);
         WelcomeMessages.WelcomeMessages(client);
         RollCommand.RollCommand(client);
+        RPSCommand.RPSCommand(client);
     }
 }

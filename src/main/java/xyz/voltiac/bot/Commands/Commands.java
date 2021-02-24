@@ -23,6 +23,8 @@ public class Commands {
                                     .addField("**!howtojoin**", "Displays a guide on how to join the server", false)
                                     .addField("**!rules**", "Displays the server rules", false)
                                     .addField("**!avatar (user)**", "Gets a user's avatar - Works by mentioning the user or by using the user's ID", false)
+                                    .addField("**!roll (number of dice)**", "Rolls a specified amount of dice", false)
+                                    .addField("**!rps (choice)**", "Plays rock, paper, scissors with the bot", false)
                                     .addField("**!help**", "Help Command", false)
                                     .setColor(Color.of(51, 153, 255))
                                     .setFooter("Command Executed By: " + username, avatar);

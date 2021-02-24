@@ -5,6 +5,7 @@ import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
+import discord4j.core.object.entity.channel.Channel;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
 
@@ -15,6 +16,21 @@ public class GetAvatar {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
                    Message message = event.getMessage();
+                   MessageChannel channel = message.getChannel().block();
+                   User messageuser = message.getAuthor().get();
+                   String messageusername = messageuser.getUsername();
+                   String messageavatar = messageuser.getAvatarUrl();
+                    if (message.getContent().equalsIgnoreCase("!avatar") || message.getContent().equalsIgnoreCase("!avatar ")) {
+                        channel.createEmbed(embedCreateSpec -> {
+                            embedCreateSpec.setTitle("**!avatar**")
+                                    .setDescription("Get a user's avatar!")
+                                    .addField("**Usage:**", "!avatar (mention user or enter their ID)", false)
+                                    .addField("Example:", "!avatar <@!778742764908183612>", false)
+                                    .addField("Example:", "!avatar 778742764908183612", false)
+                                    .setFooter("Command Executed By: " + messageusername, messageavatar)
+                                    .setColor(Color.of(51, 153, 255));
+                        }).block();
+                    }
                     if (message.getContent().contains("!avatar") && message.getContent().length() > 26) {
                         String messagecontent = message.getContent();
                         int index = messagecontent.indexOf(' ') + 1;
@@ -23,15 +39,11 @@ public class GetAvatar {
                         User user = client.getUserById(id).block();
                         String username = user.getUsername();
                         String avatarurl = user.getAvatarUrl();
-                        User messageuser = message.getAuthor().get();
-                        String messageusername = messageuser.getUsername();
-                        String messageuseravatar = messageuser.getAvatarUrl();
-                        MessageChannel channel = message.getChannel().block();
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle(username + "'s Avatar")
                                     .setColor(Color.of(51, 153, 255))
                                     .setImage(avatarurl)
-                                    .setFooter("Command Executed By: " + messageusername, messageuseravatar);
+                                    .setFooter("Command Executed By: " + messageusername, messageavatar);
                         }).block();
                     }
 
@@ -40,15 +52,11 @@ public class GetAvatar {
                         User user = client.getUserById(Snowflake.of(userid)).block();
                         String username = user.getUsername();
                         String avatarurl = user.getAvatarUrl();
-                        User messageuser = message.getAuthor().get();
-                        String messageusername = messageuser.getUsername();
-                        String messageuseravatar = messageuser.getAvatarUrl();
-                        MessageChannel channel = message.getChannel().block();
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle(username + "'s Avatar")
                                     .setColor(Color.of(51, 153, 255))
                                     .setImage(avatarurl)
-                                    .setFooter("Command Executed By: " + messageusername, messageuseravatar);
+                                    .setFooter("Command Executed By: " + messageusername, messageavatar);
                         }).block();
                     }
 

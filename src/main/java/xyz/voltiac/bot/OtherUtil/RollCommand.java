@@ -25,15 +25,19 @@ public class RollCommand {
                    Optional<User> author = message.getAuthor();
                    String username = author.get().getUsername();
                    String useravatar = author.get().getAvatarUrl();
-                   if (messagecontent.equalsIgnoreCase("!roll")) {
+                   if (messagecontent.equalsIgnoreCase("!roll") || messagecontent.equalsIgnoreCase("roll ")) {
                        channel.createEmbed(embedCreateSpec -> {
                            embedCreateSpec.setTitle("**!roll**")
-                                   .setDescription("Usage: !roll (number of dice)")
+                                   .setDescription("Roll a specified number of dice!")
+                                   .addField("**Usage:**", "!roll (number of dice)", false)
+                                   .addField("Example:", "!roll 5", false)
                                    .setFooter("Command Executed By: " + username, useravatar)
                                    .setColor(Color.of(51, 153, 255));
                        }).block();
+                       System.out.println("Roll Command Executed By: " + username);
                    }
                    if (messagecontent.toLowerCase().contains("!roll ")) {
+                       System.out.println("Roll Command Executed By: " + username);
                        String rollnumberdice = messagecontent.substring(6);
                        if (rollnumberdice.matches(".*[a-z].*")) {
                            channel.createMessage("Invalid number. Please enter a number between 1 and 5.").block();
