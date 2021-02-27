@@ -41,10 +41,10 @@ public class SetBotStatus {
                        System.out.println(rolepos);
                        int index = messagecontent.indexOf(" ") + 1;
                        String status = messagecontent.substring(index);
-                       if (rolepos >= 33) {
+                       if (rolepos >= 29) {
                         client.updatePresence(Presence.online(Activity.playing(status))).block();
                         channel.createMessage("Bot status updated.").block();
-                       } else if (rolepos < 33) {
+                       } else if (rolepos < 29) {
                            channel.createMessage("You do not have permission to use that command!").block();
                        }
                    }
