@@ -8,7 +8,7 @@ import discord4j.gateway.intent.Intent;
 import discord4j.gateway.intent.IntentSet;
 
 public class Main {
-    static GatewayDiscordClient client = DiscordClientBuilder.create("ODA5NDg3MDUxNTY0OTA4NTc2.YCVzkA.dV8dM90ronWkQiqT8oEQjlWmZ8E")
+    static GatewayDiscordClient client = DiscordClientBuilder.create("token here")
             .build()
             .login()
             .block();
