@@ -38,7 +38,6 @@ public class SetBotStatus {
                         Member member = message.getAuthorAsMember().block();
                         Role highestrole = member.getHighestRole().block();
                        int rolepos = highestrole.getPosition().block();
-                       System.out.println(rolepos);
                        int index = messagecontent.indexOf(" ") + 1;
                        String status = messagecontent.substring(index);
                        if (rolepos >= 29) {
