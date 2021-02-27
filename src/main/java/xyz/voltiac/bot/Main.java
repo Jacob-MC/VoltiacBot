@@ -6,7 +6,7 @@ import discord4j.core.event.domain.lifecycle.ReadyEvent;
 import discord4j.core.object.entity.User;
 
 public class Main {
-    GatewayDiscordClient client = DiscordClientBuilder.create("token here")
+    static GatewayDiscordClient client = DiscordClientBuilder.create("token here")
             .build()
             .login()
             .block();

@@ -1,5 +1,6 @@
 package xyz.voltiac.bot.OtherUtil;
 
+import com.sun.istack.internal.Pool;
 import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
@@ -11,11 +12,12 @@ import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.object.entity.channel.TextChannel;
 import discord4j.core.object.reaction.ReactionEmoji;
 import discord4j.rest.util.Color;
+import discord4j.rest.util.Permission;
 import discord4j.rest.util.PermissionSet;
+import reactor.core.publisher.Mono;
 
 import java.time.Instant;
-import java.util.Collections;
-import java.util.Random;
+import java.util.*;
 
 import static discord4j.rest.util.Permission.*;
 
@@ -42,9 +44,10 @@ public class Tickets {
                     Guild guild = m.getGuild().block();
                     Snowflake userid = m.getId();
                     long messageid = 809278160704897034L;
-                    long blacklistedrole = 808838744203198503L;
-                    long staffrole1 = 808838744227446789L;
-
+                    Role everyonerole = guild.getEveryoneRole().block();
+                    Snowflake everyoneroleid = everyonerole.getId();
+                    Snowflake staffrole1 = Snowflake.of(808838744227446789L);
+                    Instant instant = Instant.now();
                     assert message != null;
 
                     if (id.asLong() == messageid){
@@ -62,43 +65,25 @@ public class Tickets {
                             String rand4 = String.valueOf(rand.nextInt(upperbound));
                             String rand5 = String.valueOf(rand.nextInt(upperbound));
                             String rand6 = String.valueOf(rand.nextInt(upperbound));
+                            Set<PermissionOverwrite> overwrites = new HashSet<>();
+                            overwrites.add(PermissionOverwrite.forRole(everyoneroleid, PermissionSet.of(), PermissionSet.of(VIEW_CHANNEL)));
+                            overwrites.add(PermissionOverwrite.forMember(userid, PermissionSet.of(VIEW_CHANNEL, SEND_MESSAGES), PermissionSet.of(MENTION_EVERYONE, MANAGE_MESSAGES)));
                             String randomid = rand1 + rand2 + rand3 + rand4 + rand5 + rand6;
-                            TextChannel create = guild1.createTextChannel(TextChannelCreateSpec -> TextChannelCreateSpec.setName("ticket-" + name + "-" + randomid)
-                                    .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forMember(userid, PermissionSet.of(VIEW_CHANNEL, SEND_MESSAGES), PermissionSet.of(MENTION_EVERYONE, MANAGE_MESSAGES))))
-                                    .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forRole(Snowflake.of(blacklistedrole), PermissionSet.of(), PermissionSet.of(VIEW_CHANNEL))))
-                                    .setPermissionOverwrites(Collections.singleton(PermissionOverwrite.forRole(Snowflake.of(staffrole1), PermissionSet.of(VIEW_CHANNEL, SEND_MESSAGES), PermissionSet.of())))).block();
-                            assert create != null;
+                            TextChannel create = guild1.createTextChannel(TextChannelCreateSpec -> {
+                                TextChannelCreateSpec.setName("ticket-" + name + "-" + randomid)
+                                        .setPermissionOverwrites(overwrites);
+                                    }).block();
                             System.out.println("Ticket Created By: " + user);
                             long ticketchannelid = create.getId().asLong();
-                            client.getEventDispatcher().on(MessageCreateEvent.class)
-                                    .subscribe(event1 -> {
-                                        Message message1 = event1.getMessage();
-                                        long channel = message1.getChannelId().asLong();
-                                        Channel channel1 = message1.getChannel().block();
-                                        String messagecontent = message1.getContent();
-                                        User author = message1.getAuthor().get();
-                                        String authormention = author.getMention();
-                                        String username = author.getUsername();
-                                        Instant instant = Instant.now();
-                                        if ("!close".equalsIgnoreCase(messagecontent)) {
-                                            if(String.valueOf(channel).equals(String.valueOf(ticketchannelid))) {
-                                                TextChannel delete = (TextChannel) client.getChannelById(Snowflake.of(ticketchannelid)).block();
-                                                assert delete != null;
-                                                delete.delete("Ticket Closed.").block();
-                                                System.out.println("Ticket Closed By: " + username);
-
-                                                MessageChannel channel2 = (MessageChannel) client.getChannelById(Snowflake.of(809196891488518214L)).block();
-                                                assert channel2 != null;
-                                                channel2.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("**Ticket Closed**")
-                                                        .setDescription("Ticket opened by " + mention + " closed by " + authormention)
-                                                        .setColor(Color.of(51, 153, 255))
-                                                        .setTimestamp(instant)).block();
-                                            }
-                                        }
-                                    });
                             MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(ticketchannelid)).block();
                             assert channel != null;
                             channel.createMessage(messageCreateSpec -> messageCreateSpec.setContent("Please be patient, " + mention + " , " + staffrolemention + " will be with you soon.")).block();
+                            MessageChannel channel2 = (MessageChannel) client.getChannelById(Snowflake.of(808838744609652785L)).block();
+                            assert channel2 != null;
+                            channel2.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("**Ticket Opened**")
+                                    .setDescription("Ticket #" + randomid + " opened by " + mention)
+                                    .setColor(Color.of(51, 153, 255))
+                                    .setTimestamp(instant)).block();
                         }
                     }
                 });

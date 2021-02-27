@@ -1,4 +1,4 @@
-package xyz.voltiac.bot.Moderation;
+package xyz.voltiac.bot.ModerationAndAdminCommands;
 
 import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;

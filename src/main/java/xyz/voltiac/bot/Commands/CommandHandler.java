@@ -10,19 +10,13 @@ import discord4j.rest.util.Color;
 
 public class CommandHandler {
     public static void CommandHandler(GatewayDiscordClient client) {
-        Commands commands = new Commands();
-        commands.Commands(client);
-        Consoles consoles = new Consoles();
-        consoles.Consoles(client);
-        GetAvatar getAvatar = new GetAvatar();
-        getAvatar.GetAvatar(client);
-        Help help = new Help();
-        help.Help(client);
-        HowToJoin howToJoin = new HowToJoin();
-        howToJoin.HowToJoin(client);
-        Rules rules = new Rules();
-        rules.Rules(client);
-        ServerIP serverIP = new ServerIP();
-        serverIP.ServerIP(client);
+        Commands.Commands(client);
+        Consoles.Consoles(client);
+        GetAvatar.GetAvatar(client);
+        Help.Help(client);
+        HowToJoin.HowToJoin(client);
+        Rules.Rules(client);
+        ServerIP.ServerIP(client);
+        CloseTicket.CloseTicket(client);
     }
 }

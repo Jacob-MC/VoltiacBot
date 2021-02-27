@@ -1,17 +1,10 @@
-package xyz.voltiac.bot.Moderation;
+package xyz.voltiac.bot.ModerationAndAdminCommands;
 
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Guild;
-import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
-import discord4j.core.object.entity.Role;
 import discord4j.core.object.entity.channel.MessageChannel;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
-import java.time.Duration;
-import java.util.List;
 
 public class LockdownCommand {
     public static void LockdownCommand(GatewayDiscordClient client) {
