@@ -1,7 +1,6 @@
 package xyz.voltiac.bot.Commands;
 
 import discord4j.core.GatewayDiscordClient;
-import xyz.voltiac.bot.OtherUtil.WelcomeMessages;
 
 public class CommandHandler {
     public static void CommandHandler(GatewayDiscordClient client) {
@@ -13,5 +12,6 @@ public class CommandHandler {
         Rules.Rules(client);
         ServerIP.ServerIP(client);
         CloseTicket.CloseTicket(client);
+        OpenTicket.OpenTicket(client);
     }
 }
