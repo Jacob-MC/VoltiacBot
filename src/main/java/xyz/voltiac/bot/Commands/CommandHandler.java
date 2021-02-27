@@ -1,12 +1,7 @@
 package xyz.voltiac.bot.Commands;
 
-import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;
-import discord4j.core.event.domain.message.MessageCreateEvent;
-import discord4j.core.object.entity.Message;
-import discord4j.core.object.entity.User;
-import discord4j.core.object.entity.channel.MessageChannel;
-import discord4j.rest.util.Color;
+import xyz.voltiac.bot.OtherUtil.WelcomeMessages;
 
 public class CommandHandler {
     public static void CommandHandler(GatewayDiscordClient client) {

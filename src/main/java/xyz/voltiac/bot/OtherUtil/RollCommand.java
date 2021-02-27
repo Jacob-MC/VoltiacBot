@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.Random;
 
 public class RollCommand {
-    public static  void RollCommand(GatewayDiscordClient client) {
+    public static void RollCommand(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
                    Message message = event.getMessage();
