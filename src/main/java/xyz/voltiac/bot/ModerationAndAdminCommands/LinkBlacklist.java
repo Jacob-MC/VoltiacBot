@@ -29,9 +29,9 @@ public class LinkBlacklist {
                     String pfp = a.get().getAvatarUrl();
                     String mention = a.get().getMention();
                     Channel c = m.getChannel().block();
+                    assert c != null;
                     Snowflake id = m.getChannelId();
                     long blacklistedchannel = 808838745541050399L;
-                    assert c != null;
                     String channelmention = c.getMention();
                     String messagecontent = m.getContent();
                     Instant instant = Instant.now();
