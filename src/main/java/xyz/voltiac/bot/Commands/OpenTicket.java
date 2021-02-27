@@ -46,8 +46,8 @@ public class OpenTicket {
                     Snowflake staffrole1 = Snowflake.of(808838744227446789L);
                     Instant instant = Instant.now();
                     assert message != null;
-                    message.delete("Ticket Created").block();
                     if (messagecontent.equalsIgnoreCase("!ticket")){
+                    message.delete("Ticket Created").block();
                             Random rand = new Random();
                             int upperbound = 9;
                             String rand1 = String.valueOf(rand.nextInt(upperbound));
