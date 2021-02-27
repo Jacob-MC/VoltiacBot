@@ -24,6 +24,7 @@ public class SetBotStatus {
                    String username = user.getUsername();
                    String avatar = user.getAvatarUrl();
                    MessageChannel channel = message.getChannel().block();
+                   assert channel != null;
                     if (messagecontent.equalsIgnoreCase("!setbotstatus") || messagecontent.equalsIgnoreCase("!setbotstatus ")) {
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle("**!setbotstatus**")
