@@ -4,8 +4,6 @@ import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.lifecycle.ReadyEvent;
 import discord4j.core.object.entity.User;
-import discord4j.gateway.intent.Intent;
-import discord4j.gateway.intent.IntentSet;
 
 public class Main {
     static GatewayDiscordClient client = DiscordClientBuilder.create("token here")
