@@ -13,5 +13,6 @@ public class CommandHandler {
         ServerIP.ServerIP(client);
         CloseTicket.CloseTicket(client);
         OpenTicket.OpenTicket(client);
+        AFK.AFK(client);
     }
 }

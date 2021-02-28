@@ -43,6 +43,7 @@ public class SetBotStatus {
                        if (rolepos >= 29) {
                         client.updatePresence(Presence.online(Activity.playing(status))).block();
                         channel.createMessage("Bot status updated.").block();
+                           System.out.println("Bot status set to: " + status + "\nby " + username);
                        } else if (rolepos < 29) {
                            channel.createMessage("You do not have permission to use that command!").block();
                        }
