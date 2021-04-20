@@ -39,7 +39,7 @@ public class RollCommand {
                    if (messagecontent.toLowerCase().contains("!roll ")) {
                        System.out.println("Roll Command Executed By: " + username);
                        String rollnumberdice = messagecontent.substring(6);
-                       if (rollnumberdice.matches(".*[a-z].*")) {
+                       if (rollnumberdice.matches(".*[a-z].*") ) {
                            channel.createMessage("Invalid number. Please enter a number between 1 and 5.").block();
                        } else {
                            int numberdice = Integer.valueOf(rollnumberdice);
@@ -72,6 +72,10 @@ public class RollCommand {
 
                            if (numberdice == 5) {
                                channel.createMessage(username + ", you rolled " + rand1 + ", " + rand2 + ", " + rand3 + ", " + rand4 + ", " + rand5).block();
+                           }
+
+                           if (numberdice > 5) {
+                               channel.createMessage("Invalid number. Please enter a number between 1 and 5.").block();
                            }
                        }
                    }

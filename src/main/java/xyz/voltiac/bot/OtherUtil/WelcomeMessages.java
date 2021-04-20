@@ -6,14 +6,10 @@ import discord4j.core.event.domain.guild.MemberJoinEvent;
 import discord4j.core.event.domain.guild.MemberLeaveEvent;
 import discord4j.core.object.entity.Guild;
 import discord4j.core.object.entity.Member;
-import discord4j.core.object.entity.Role;
 import discord4j.core.object.entity.channel.Channel;
 import discord4j.core.object.entity.channel.MessageChannel;
-import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.rest.util.Color;
-import reactor.core.publisher.Mono;
 
-import java.awt.*;
 import java.time.Instant;
 
 public class WelcomeMessages {
@@ -25,15 +21,55 @@ public class WelcomeMessages {
                     String discriminator = member.getDiscriminator();
                     String mention = member.getMention();
                     String avatarurl = member.getAvatarUrl();
-                    Channel infochannel = client.getChannelById(Snowflake.of(808838744609652776L)).block();
-                    Channel supportchannel = client.getChannelById(Snowflake.of(808838744609652784L)).block();
+                    Guild guild = event.getGuild().block();
+                    Snowflake infochannelID = null;
+                    String channels = guild.getChannels().collectList().block().toString();
+                    if (channels.toLowerCase().contains("info")) { ;
+                        int beginindex = channels.indexOf("info");
+                        String channelinfo = channels.substring(beginindex);
+                        int channelidbeginindex = channelinfo.indexOf("BaseChannel{data=ChannelData{id=") + 32;
+                        int channelidendindex = channelidbeginindex + 18;
+                        infochannelID = Snowflake.of(channelinfo.substring(channelidbeginindex, channelidendindex));
+                    } else {
+                    }
+
+                    Snowflake supportchannelID = null;
+                    if (channels.toLowerCase().contains("support")) { ;
+                        int beginindex = channels.indexOf("support");
+                        String channelinfo = channels.substring(beginindex);
+                        int channelidbeginindex = channelinfo.indexOf("BaseChannel{data=ChannelData{id=") + 32;
+                        int channelidendindex = channelidbeginindex + 18;
+                        supportchannelID = Snowflake.of(channelinfo.substring(channelidbeginindex, channelidendindex));
+                    } else {
+                    }
+
+                    Snowflake welcomechannelID = null;
+                    if (channels.toLowerCase().contains("welcome")) { ;
+                        int beginindex = channels.indexOf("welcome");
+                        String channelinfo = channels.substring(beginindex);
+                        int channelidbeginindex = channelinfo.indexOf("BaseChannel{data=ChannelData{id=") + 32;
+                        int channelidendindex = channelidbeginindex + 18;
+                        welcomechannelID = Snowflake.of(channelinfo.substring(channelidbeginindex, channelidendindex));
+                    } else {
+                    }
+
+                    Snowflake memberroleID = null;
+                    String roles = guild.getRoles().collectList().block().toString();
+                    if (roles.toLowerCase().contains("《 member 》")) {
+                        int beginindex = roles.toLowerCase().indexOf("《 member 》") - 25;
+                        int endindex = beginindex + 18;
+                        memberroleID = Snowflake.of(roles.substring(beginindex, endindex));
+                    } else {
+                    }
+
+                    Channel infochannel = client.getChannelById(infochannelID).block();
+                    Channel supportchannel = client.getChannelById(supportchannelID).block();
                     String supportchannelmention = supportchannel.getMention();
                     String infochannelmention = infochannel.getMention();
-                    Guild guild = event.getGuild().block();
                     String membercount = String.valueOf(guild.getMemberCount());
                     Instant instant = Instant.now();
-                    Void r = member.addRole(Snowflake.of(809243022172356649L)).block();
-                    MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(815034713370394674L)).block();
+                    Void r = member.addRole(memberroleID).block();
+                    MessageChannel channel = (MessageChannel) client.getChannelById(welcomechannelID).block();
                     channel.createEmbed(EmbedCreateSpec -> {
                         EmbedCreateSpec.setTitle(username + " **Has Joined the Server!**")
                                 .setDescription("Welcome " + mention + " to the Voltiac Network Discord Server!")
@@ -51,16 +87,24 @@ public class WelcomeMessages {
                     String username = member.getUsername();
                     String discriminator = member.getDiscriminator();
                     String avatarurl = member.getAvatarUrl();
-                    Channel infochannel = client.getChannelById(Snowflake.of(808838744609652776L)).block();
-                    Channel supportchannel = client.getChannelById(Snowflake.of(808838744609652784L)).block();
-                    String supportchannelmention = supportchannel.getMention();
-                    String infochannelmention = infochannel.getMention();
                     Guild guild = event.getGuild().block();
                     String membercount = String.valueOf(guild.getMemberCount());
                     Instant instant = Instant.now();
-                    MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(815034713370394674L)).block();
+
+                    Snowflake welcomechannelID = null;
+                    String channels = guild.getChannels().collectList().block().toString();
+                    if (channels.toLowerCase().contains("welcome")) { ;
+                        int beginindex = channels.indexOf("welcome");
+                        String channelinfo = channels.substring(beginindex);
+                        int channelidbeginindex = channelinfo.indexOf("BaseChannel{data=ChannelData{id=") + 32;
+                        int channelidendindex = channelidbeginindex + 18;
+                        welcomechannelID = Snowflake.of(channelinfo.substring(channelidbeginindex, channelidendindex));
+                    } else {
+                    }
+
+                    MessageChannel channel = (MessageChannel) client.getChannelById(welcomechannelID).block();
                     channel.createEmbed(EmbedCreateSpec -> {
-                        EmbedCreateSpec.setTitle(username + "**Has Left the Server**")
+                        EmbedCreateSpec.setTitle(username + " **Has Left the Server**")
                                 .setDescription(username + "#" + discriminator + " Has Left the Server")
                                 .addField("**Members**", "We now have " + membercount + " members.", false)
                                 .setFooter(username + "#" + discriminator, avatarurl)

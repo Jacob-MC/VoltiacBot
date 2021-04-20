@@ -9,6 +9,7 @@ import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.object.presence.Activity;
 import discord4j.core.object.presence.Presence;
 import discord4j.rest.util.Color;
+import discord4j.rest.util.Permission;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
@@ -19,13 +20,15 @@ public class SetBotStatus {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
                    Message message = event.getMessage();
+                   Member member = message.getAuthorAsMember().block();
                    String messagecontent = message.getContent();
                    User user = message.getAuthor().get();
                    String username = user.getUsername();
                    String avatar = user.getAvatarUrl();
                    MessageChannel channel = message.getChannel().block();
+                   Guild guild = event.getGuild().block();
                    assert channel != null;
-                    if (messagecontent.equalsIgnoreCase("!setbotstatus") || messagecontent.equalsIgnoreCase("!setbotstatus ")) {
+                    if (messagecontent.equalsIgnoreCase("!setbotstatus") || messagecontent.equalsIgnoreCase("!setbotstatus ") && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle("**!setbotstatus**")
                                     .setDescription("Sets the bots status!")
@@ -34,19 +37,14 @@ public class SetBotStatus {
                                     .setFooter("Command Executed By: " + username, avatar)
                                     .setColor(Color.of(51, 153, 255));
                         }).block();
-                    } else if(messagecontent.toLowerCase().contains("!setbotstatus")) {
-                        Member member = message.getAuthorAsMember().block();
-                        Role highestrole = member.getHighestRole().block();
-                       int rolepos = highestrole.getPosition().block();
-                       int index = messagecontent.indexOf(" ") + 1;
-                       String status = messagecontent.substring(index);
-                       if (rolepos >= 29) {
-                        client.updatePresence(Presence.online(Activity.playing(status))).block();
+                    } else if(!member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                        channel.createMessage("You do not have permissions to use this command!").block();
+                    } else if(messagecontent.toLowerCase().startsWith("!setbotstatus ") && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                        int index = messagecontent.indexOf(" ");
+                        String botstatus = messagecontent.substring(index);
+                        client.updatePresence(Presence.online(Activity.playing(botstatus))).block();
                         channel.createMessage("Bot status updated.").block();
-                           System.out.println("Bot status set to: " + status + "\nby " + username);
-                       } else if (rolepos < 29) {
-                           channel.createMessage("You do not have permission to use that command!").block();
-                       }
+                           System.out.println("Bot status set to: " + botstatus + "\nby " + username);
                    }
                 });
         }

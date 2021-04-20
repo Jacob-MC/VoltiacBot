@@ -10,12 +10,13 @@ public class Classes {
         CommandHandler.CommandHandler(client);
         LockdownCommand.LockdownCommand(client);
         Tickets.TicketListeners(client);
-        LinkBlacklist.LinkBlacklist(client);
         MessageLogs.MessageLogs(client);
         ReactionRoles.ReactionRoles(client);
         RollCommand.RollCommand(client);
         RPSCommand.RPSCommand(client);
         SetBotStatus.SetBotStatus(client);
         WelcomeMessages.WelcomeMessages(client);
+        Suggestions.Suggestions(client);
+        TicketCreateMessage.TicketCreateMessage(client);
     }
 }

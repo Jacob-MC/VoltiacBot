@@ -8,6 +8,7 @@ import discord4j.core.object.entity.Guild;
 import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.Role;
+import discord4j.core.object.entity.channel.Channel;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.object.entity.channel.TextChannel;
 import discord4j.core.object.reaction.ReactionEmoji;
@@ -29,28 +30,41 @@ public class Tickets {
                     ReactionEmoji reactionemoji = event.getEmoji();
                     Message message = event.getMessage().block();
                     Member m = event.getMember().get();
+                    Snowflake messagechannelid = message.getChannelId();
+                    String messagecontent = message.getContent();
                     String user = m.getUsername();
-                    Member member = client.getMemberById(Snowflake.of(808838744203198503L), Snowflake.of(809487051564908576L)).block();
-                    assert member != null;
-                    String botpfp = member.getAvatarUrl();
-                    Guild guild1 = client.getGuildById(Snowflake.of(808838744203198503L)).block();
-                    assert guild1 != null;
-                    Role staffrole = guild1.getRoleById(Snowflake.of(808838744227446789L)).block();
-                    assert staffrole != null;
-                    String staffrolemention = staffrole.getMention();
                     String mention = m.getMention();
                     String name = m.getUsername();
                     String disc = m.getDiscriminator();
-                    Guild guild = m.getGuild().block();
+                    Guild guild = event.getGuild().block();
+                    Instant instant = Instant.now();
+
+                    Snowflake staffroleid = null;
+                    String roles = guild.getRoles().collectList().block().toString();
+                    if (roles.toLowerCase().contains("staff")) {
+                        int beginindex = roles.toLowerCase().indexOf("《 staff 》") - 25;
+                        int endindex = beginindex + 18;
+                        staffroleid = Snowflake.of(roles.substring(beginindex, endindex));
+                    } else {
+                    }
+                    Role staffrole = guild.getRoleById(staffroleid).block();
+                    String staffrolemention = staffrole.getMention();
                     Snowflake userid = m.getId();
-                    long messageid = 809278160704897034L;
                     Role everyonerole = guild.getEveryoneRole().block();
                     Snowflake everyoneroleid = everyonerole.getId();
-                    Snowflake staffrole1 = Snowflake.of(808838744227446789L);
-                    Instant instant = Instant.now();
                     assert message != null;
 
-                    if (id.asLong() == messageid){
+                    Snowflake supportchannelID = null;
+                    String channels = guild.getChannels().collectList().block().toString();
+                    if (channels.toLowerCase().contains("support")) { ;
+                        int beginindex = channels.indexOf("support");
+                        String channelinfo = channels.substring(beginindex);
+                        int channelidbeginindex = channelinfo.indexOf("BaseChannel{data=ChannelData{id=") + 32;
+                        int channelidendindex = channelidbeginindex + 18;
+                        supportchannelID = Snowflake.of(channelinfo.substring(channelidbeginindex, channelidendindex));
+                    }
+
+                    if (messagecontent.equalsIgnoreCase("tickets") && messagechannelid.equals(supportchannelID)){
                         Snowflake r = event.getUserId();
                         if (r.asLong() == r.asLong()) {
                             Role role1 = m.getHighestRole().block();
@@ -67,10 +81,10 @@ public class Tickets {
                             String rand6 = String.valueOf(rand.nextInt(upperbound));
                             Set<PermissionOverwrite> overwrites = new HashSet<>();
                             overwrites.add(PermissionOverwrite.forRole(everyoneroleid, PermissionSet.of(), PermissionSet.of(VIEW_CHANNEL)));
-                            overwrites.add(PermissionOverwrite.forRole(staffrole1, PermissionSet.of(VIEW_CHANNEL, SEND_MESSAGES, MENTION_EVERYONE), PermissionSet.of(MANAGE_MESSAGES)));
+                            overwrites.add(PermissionOverwrite.forRole(staffroleid, PermissionSet.of(VIEW_CHANNEL, SEND_MESSAGES, MENTION_EVERYONE), PermissionSet.of(MANAGE_MESSAGES)));
                             overwrites.add(PermissionOverwrite.forMember(userid, PermissionSet.of(VIEW_CHANNEL, SEND_MESSAGES), PermissionSet.of(MENTION_EVERYONE, MANAGE_MESSAGES)));
                             String randomid = rand1 + rand2 + rand3 + rand4 + rand5 + rand6;
-                            TextChannel create = guild1.createTextChannel(TextChannelCreateSpec -> {
+                            TextChannel create = guild.createTextChannel(TextChannelCreateSpec -> {
                                 TextChannelCreateSpec.setName("ticket-" + name + "-" + randomid)
                                         .setPermissionOverwrites(overwrites);
                                     }).block();
@@ -79,7 +93,16 @@ public class Tickets {
                             MessageChannel channel = (MessageChannel) client.getChannelById(Snowflake.of(ticketchannelid)).block();
                             assert channel != null;
                             channel.createMessage(messageCreateSpec -> messageCreateSpec.setContent("Please be patient, " + mention + " , " + staffrolemention + " will be with you soon.")).block();
-                            MessageChannel channel2 = (MessageChannel) client.getChannelById(Snowflake.of(808838744609652785L)).block();
+                            Snowflake logchannelID = null;
+                            if (channels.toLowerCase().contains("logs")) { ;
+                                int beginindex = channels.indexOf("logs");
+                                String channelinfo = channels.substring(beginindex);
+                                int channelidbeginindex = channelinfo.indexOf("BaseChannel{data=ChannelData{id=") + 32;
+                                int channelidendindex = channelidbeginindex + 18;
+                                logchannelID = Snowflake.of(channelinfo.substring(channelidbeginindex, channelidendindex));
+                            } else {
+                            }
+                            MessageChannel channel2 = (MessageChannel) client.getChannelById(logchannelID).block();
                             assert channel2 != null;
                             channel2.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("**Ticket Opened**")
                                     .setDescription("Ticket #" + randomid + " opened by " + mention)

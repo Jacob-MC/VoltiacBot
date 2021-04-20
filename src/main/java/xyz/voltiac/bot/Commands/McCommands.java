@@ -6,25 +6,26 @@ import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
 
-public class Commands {
-    public static void Commands(GatewayDiscordClient client) {
+public class McCommands {
+    public static void McCommands(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
-                   Message message = event.getMessage();
-                    if ("!commands".equalsIgnoreCase(message.getContent())) {
+                    Message message = event.getMessage();
+                    if ("!mccommands".equalsIgnoreCase(message.getContent())) {
                         String username = message.getAuthor().get().getUsername();
                         String avatar = message.getAuthor().get().getAvatarUrl();
                         MessageChannel channel = message.getChannel().block();
                         assert channel != null;
                         channel.createEmbed(embedCreateSpec -> {
-                            embedCreateSpec.setTitle("**Discord Commands**")
-                                    .addField("**!mccommands**", "Commands for info on the minecraft server", false)
-                                    .addField("**!funcommands**", "Fun discord commands", false)
-                                    .addField("**!help**", "Help Command", false)
+                            embedCreateSpec.setTitle("**MC Commands**")
+                                    .addField("**!ip**", "Displays the server IP", false)
+                                    .addField("**!consoles**", "Displays a guide on how to join the server on console", false)
+                                    .addField("**!howtojoin**", "Displays a guide on how to join the server", false)
+                                    .addField("**!rules**", "Displays the server rules", false)
                                     .setColor(Color.of(51, 153, 255))
                                     .setFooter("Command Executed By: " + username, avatar);
                         }).block();
-                        System.out.println("Commands Command Executed By: " + username);
+                        System.out.println("MCcommands Command Executed By: " + username);
                     }
                 });
     }

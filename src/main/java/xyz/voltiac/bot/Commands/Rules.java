@@ -1,8 +1,11 @@
 package xyz.voltiac.bot.Commands;
 
+import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
+import discord4j.core.object.entity.Guild;
 import discord4j.core.object.entity.Message;
+import discord4j.core.object.entity.channel.Channel;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
 
@@ -11,11 +14,25 @@ public class Rules {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
                    Message message = event.getMessage();
+                   Guild guild = event.getGuild().block();
                     if ("!rules".equalsIgnoreCase(message.getContent())) {
                         String username = message.getAuthor().get().getUsername();
                         String avatar = message.getAuthor().get().getAvatarUrl();
                         MessageChannel channel = message.getChannel().block();
                         assert channel != null;
+
+                        Snowflake selfadvertismentID = null;
+                        String channels = guild.getChannels().collectList().block().toString();
+                        if (channels.toLowerCase().contains("advertisment")) { ;
+                            int beginindex = channels.indexOf("advertisment");
+                            String channelinfo = channels.substring(beginindex);
+                            int channelidbeginindex = channelinfo.indexOf("BaseChannel{data=ChannelData{id=") + 32;
+                            int channelidendindex = channelidbeginindex + 18;
+                            selfadvertismentID = Snowflake.of(channelinfo.substring(channelidbeginindex, channelidendindex));
+                        } else {
+                        }
+                        Channel selfadvert = guild.getChannelById(selfadvertismentID).block();
+                        String selfadvertmention = selfadvert.getMention();
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle("**Voltiac Server Rules**")
                                     .setDescription("[1] Follow Discord TOS (Ex: Must be over 13 years old)\n" +
@@ -29,7 +46,7 @@ public class Rules {
                                             "[9] No DDoS, doxxing, or death threats\n" +
                                             "[10] No spamming\n" +
                                             "[11] No ban/mute evasion\n" +
-                                            "[12] Only advertise in <#808838745541050399>\n" +
+                                            "[12] Only advertise in " + selfadvertmention + "\n" +
                                             "[13] Do not advertise the buying or selling of services\n" +
                                             "[14] Do not come here only to advertise your social medias, discord servers, or minecraft servers\n" +
                                             "[15] No DM advertising\n" +
