@@ -7,29 +7,28 @@ import discord4j.core.object.entity.User;
 import discord4j.core.object.presence.Activity;
 import discord4j.core.object.presence.Presence;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList list = null;
+        String token = null;
         try {
             System.out.println("Fetching token.");
-            Scanner scanner = new Scanner(new FileReader(System.getProperty("user.dir") + "\\token.txt"));
-            list = new ArrayList();
-
-            while(scanner.hasNextLine()) {
-                list.add(scanner.nextLine());
-            }
-
+            InputStream in = Main.class.getResourceAsStream("/token.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            token = reader.readLine();
             System.out.println("Fetching token successful.");
-
+            reader.close();
         } catch (Exception var15) {
             System.out.println("Fetching token failed. File may be missing, named incorrectly, or in the wrong directory. Please place the file in the root of the jar.");
         }
 
-        GatewayDiscordClient client = DiscordClientBuilder.create(list.toString().substring(1, 60))
+        GatewayDiscordClient client = DiscordClientBuilder.create(token)
                 .build()
                 .login()
                 .block();

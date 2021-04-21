@@ -30,7 +30,7 @@ public class SetBotStatus {
                    MessageChannel channel = message.getChannel().block();
                    Guild guild = event.getGuild().block();
                    assert channel != null;
-                    if (messagecontent.equalsIgnoreCase("!setbotstatus") && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                    if (messagecontent.equalsIgnoreCase("!setbotstatus") && member.getId().asString().equals("778742764908183612")) {
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle("**!setbotstatus**")
                                     .setDescription("Sets the bots status!")
@@ -43,7 +43,7 @@ public class SetBotStatus {
                     } else if(messagecontent.startsWith("!setbotstatus") && !member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                         channel.createMessage("You do not have permissions to use this command!").block();
                         message.delete().block();
-                    } else if(messagecontent.toLowerCase().startsWith("!setbotstatus ") && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                    } else if(messagecontent.toLowerCase().startsWith("!setbotstatus ") && member.getId().asString().equals("778742764908183612")) {
                         int index = messagecontent.indexOf(" ");
                         String botstatus = messagecontent.substring(index);
                         client.updatePresence(Presence.online(Activity.playing(botstatus))).block();
