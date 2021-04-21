@@ -40,9 +40,6 @@ public class SetBotStatus {
                                     .setColor(Color.of(51, 153, 255));
                         }).block();
                         message.delete().block();
-                    } else if(messagecontent.startsWith("!setbotstatus") && !member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
-                        channel.createMessage("You do not have permissions to use this command!").block();
-                        message.delete().block();
                     } else if(messagecontent.toLowerCase().startsWith("!setbotstatus ") && member.getId().asString().equals("778742764908183612")) {
                         int index = messagecontent.indexOf(" ");
                         String botstatus = messagecontent.substring(index);
