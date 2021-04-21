@@ -9,6 +9,8 @@ import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.rest.util.Color;
 
+import java.io.File;
+
 public class Subreddits {
     public static void subreddits(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
