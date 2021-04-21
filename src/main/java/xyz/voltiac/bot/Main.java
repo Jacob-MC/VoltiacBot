@@ -18,13 +18,17 @@ public class Main {
             System.out.println("Fetching token.");
             Scanner scanner = new Scanner(new FileReader(System.getProperty("user.dir") + "\\token.txt"));
             list = new ArrayList();
+
             while(scanner.hasNextLine()) {
                 list.add(scanner.nextLine());
             }
+
             System.out.println("Fetching token successful.");
+
         } catch (Exception var15) {
             System.out.println("Fetching token failed. File may be missing, named incorrectly, or in the wrong directory. Please place the file in the root of the jar.");
         }
+
         GatewayDiscordClient client = DiscordClientBuilder.create(list.toString().substring(1, 60))
                 .build()
                 .login()
