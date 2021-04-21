@@ -25,6 +25,7 @@ public class McCommands {
                                     .setColor(Color.of(51, 153, 255))
                                     .setFooter("Command Executed By: " + username, avatar);
                         }).block();
+                        message.delete().block();
                         System.out.println("MCcommands Command Executed By: " + username);
                     }
                 });

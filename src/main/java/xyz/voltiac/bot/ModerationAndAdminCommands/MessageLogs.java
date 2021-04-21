@@ -42,13 +42,11 @@ public class MessageLogs {
                         Snowflake ID = null;
                         String channels = guild.getChannels().collectList().toString();
                         if (channels.toLowerCase().contains("message-logs")) {
-                            ;
                             int beginindex = channels.indexOf("message-logs");
                             String channelinfo = channels.substring(beginindex);
                             int channelidbeginindex = channelinfo.indexOf("BaseChannel{data=ChannelData{id=") + 32;
                             int channelidendindex = channelidbeginindex + 18;
                             ID = Snowflake.of(channelinfo.substring(channelidbeginindex, channelidendindex));
-                        } else {
                         }
 
                         MessageChannel channel = (MessageChannel) client.getChannelById(ID).block();

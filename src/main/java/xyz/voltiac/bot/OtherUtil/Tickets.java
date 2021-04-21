@@ -42,7 +42,7 @@ public class Tickets {
                     Snowflake staffroleid = null;
                     String roles = guild.getRoles().collectList().block().toString();
                     if (roles.toLowerCase().contains("staff")) {
-                        int beginindex = roles.toLowerCase().indexOf("《 staff 》") - 25;
+                        int beginindex = roles.toLowerCase().indexOf("staff") - 25;
                         int endindex = beginindex + 18;
                         staffroleid = Snowflake.of(roles.substring(beginindex, endindex));
                     } else {

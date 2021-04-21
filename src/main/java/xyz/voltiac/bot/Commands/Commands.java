@@ -21,9 +21,12 @@ public class Commands {
                                     .addField("**!mccommands**", "Commands for info on the minecraft server", false)
                                     .addField("**!funcommands**", "Fun discord commands", false)
                                     .addField("**!help**", "Help Command", false)
+                                    .addField("**!botinvite**", "Authorization link for VoltiacBot", false)
+                                    .addField("**!discordinvite**", "Invite link for Voltiac Network", false)
                                     .setColor(Color.of(51, 153, 255))
                                     .setFooter("Command Executed By: " + username, avatar);
                         }).block();
+                        message.delete().block();
                         System.out.println("Commands Command Executed By: " + username);
                     }
                 });

@@ -4,6 +4,7 @@ import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
+import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.rest.util.Color;
@@ -14,7 +15,7 @@ public class Subreddits {
                 .subscribe(event -> {
                    Message message = event.getMessage();
                    String messagecontent = message.getContent();
-                    Member member = message.getAuthorAsMember().block();
+                    User member = message.getAuthorAsMember().block();
                     String username = member.getUsername();
                     String avatar = member.getAvatarUrl();
                     MessageChannel channel = (MessageChannel) message.getChannel().block();

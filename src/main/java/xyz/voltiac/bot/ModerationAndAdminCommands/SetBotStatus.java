@@ -28,7 +28,7 @@ public class SetBotStatus {
                    MessageChannel channel = message.getChannel().block();
                    Guild guild = event.getGuild().block();
                    assert channel != null;
-                    if (messagecontent.equalsIgnoreCase("!setbotstatus") || messagecontent.equalsIgnoreCase("!setbotstatus ") && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                    if (messagecontent.equalsIgnoreCase("!setbotstatus") && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle("**!setbotstatus**")
                                     .setDescription("Sets the bots status!")
@@ -37,14 +37,17 @@ public class SetBotStatus {
                                     .setFooter("Command Executed By: " + username, avatar)
                                     .setColor(Color.of(51, 153, 255));
                         }).block();
-                    } else if(!member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                        message.delete().block();
+                    } else if(messagecontent.startsWith("!setbotstatus") && !member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                         channel.createMessage("You do not have permissions to use this command!").block();
+                        message.delete().block();
                     } else if(messagecontent.toLowerCase().startsWith("!setbotstatus ") && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                         int index = messagecontent.indexOf(" ");
                         String botstatus = messagecontent.substring(index);
                         client.updatePresence(Presence.online(Activity.playing(botstatus))).block();
                         channel.createMessage("Bot status updated.").block();
                            System.out.println("Bot status set to: " + botstatus + "\nby " + username);
+                        message.delete().block();
                    }
                 });
         }

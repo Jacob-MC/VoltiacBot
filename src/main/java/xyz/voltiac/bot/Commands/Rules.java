@@ -87,6 +87,7 @@ public class Rules {
                                     .setColor(Color.of(51, 153, 255))
                                     .setFooter("Command Executed By: " + username, avatar);
                         }).block();
+                        message.delete().block();
                         System.out.println("Rules Command Executed By: " + username);
                     }
                 });

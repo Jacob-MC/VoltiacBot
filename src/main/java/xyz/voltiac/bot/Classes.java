@@ -8,15 +8,8 @@ import xyz.voltiac.bot.OtherUtil.*;
 public class Classes {
     public static void Classes(GatewayDiscordClient client) {
         CommandHandler.CommandHandler(client);
-        LockdownCommand.LockdownCommand(client);
-        Tickets.TicketListeners(client);
-        MessageLogs.MessageLogs(client);
-        ReactionRoles.ReactionRoles(client);
         RollCommand.RollCommand(client);
         RPSCommand.RPSCommand(client);
         SetBotStatus.SetBotStatus(client);
-        WelcomeMessages.WelcomeMessages(client);
-        Suggestions.Suggestions(client);
-        TicketCreateMessage.TicketCreateMessage(client);
     }
 }

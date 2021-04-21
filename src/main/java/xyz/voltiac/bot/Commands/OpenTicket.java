@@ -27,7 +27,7 @@ public class OpenTicket {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
                     Message message = event.getMessage();
-                    Member m = event.getMember().get();
+                    Member m = message.getAuthorAsMember().block();
                     String user = m.getUsername();
                     String messagecontent = message.getContent();
                     String mention = m.getMention();
@@ -38,7 +38,7 @@ public class OpenTicket {
                     Snowflake everyoneroleid = everyonerole.getId();
                     MessageChannel channel = (MessageChannel) message.getChannel().block();
 
-                    if (messagecontent.equalsIgnoreCase("!ticket")){
+                    if (messagecontent.equalsIgnoreCase("!ticketasdfadsfdasfasdfasdfasdfsafasf")){
                     try {
                         Snowflake staffrole = null;
                         String roles = guild.getRoles().collectList().block().toString();

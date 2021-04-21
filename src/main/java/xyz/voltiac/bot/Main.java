@@ -22,7 +22,7 @@ public class Main {
                     System.out.printf(
                             "Logged in as %s#%s%n", self.getUsername(), self.getDiscriminator()
                    );
-                    client.updatePresence(Presence.online(Activity.playing("Moderating Voltiac Network"))).block();
+                    client.updatePresence(Presence.online(Activity.playing("!help"))).block();
                 });
         main.client.onDisconnect().block();
     }

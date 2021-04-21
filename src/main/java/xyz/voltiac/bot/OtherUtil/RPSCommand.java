@@ -17,7 +17,7 @@ public class RPSCommand {
                    Message message = event.getMessage();
                    String messagecontent = message.getContent();
                    MessageChannel channel = message.getChannel().block();
-                   User user = message.getAuthor().get();
+                   User user = message.getAuthorAsMember().block();
                    String username = user.getUsername();
                    String avatar = user.getAvatarUrl();
                     if (messagecontent.equalsIgnoreCase("!rps") || messagecontent.equalsIgnoreCase("!rps ")) {

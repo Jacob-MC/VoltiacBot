@@ -10,11 +10,11 @@ public class ServerIP {
     public static void ServerIP(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
-                    Message Command = event.getMessage();
-                    if ("!ip".equalsIgnoreCase(Command.getContent())) {
-                        String username = Command.getAuthor().get().getUsername();
-                        String avatar = Command.getAuthor().get().getAvatarUrl();
-                        MessageChannel channel = Command.getChannel().block();
+                    Message message = event.getMessage();
+                    if ("!ip".equalsIgnoreCase(message.getContent())) {
+                        String username = message.getAuthor().get().getUsername();
+                        String avatar = message.getAuthor().get().getAvatarUrl();
+                        MessageChannel channel = message.getChannel().block();
                         assert channel != null;
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle("**Server IP**")
@@ -24,6 +24,7 @@ public class ServerIP {
                                     .setColor(Color.of(51, 153, 255))
                                     .setFooter("Command Executed By: " + username, avatar);
                         }).block();
+                        message.delete().block();
                         System.out.println("IP Command Executed By: " + username);
                     }
                 });

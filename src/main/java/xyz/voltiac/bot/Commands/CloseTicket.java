@@ -20,7 +20,7 @@ public class CloseTicket {
                     long channel = message1.getChannelId().asLong();
                     TextChannel channel1 = (TextChannel) message1.getChannel().block();
                     String messagecontent = message1.getContent();
-                    User author = message1.getAuthor().get();
+                    User author = message1.getAuthorAsMember().block();
                     String authormention = author.getMention();
                     String username = author.getUsername();
                     String channelname = channel1.getName();
