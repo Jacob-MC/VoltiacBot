@@ -24,6 +24,7 @@ public class RollCommand {
                    MessageChannel channel = message.getChannel().block();
                    User author = message.getAuthorAsMember().block();
                    String username = author.getUsername();
+                    assert username != null;
                    String useravatar = author.getAvatarUrl();
                    if (messagecontent.equalsIgnoreCase("!roll") || messagecontent.equalsIgnoreCase("roll ")) {
                        channel.createEmbed(embedCreateSpec -> {

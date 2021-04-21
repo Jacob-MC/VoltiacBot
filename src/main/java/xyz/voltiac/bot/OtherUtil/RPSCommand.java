@@ -19,6 +19,7 @@ public class RPSCommand {
                    MessageChannel channel = message.getChannel().block();
                    User user = message.getAuthorAsMember().block();
                    String username = user.getUsername();
+                    assert username != null;
                    String avatar = user.getAvatarUrl();
                     if (messagecontent.equalsIgnoreCase("!rps") || messagecontent.equalsIgnoreCase("!rps ")) {
                         channel.createEmbed(embedCreateSpec -> {

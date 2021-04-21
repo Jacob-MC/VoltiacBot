@@ -22,6 +22,7 @@ public class CloseTicket {
                     String messagecontent = message1.getContent();
                     User author = message1.getAuthorAsMember().block();
                     String authormention = author.getMention();
+                    assert authormention != null;
                     String username = author.getUsername();
                     String channelname = channel1.getName();
                     Instant instant = Instant.now();

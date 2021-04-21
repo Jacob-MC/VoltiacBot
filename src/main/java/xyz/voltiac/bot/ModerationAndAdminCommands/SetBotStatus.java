@@ -23,6 +23,7 @@ public class SetBotStatus {
                    Member member = message.getAuthorAsMember().block();
                    String messagecontent = message.getContent();
                    User user = message.getAuthor().get();
+                    assert user != null;
                    String username = user.getUsername();
                    String avatar = user.getAvatarUrl();
                    MessageChannel channel = message.getChannel().block();

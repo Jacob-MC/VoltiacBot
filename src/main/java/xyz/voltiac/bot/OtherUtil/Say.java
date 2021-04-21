@@ -17,6 +17,7 @@ public class Say {
                     MessageChannel channel = (MessageChannel) message.getChannel().block();
                    Member member = message.getAuthorAsMember().block();
                    String username = member.getUsername();
+                   assert username != null;
                    String avatarurl = member.getAvatarUrl();
                    if (messagecontent.equalsIgnoreCase("!say")) {
                        channel.createEmbed(EmbedCreateSpec -> {

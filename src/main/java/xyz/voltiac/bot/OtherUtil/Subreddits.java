@@ -17,6 +17,7 @@ public class Subreddits {
                    String messagecontent = message.getContent();
                     User member = message.getAuthorAsMember().block();
                     String username = member.getUsername();
+                    assert username != null;
                     String avatar = member.getAvatarUrl();
                     MessageChannel channel = (MessageChannel) message.getChannel().block();
                    if (messagecontent.equalsIgnoreCase("!subreddits")) {
@@ -44,6 +45,7 @@ public class Subreddits {
                                    .setColor(Color.of(51, 153, 255))
                                    .setFooter("Command Executed By: " + username, avatar);
                        }).block();
+                       message.delete().block();
                    }
                 });
     }

@@ -23,6 +23,7 @@ public class Memes {
                     User member = message.getAuthorAsMember().block();
                     assert member != null;
                     String username = member.getUsername();
+                    assert username != null;
                     String discriminator = member.getDiscriminator();
                     String avatarurl = member.getAvatarUrl();
                     MessageChannel channel = (MessageChannel) message.getChannel().block();

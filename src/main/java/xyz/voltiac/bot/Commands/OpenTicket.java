@@ -29,6 +29,7 @@ public class OpenTicket {
                     Message message = event.getMessage();
                     Member m = message.getAuthorAsMember().block();
                     String user = m.getUsername();
+                    assert user != null;
                     String messagecontent = message.getContent();
                     String mention = m.getMention();
                     String name = m.getUsername();
