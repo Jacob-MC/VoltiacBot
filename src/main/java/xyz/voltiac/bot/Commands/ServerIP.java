@@ -10,6 +10,7 @@ public class ServerIP {
     public static void ServerIP(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                     Message message = event.getMessage();
                     if ("!ip".equalsIgnoreCase(message.getContent())) {
                         String username = message.getAuthor().get().getUsername();
@@ -26,6 +27,8 @@ public class ServerIP {
                         }).block();
                         message.delete().block();
                         System.out.println("IP Command Executed By: " + username);
+                    }
+                    } catch (Exception e) {
                     }
                 });
     }

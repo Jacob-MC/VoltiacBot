@@ -10,6 +10,7 @@ public class HowToJoin {
     public static void HowToJoin(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                     Message message = event.getMessage();
                     if ("!howtojoin".equalsIgnoreCase(message.getContent())) {
                         String username = message.getAuthor().get().getUsername();
@@ -34,6 +35,8 @@ public class HowToJoin {
                         }).block();
                         message.delete().block();
                         System.out.println("Howtojoin Command Executed By: " + username);
+                    }
+                    } catch (Exception e) {
                     }
                 });
     }

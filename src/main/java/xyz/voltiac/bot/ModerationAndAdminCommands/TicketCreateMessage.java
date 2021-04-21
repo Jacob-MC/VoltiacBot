@@ -17,6 +17,7 @@ public class TicketCreateMessage {
     public static void TicketCreateMessage(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                    Message message = event.getMessage();
                    Member member = message.getAuthorAsMember().block();
                    String messagecontent = message.getContent();
@@ -30,6 +31,8 @@ public class TicketCreateMessage {
                    Snowflake guildid = guild.getId();
                     Role highestmemberrole = member.getHighestRole().block();
                     int memberrolepos = highestmemberrole.getRawPosition();
+                    } catch (Exception e) {
+                    }
                 });
     }
 }

@@ -18,6 +18,7 @@ public class Memes {
     public static void memes(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                     Message message = event.getMessage();
                     String messagecontent = message.getContent();
                     User member = message.getAuthorAsMember().block();
@@ -552,6 +553,8 @@ public class Memes {
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
+                    }
+                    } catch (Exception e) {
                     }
                     });
     }

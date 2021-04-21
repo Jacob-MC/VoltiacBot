@@ -24,6 +24,7 @@ public class MessageLogs {
     public static void MessageLogs(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                     Message m = event.getMessage();
                     String messagecontent = m.getContent();
                     Channel c = m.getChannel().block();
@@ -66,6 +67,8 @@ public class MessageLogs {
                     } catch (Exception e) {
                         String servername = event.getGuild().block().getName();
                         System.out.println("Unable to log messages in server: " + servername);
+                    }
+                    } catch (Exception e) {
                     }
                 });
     }

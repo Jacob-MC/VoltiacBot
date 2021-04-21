@@ -10,6 +10,7 @@ public class McCommands {
     public static void McCommands(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                     Message message = event.getMessage();
                     if ("!mccommands".equalsIgnoreCase(message.getContent())) {
                         String username = message.getAuthor().get().getUsername();
@@ -27,6 +28,8 @@ public class McCommands {
                         }).block();
                         message.delete().block();
                         System.out.println("MCcommands Command Executed By: " + username);
+                    }
+                    } catch (Exception e) {
                     }
                 });
     }

@@ -10,6 +10,7 @@ public class FunCommands {
     public static void FunCommands(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                     Message message = event.getMessage();
                     if ("!funcommands".equalsIgnoreCase(message.getContent())) {
                         String username = message.getAuthor().get().getUsername();
@@ -28,6 +29,8 @@ public class FunCommands {
                         }).block();
                         message.delete().block();
                         System.out.println("Funcommands Command Executed By: " + username);
+                    }
+                    } catch (Exception e) {
                     }
                 });
     }

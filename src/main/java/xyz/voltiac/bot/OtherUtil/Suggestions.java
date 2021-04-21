@@ -16,6 +16,7 @@ public class Suggestions {
     public static void Suggestions(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                     Message m = event.getMessage();
                     MessageChannel c = (MessageChannel) m.getChannel().block();
                     String channelid = c.getId().toString();
@@ -43,7 +44,8 @@ public class Suggestions {
                                     .setColor(Color.of(51, 153, 255));
                         }).block();
                     }
-
+                    } catch (Exception e) {
+                    }
                 });
     }
 }

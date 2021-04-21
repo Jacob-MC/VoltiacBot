@@ -10,6 +10,7 @@ public class Consoles {
     public static void Consoles(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                    Message message = event.getMessage();
                     if ("!consoles".equalsIgnoreCase(message.getContent())) {
                         String username = message.getAuthor().get().getUsername();
@@ -31,6 +32,8 @@ public class Consoles {
                         }).block();
                         message.delete().block();
                         System.out.println("Consoles message Executed By: " + username);
+                    }
+                    } catch (Exception e) {
                     }
                 });
     }

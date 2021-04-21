@@ -13,6 +13,7 @@ public class Rules {
     public static void Rules(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                    Message message = event.getMessage();
                    Guild guild = event.getGuild().block();
                     if ("!rules".equalsIgnoreCase(message.getContent())) {
@@ -89,6 +90,8 @@ public class Rules {
                         }).block();
                         message.delete().block();
                         System.out.println("Rules Command Executed By: " + username);
+                    }
+                    } catch (Exception e) {
                     }
                 });
     }

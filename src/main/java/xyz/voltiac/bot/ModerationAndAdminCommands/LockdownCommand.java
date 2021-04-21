@@ -18,6 +18,7 @@ public class LockdownCommand {
     public static void LockdownCommand(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                     Message Command = event.getMessage();
                     Member member = Command.getAuthorAsMember().block();
                     if ("!lockdown".equalsIgnoreCase(Command.getContent()) && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
@@ -37,6 +38,8 @@ public class LockdownCommand {
                         MessageChannel channel = Command.getChannel().block();
 
                         System.out.println("Lockdown End Command Executed By: " + username);
+                    }
+                    } catch (Exception e) {
                     }
                 });
     }

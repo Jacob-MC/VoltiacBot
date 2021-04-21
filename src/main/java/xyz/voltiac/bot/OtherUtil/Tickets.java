@@ -26,6 +26,7 @@ public class Tickets {
     public static void TicketListeners(GatewayDiscordClient client) {
         client.getEventDispatcher().on(ReactionAddEvent.class)
                 .subscribe(event -> {
+                    try {
                     Snowflake id = event.getMessageId();
                     ReactionEmoji reactionemoji = event.getEmoji();
                     Message message = event.getMessage().block();
@@ -109,6 +110,8 @@ public class Tickets {
                                     .setColor(Color.of(51, 153, 255))
                                     .setTimestamp(instant)).block();
                         }
+                    }
+                    } catch (Exception e) {
                     }
                 });
     }

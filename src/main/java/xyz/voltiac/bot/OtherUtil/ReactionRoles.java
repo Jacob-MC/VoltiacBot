@@ -16,6 +16,7 @@ public class ReactionRoles {
     public static void ReactionRoles(GatewayDiscordClient client) {
         client.getEventDispatcher().on(ReactionAddEvent.class)
                 .subscribe(event -> {
+                    try {
                     Snowflake id = event.getMessageId();
                     Optional<Member> m = event.getMember();
                     Message message = event.getMessage().block();
@@ -26,10 +27,13 @@ public class ReactionRoles {
                             m.get().addRole(Snowflake.of("808838744203198504")).block();
                         }
                     }
+                    } catch (Exception e) {
+                    }
                 });
 
         client.getEventDispatcher().on(ReactionRemoveEvent.class)
                 .subscribe(event -> {
+                    try {
                     Message message = event.getMessage().block();
                     String messagecontent = message.getContent();
                     Snowflake id = event.getMessageId();
@@ -43,6 +47,8 @@ public class ReactionRoles {
                         if (m.asLong() == m.asLong()) {
                             Objects.requireNonNull(g.block()).removeRole(Snowflake.of("808838744203198504")).block();
                         }
+                    }
+                    } catch (Exception e) {
                     }
                 });
     }

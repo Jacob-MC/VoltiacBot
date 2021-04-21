@@ -14,6 +14,7 @@ public class RPSCommand {
     public static void RPSCommand(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                    Message message = event.getMessage();
                    String messagecontent = message.getContent();
                    MessageChannel channel = message.getChannel().block();
@@ -75,6 +76,8 @@ public class RPSCommand {
                                 channel.createMessage("You chose ***Scissors***. I choose ***Scissors***.\n" + "It's a tie! Please choose another.").block();
                             }
                         }
+                    }
+                    } catch (Exception e) {
                     }
                 });
     }

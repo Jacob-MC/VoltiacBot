@@ -10,6 +10,7 @@ public class Commands {
     public static void Commands(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                    Message message = event.getMessage();
                     if ("!commands".equalsIgnoreCase(message.getContent())) {
                         String username = message.getAuthor().get().getUsername();
@@ -28,6 +29,8 @@ public class Commands {
                         }).block();
                         message.delete().block();
                         System.out.println("Commands Command Executed By: " + username);
+                    }
+                    } catch (Exception e) {
                     }
                 });
     }

@@ -19,6 +19,7 @@ public class SetBotStatus {
     public static void SetBotStatus(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                    Message message = event.getMessage();
                    Member member = message.getAuthorAsMember().block();
                    String messagecontent = message.getContent();
@@ -50,6 +51,8 @@ public class SetBotStatus {
                            System.out.println("Bot status set to: " + botstatus + "\nby " + username);
                         message.delete().block();
                    }
+                    } catch (Exception e) {
+                    }
                 });
         }
     }

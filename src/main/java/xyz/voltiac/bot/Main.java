@@ -6,9 +6,12 @@ import discord4j.core.event.domain.lifecycle.ReadyEvent;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.presence.Activity;
 import discord4j.core.object.presence.Presence;
+import org.json.JSONObject;
+
+import java.io.FileReader;
 
 public class Main {
-    static GatewayDiscordClient client = DiscordClientBuilder.create("ODA5NDg3MDUxNTY0OTA4NTc2.YCVzkA.kLlYlrc88Ywl6PtFG_t09rhN9UU")
+    static GatewayDiscordClient client = DiscordClientBuilder.create(System.getenv("token"))
             .build()
             .login()
             .block();

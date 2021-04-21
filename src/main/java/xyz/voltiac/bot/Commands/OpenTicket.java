@@ -26,6 +26,7 @@ public class OpenTicket {
     public static void OpenTicket(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                     Message message = event.getMessage();
                     Member m = message.getAuthorAsMember().block();
                     String user = m.getUsername();
@@ -93,6 +94,8 @@ public class OpenTicket {
                         channel.createMessage("An error occured. Please check if there is a staff role, a logging channel, and that the bot has the correct permissions in order for the ticket system to work.").block();
                     }
                         }
+                    } catch (Exception e) {
+                    }
                     });
     }
 }

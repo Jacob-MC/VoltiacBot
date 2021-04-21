@@ -15,6 +15,7 @@ public class GetAvatar {
     public static void GetAvatar(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                    Message message = event.getMessage();
                    MessageChannel channel = message.getChannel().block();
                    User messageuser = message.getAuthorAsMember().block();
@@ -67,7 +68,8 @@ public class GetAvatar {
                    } catch(Exception e) {
                        channel.createMessage("An error occured. Please check that you are mentioning a valid user or using the correct ID.").block();
                    }
-
+                    } catch (Exception e) {
+                    }
                 });
     }
 }

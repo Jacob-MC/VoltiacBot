@@ -16,6 +16,7 @@ public class CloseTicket {
     public static void CloseTicket(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event1 -> {
+                    try {
                     Message message1 = event1.getMessage();
                     long channel = message1.getChannelId().asLong();
                     TextChannel channel1 = (TextChannel) message1.getChannel().block();
@@ -53,6 +54,8 @@ public class CloseTicket {
                                     .setColor(Color.of(51, 153, 255))
                                     .setTimestamp(instant)).block();
                         }
+                    }
+                    } catch (Exception e) {
                     }
                 });
     }

@@ -13,6 +13,7 @@ public class Subreddits {
     public static void subreddits(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                    Message message = event.getMessage();
                    String messagecontent = message.getContent();
                     User member = message.getAuthorAsMember().block();
@@ -47,6 +48,8 @@ public class Subreddits {
                        }).block();
                        message.delete().block();
                    }
+                    } catch (Exception e) {
+                    }
                 });
     }
 }

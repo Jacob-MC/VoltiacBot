@@ -19,6 +19,7 @@ public class RollCommand {
     public static void RollCommand(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                    Message message = event.getMessage();
                    String messagecontent = message.getContent();
                    MessageChannel channel = message.getChannel().block();
@@ -80,6 +81,8 @@ public class RollCommand {
                            }
                        }
                    }
+                    } catch (Exception e) {
+                    }
                 });
     }
 }

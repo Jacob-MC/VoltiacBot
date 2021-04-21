@@ -10,6 +10,7 @@ public class Help {
     public static void Help(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
+                    try {
                    Message message = event.getMessage();
                     if ("!help".equalsIgnoreCase(message.getContent())) {
                         String username = message.getAuthor().get().getUsername();
@@ -24,6 +25,8 @@ public class Help {
                         }).block();
                         message.delete().block();
                         System.out.println("Help Command Executed By: " + username);
+                    }
+                    } catch (Exception e) {
                     }
                 });
     }
