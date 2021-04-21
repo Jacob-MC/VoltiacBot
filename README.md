@@ -1,6 +1,6 @@
 # VoltiacBot2.1
  
- VoltiacBot - A free open sourced discord bot
+ VoltiacBot - A free open source discord bot
  
  # Features:
  
