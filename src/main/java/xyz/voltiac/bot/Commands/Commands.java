@@ -19,7 +19,6 @@ public class Commands {
                         assert channel != null;
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle("**Discord Commands**")
-                                    .addField("**!mccommands**", "Commands for info on the minecraft server", false)
                                     .addField("**!funcommands**", "Fun discord commands", false)
                                     .addField("**!help**", "Help Command", false)
                                     .addField("**!botinvite**", "Authorization link for VoltiacBot", false)

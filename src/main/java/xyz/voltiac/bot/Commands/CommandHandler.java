@@ -10,17 +10,12 @@ import xyz.voltiac.bot.OtherUtil.Subreddits;
 public class CommandHandler {
     public static void CommandHandler(GatewayDiscordClient client) {
         Commands.Commands(client);
-        Consoles.Consoles(client);
         GetAvatar.GetAvatar(client);
         Help.Help(client);
-        HowToJoin.HowToJoin(client);
-        Rules.Rules(client);
-        ServerIP.ServerIP(client);
         CloseTicket.CloseTicket(client);
         OpenTicket.OpenTicket(client);
         Say.Say(client);
         FunCommands.FunCommands(client);
-        McCommands.McCommands(client);
         Memes.memes(client);
         Subreddits.subreddits(client);
         Ban.ban(client);
