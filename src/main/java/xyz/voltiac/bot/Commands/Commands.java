@@ -22,7 +22,7 @@ public class Commands {
                                     .addField("**!funcommands**", "Fun discord commands", false)
                                     .addField("**!help**", "Help Command", false)
                                     .addField("**!botinvite**", "Authorization link for VoltiacBot", false)
-                                    .addField("**!discordinvite**", "Invite link for Voltiac Network", false)
+                                    .addField("**!supportdiscord**", "Invite link for VoltiacBot support server", false)
                                     .setColor(Color.of(51, 153, 255))
                                     .setFooter("Command Executed By: " + username, avatar);
                         }).block();
