@@ -42,7 +42,7 @@ public class SetBotStatus {
                         }).block();
                         message.delete().block();
                     } else if(messagecontent.toLowerCase().startsWith(Main.prefix + "setbotstatus ") && member.getId().asString().equals("778742764908183612")) {
-                        int index = messagecontent.indexOf(" ");
+                        int index = messagecontent.indexOf(" ") + 1;
                         String botstatus = messagecontent.substring(index);
                         client.updatePresence(Presence.online(Activity.playing(botstatus))).block();
                         channel.createMessage("Bot status updated.").block();

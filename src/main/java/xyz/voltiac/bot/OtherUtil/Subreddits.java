@@ -27,7 +27,7 @@ public class Subreddits {
                    if (messagecontent.equalsIgnoreCase(Main.prefix + "subreddits")) {
                        channel.createEmbed(EmbedCreateSpec -> {
                            EmbedCreateSpec.setTitle("**Subreddits**")
-                                   .addField("**How to Use:**", "To use these commands, just type in any of these subreddits, and press enter. Example: ```!memes```", false)
+                                   .addField("**How to Use:**", "To use these commands, just type in any of these subreddits, and press enter. Example: ```" + Main.prefix + "memes```", false)
                                    .addField("**" + Main.prefix + "memes**", "Fetches a random meme from r/memes", true)
                                    .addField("**" + Main.prefix + "dankmemes**", "Fetches a random meme from r/dankmemes", true)
                                    .addField("**" + Main.prefix + "surrealmemes**", "Fetches a random meme from r/surrealmemes", true)

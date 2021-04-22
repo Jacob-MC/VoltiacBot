@@ -14,5 +14,6 @@ public class Classes {
         TicketSetup.ticketsetup(client);
         Tickets.tickets(client);
         AdminCommands.admincommands(client);
+        SetBotPrefix.setbotprefix(client);
     }
 }

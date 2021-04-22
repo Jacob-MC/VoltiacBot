@@ -48,40 +48,5 @@ public class Main {
                     client.updatePresence(Presence.online(Activity.playing("vb.help"))).block();
                 });
         client.onDisconnect().block();
-
-        // EDIT BOT PREFIX COMMAND
-
-        client.getEventDispatcher().on(MessageCreateEvent.class)
-                .subscribe(event -> {
-                   Message message = event.getMessage();
-                   Member member = message.getAuthorAsMember().block();
-                   String messagecontent = message.getContent();
-                   String userid = member.getId().toString();
-                   String username = member.getUsername();
-                   String avatar = member.getAvatarUrl();
-                    MessageChannel channel = message.getChannel().block();
-                    if (messagecontent.equalsIgnoreCase(Main.prefix + "setbotprefix") && userid.equals("778742764908183612")) {
-                        channel.createEmbed(embedCreateSpec -> {
-                            embedCreateSpec.setTitle("**" + Main.prefix + "setbotstatus**")
-                                    .setDescription("Sets the bots status!")
-                                    .addField("**Usage:**",  Main.prefix + "setbotstatus (status)", false)
-                                    .addField("Example:",  Main.prefix + "setbotstatus Moderating Voltiac Network", false)
-                                    .setFooter("Command Executed By: " + username, avatar)
-                                    .setColor(Color.of(51, 153, 255));
-                        }).block();
-                        message.delete().block();
-                    } else if(messagecontent.toLowerCase().startsWith(Main.prefix + "setbotprefix ") && userid.equals("778742764908183612")) {
-                        int index = messagecontent.indexOf(" ");
-                        int endIndex = messagecontent.lastIndexOf(" ");
-                        String botprefix = messagecontent.substring(index, endIndex);
-                        prefix = botprefix;
-                        client.updatePresence(Presence.online(Activity.playing(botprefix + "help"))).block();
-                        channel.createMessage("Bot prefix updated.").block();
-                        System.out.println("Bot prefix set to: " + botprefix);
-
-                        message.delete().block();
-                    }
-                });
-
     }
 }

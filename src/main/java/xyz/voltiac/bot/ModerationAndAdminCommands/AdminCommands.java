@@ -27,6 +27,7 @@ public class AdminCommands {
                                         .addField("**" + Main.prefix + "ban [user]**", "Bans the specified user. Can be used with mentions or ID's", false)
                                         .addField("**" + Main.prefix + "kick [user]**", "Bans the specified user. Can be used with mentions or ID's", false)
                                         .addField("**" + Main.prefix + "ticketsetup**", "Type in channel where you want the ticket creation message to be", false)
+                                        .addField("**" + Main.prefix + "setbotprefix [prefix]**", "Sets the bot prefix", false)
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Command Executed By: " + username, avatar);
                             }).block();
