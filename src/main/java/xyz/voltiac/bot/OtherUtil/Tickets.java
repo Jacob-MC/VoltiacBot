@@ -51,8 +51,9 @@ public class Tickets {
                         MessageChannel channel = message.getChannel().block();
 
                        if (message.getEmbeds().size()>0) {
-                           if (message.getEmbeds().get(0).getTitle().get().equals("**Ticket**") && message.getEmbeds().get(0).getDescription().get().equals("React to this message to create a ticket!") && !member.isBot()) {
-                               try {
+                           try {
+                               if (message.getEmbeds().get(0).getTitle().get().equals("**Ticket**") && message.getEmbeds().get(0).getDescription().get().equals("React to this message to create a ticket!") && !member.isBot()) {
+                                   try {
                                        String roles = guild.getRoles().collectList().block().toString().toLowerCase();
                                        int beginIndex = roles.indexOf("staff") - 30;
                                        int endIndex = roles.indexOf("staff");
@@ -66,36 +67,39 @@ public class Tickets {
                                        String staffrolemention = guild.getRoleById(Snowflake.of(roleid)).block().getMention();
 
                                        HashSet<PermissionOverwrite> overwrites = new HashSet<PermissionOverwrite>();
-                                   overwrites.add(PermissionOverwrite.forRole(everyoneroleid, PermissionSet.of(new Permission[0]), PermissionSet.of(Permission.VIEW_CHANNEL)));
-                                   overwrites.add(PermissionOverwrite.forMember(Snowflake.of(id), PermissionSet.of(new Permission[]{Permission.VIEW_CHANNEL, Permission.SEND_MESSAGES}), PermissionSet.of(new Permission[]{Permission.MENTION_EVERYONE, Permission.MANAGE_MESSAGES})));
-                                   overwrites.add(PermissionOverwrite.forRole(Snowflake.of(roleid), PermissionSet.of(new Permission[]{Permission.VIEW_CHANNEL, Permission.SEND_MESSAGES}), PermissionSet.of(new Permission[]{Permission.MENTION_EVERYONE, Permission.MANAGE_MESSAGES})));
-                                   TextChannel ticketchannel = guild.createTextChannel(TextChannelCreateSpec -> TextChannelCreateSpec.setName("ticket-" + username + "-id-" + shuffledtext2).setPermissionOverwrites(overwrites)).block();
+                                       overwrites.add(PermissionOverwrite.forRole(everyoneroleid, PermissionSet.of(new Permission[0]), PermissionSet.of(Permission.VIEW_CHANNEL)));
+                                       overwrites.add(PermissionOverwrite.forMember(Snowflake.of(id), PermissionSet.of(new Permission[]{Permission.VIEW_CHANNEL, Permission.SEND_MESSAGES}), PermissionSet.of(new Permission[]{Permission.MENTION_EVERYONE, Permission.MANAGE_MESSAGES})));
+                                       overwrites.add(PermissionOverwrite.forRole(Snowflake.of(roleid), PermissionSet.of(new Permission[]{Permission.VIEW_CHANNEL, Permission.SEND_MESSAGES}), PermissionSet.of(new Permission[]{Permission.MENTION_EVERYONE, Permission.MANAGE_MESSAGES})));
+                                       TextChannel ticketchannel = guild.createTextChannel(TextChannelCreateSpec -> TextChannelCreateSpec.setName("ticket-" + username + "-id-" + shuffledtext2).setPermissionOverwrites(overwrites)).block();
                                        message.removeReaction(reaction, member.getId()).block();
                                        ticketchannel.createMessage("Please be patient, " + membermention + ", " + staffrolemention + " will be with you soon.").block();
-                               } catch (Exception e) {
-                               }
-                               try {
-                                   String channels = guild.getChannels().collectList().block().toString();
-                                   Snowflake ID = null;
-                                   String channelsinfo = guild.getChannels().collectList().block().toString();
-                                   if (channels.toLowerCase().contains("server-logs")) { ;
-                                       int beginindex = channelsinfo.indexOf("server-logs");
-                                       String channelinfo = channelsinfo.substring(beginindex);
-                                       int channelidbeginindex = channelinfo.indexOf("BaseChannel{data=ChannelData{id=") + 32;
-                                       int channelidendindex = channelidbeginindex + 18;
-                                       ID = Snowflake.of(channelinfo.substring(channelidbeginindex, channelidendindex));
-                                   } else {
+                                   } catch (Exception e) {
                                    }
-                                   MessageChannel channel2 = (MessageChannel) client.getChannelById(ID).block();
-                                   assert channel2 != null;
-                                   System.out.println("Ticket Opened By: " + username);
-                                   channel2.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("**Ticket Opened**")
-                                           .setDescription("Ticket #" + shuffledtext2 + " opened by " + membermention)
-                                           .setColor(Color.of(51, 153, 255))
-                                           .setTimestamp(instant)).block();
-                               } catch (Exception e) {
-                                   System.out.println("Unable to log ticket open.");
+                                   try {
+                                       String channels = guild.getChannels().collectList().block().toString();
+                                       Snowflake ID = null;
+                                       String channelsinfo = guild.getChannels().collectList().block().toString();
+                                       if (channels.toLowerCase().contains("server-logs")) {
+                                           ;
+                                           int beginindex = channelsinfo.indexOf("server-logs");
+                                           String channelinfo = channelsinfo.substring(beginindex);
+                                           int channelidbeginindex = channelinfo.indexOf("BaseChannel{data=ChannelData{id=") + 32;
+                                           int channelidendindex = channelidbeginindex + 18;
+                                           ID = Snowflake.of(channelinfo.substring(channelidbeginindex, channelidendindex));
+                                       } else {
+                                       }
+                                       MessageChannel channel2 = (MessageChannel) client.getChannelById(ID).block();
+                                       assert channel2 != null;
+                                       System.out.println("Ticket Opened By: " + username);
+                                       channel2.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("**Ticket Opened**")
+                                               .setDescription("Ticket #" + shuffledtext2 + " opened by " + membermention)
+                                               .setColor(Color.of(51, 153, 255))
+                                               .setTimestamp(instant)).block();
+                                   } catch (Exception e) {
+                                       System.out.println("Unable to log ticket open.");
+                                   }
                                }
+                           } catch (Exception e) {
                            }
                        }
                     });

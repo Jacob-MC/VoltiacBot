@@ -33,7 +33,7 @@ public class Memes {
                     String title = null;
                     String ups = null;
                     String author = null;
-                    if (messagecontent.equalsIgnoreCase("r/memes")) {
+                    if (messagecontent.equalsIgnoreCase("!memes")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/memes");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -56,13 +56,13 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
 
-                            System.out.println("r/memes Command Executed By: " + username);
+                            System.out.println("!memes Command Executed By: " + username);
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/surrealmemes")) {
+                    if (messagecontent.equalsIgnoreCase("!surrealmemes")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/surrealmemes");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -84,14 +84,14 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/surrealmemes Command Executed By: " + username);
+                            System.out.println("!surrealmemes Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/all")) {
+                    if (messagecontent.equalsIgnoreCase("!all")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/all");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -113,14 +113,14 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/all Command Executed By: " + username);
+                            System.out.println("!all Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/rareinsults")) {
+                    if (messagecontent.equalsIgnoreCase("!rareinsults")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/rareinsults");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -142,14 +142,14 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/rareinsults Command Executed By: " + username);
+                            System.out.println("!rareinsults Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/cursedcomments")) {
+                    if (messagecontent.equalsIgnoreCase("!cursedcomments")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/cursedcomments");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -171,14 +171,14 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/cursedcomments Command Executed By: " + username);
+                            System.out.println("!cursedcomments Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/facepalm")) {
+                    if (messagecontent.equalsIgnoreCase("!facepalm")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/facepalm");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -200,14 +200,14 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/facepalm Command Executed By: " + username);
+                            System.out.println("!facepalm Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/wholesomememes")) {
+                    if (messagecontent.equalsIgnoreCase("!wholesomememes")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/wholesomememes");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -229,14 +229,14 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/wholesomememes Command Executed By: " + username);
+                            System.out.println("!wholesomememes Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/dankmemes")) {
+                    if (messagecontent.equalsIgnoreCase("!dankmemes")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/dankmemes");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -258,14 +258,14 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/dankmemes Command Executed By: " + username);
+                            System.out.println("!dankmemes Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/therewasanattempt")) {
+                    if (messagecontent.equalsIgnoreCase("!therewasanattempt")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/therewasanattempt");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -287,14 +287,14 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/therewasanattempt Command Executed By: " + username);
+                            System.out.println("!therewasanattempt Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/starterpacks")) {
+                    if (messagecontent.equalsIgnoreCase("!starterpacks")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/starterpacks");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -316,14 +316,14 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/starterpacks Command Executed By: " + username);
+                            System.out.println("!starterpacks Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/clevercomebacks")) {
+                    if (messagecontent.equalsIgnoreCase("!clevercomebacks")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/clevercomebacks");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -345,14 +345,14 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/clevercomebacks Command Executed By: " + username);
+                            System.out.println("!clevercomebacks Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/aww")) {
+                    if (messagecontent.equalsIgnoreCase("!aww")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/aww");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -374,14 +374,14 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/aww Command Executed By: " + username);
+                            System.out.println("!aww Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/gaming")) {
+                    if (messagecontent.equalsIgnoreCase("!gaming")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/gaming");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -403,14 +403,14 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/gaming Command Executed By: " + username);
+                            System.out.println("!gaming Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/bonehurtingjuice")) {
+                    if (messagecontent.equalsIgnoreCase("!bonehurtingjuice")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/bonehurtingjuice");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -432,14 +432,14 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/bonehurtingjuice Command Executed By: " + username);
+                            System.out.println("!bonehurtingjuice Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/programmerhumor")) {
+                    if (messagecontent.equalsIgnoreCase("!programmerhumor")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/programmerhumor");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -461,14 +461,14 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/programmerhumor Command Executed By: " + username);
+                            System.out.println("!programmerhumor Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/eyebleach")) {
+                    if (messagecontent.equalsIgnoreCase("!eyebleach")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/eyebleach");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -490,14 +490,14 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/eyebleach Command Executed By: " + username);
+                            System.out.println("!eyebleach Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/minecraft")) {
+                    if (messagecontent.equalsIgnoreCase("!minecraft")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/minecraft");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -519,14 +519,14 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/minecraft Command Executed By: " + username);
+                            System.out.println("!minecraft Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
                     }
 
-                    if (messagecontent.equalsIgnoreCase("r/animalcrossing")) {
+                    if (messagecontent.equalsIgnoreCase("!animalcrossing")) {
                         try {
                             URL url = new URL("https://meme-api.herokuapp.com/gimme/animalcrossing");
                             BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
@@ -548,7 +548,7 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            System.out.println("r/animalcrossing Command Executed By: " + username);
+                            System.out.println("!animalcrossing Command Executed By: " + username);
 
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
