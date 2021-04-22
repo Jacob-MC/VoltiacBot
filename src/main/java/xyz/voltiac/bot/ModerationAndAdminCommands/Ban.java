@@ -21,7 +21,7 @@ public class Ban {
                     try {
                     Message message = event.getMessage();
                     String messagecontent = message.getContent();
-                    User admin = message.getAuthorAsMember().block();
+                    Member admin = message.getAuthorAsMember().block();
                     assert admin != null;
                     String avatarurl = admin.getAvatarUrl();
                     assert avatarurl != null;
@@ -31,7 +31,7 @@ public class Ban {
                     Snowflake guildid = guild.getId();
                     MessageChannel channel = message.getChannel().block();
                     try {
-                        if (messagecontent.startsWith("!ban") && message.getContent().length() > 26) {
+                        if (messagecontent.startsWith("!ban") && message.getContent().length() > 26 && admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                             int index = messagecontent.indexOf(' ') + 1;
                             String mention = messagecontent.substring(index);
                             Snowflake id = Snowflake.of(mention.substring(3, 21));
@@ -41,10 +41,8 @@ public class Ban {
                             String username = user.getUsername();
                             String discriminator = user.getDiscriminator();
                             assert member != null;
-                            if (Objects.requireNonNull(member.getBasePermissions().block()).contains(Permission.ADMINISTRATOR)) {
                                 try {
                                     guild.ban(id, BanQuerySpec::asRequest).block();
-                                    message.delete().block();
                                     assert channel != null;
                                     channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("\uD83D\uDC6E \uD83D\uDD12 " + username + "#" + discriminator + " Has Been Banned!")
                                             .setColor(Color.of(51, 153, 255))
@@ -52,19 +50,17 @@ public class Ban {
                                     System.out.println(adminusername + " Has Banned: " + username + "#" + discriminator);
                                 } catch (Exception e) {
                                     assert channel != null;
-                                    channel.createMessage("An error occured. Please check that you have the correct permissions and/or the user is in the server, and that the bot has the correct permissions").block();
+                                    channel.createMessage("I do not have permission to kick users! Please give me the `BAN_MEMBERS` permission.").block();
                                 }
-                            } else {
-                                assert channel != null;
-                                channel.createMessage("You do not have permission to user this command!").block();
+                            } else if (messagecontent.toLowerCase().startsWith("!ban") && !admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                            channel.createMessage("You do not have permission to use this command!").block();
                             }
-                        }
                     } catch (Exception e) {
                         assert channel != null;
-                        channel.createMessage("An error occured. Please check that you have the correct permissions and/or the user is in the server, and that the bot has the correct permissions").block();
+                        channel.createMessage("An error occured. Please check that you mentioned a valid user and that the user is in the guild.").block();
                     }
                     try {
-                    if (message.getContent().toLowerCase().startsWith("!ban") && message.getContent().length() <= 26) {
+                    if (message.getContent().toLowerCase().startsWith("!ban") && message.getContent().length() <= 26 && admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                         String userid = message.getContent().substring(5);
                         User user = client.getUserById(Snowflake.of(userid)).block();
                         assert user != null;
@@ -72,10 +68,9 @@ public class Ban {
                         String discriminator = user.getDiscriminator();
                         Member member = user.asMember(guildid).block();
                         assert member != null;
-                        if (Objects.requireNonNull(member.getBasePermissions().block()).contains(Permission.ADMINISTRATOR)) {
+                        if (admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                             try {
                                 guild.ban(Snowflake.of(userid), BanQuerySpec::asRequest).block();
-                                message.delete().block();
                                 assert channel != null;
                                 channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("\uD83D\uDC6E \uD83D\uDD12 " + username + "#" + discriminator + " Has Been Banned!")
                                         .setColor(Color.of(51, 153, 255))
@@ -83,16 +78,15 @@ public class Ban {
                                 System.out.println(adminusername + " Has Banned: " + username + "#" + discriminator);
                             } catch (Exception e) {
                                 assert channel != null;
-                                channel.createMessage("An error occured. Please check that you have the correct permissions and/or the user is in the server, and that the bot has the correct permissions").block();
+                                channel.createMessage("I do not have permission to kick users! Please give me the `BAN_MEMBERS` permission.").block();
                             }
-                        } else {
-                            assert channel != null;
-                            channel.createMessage("You do not have permission to user this command!").block();
+                        } else if (messagecontent.toLowerCase().startsWith("!ban") && !admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)){
+                            channel.createMessage("You do not have permission to use this command!").block();
                         }
                         }
                     } catch (Exception e) {
+                        channel.createMessage("An error occured. Please check that you mentioned a valid user and that the user is in the guild.").block();
                         assert channel != null;
-                        channel.createMessage("An error occured. Please check that you have the correct permissions and/or the user is in the server, and that the bot has the correct permissions").block();
                     }
                     } catch (Exception e) {
                     }

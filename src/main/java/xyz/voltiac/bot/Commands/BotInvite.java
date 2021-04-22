@@ -26,7 +26,6 @@ public class BotInvite {
                                     .setFooter("Command Executed By: " + username, avatarurl)
                                     .setColor(Color.of(51, 153, 255));
                         }).block();
-                        message.delete().block();
                     }
                     } catch (Exception e) {
                     }

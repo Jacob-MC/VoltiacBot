@@ -63,7 +63,6 @@ public class GetAvatar {
                                        .setImage(avatarurl)
                                        .setFooter("Command Executed By: " + messageusername, messageavatar);
                            }).block();
-                           message.delete().block();
                        }
                    } catch(Exception e) {
                        channel.createMessage("An error occured. Please check that you are mentioning a valid user or using the correct ID.").block();

@@ -20,13 +20,12 @@ public class DiscordInvite {
                     assert username != null;
                    String avatarurl = member.getAvatarUrl();
                     MessageChannel channel = (MessageChannel) message.getChannel().block();
-                   if (messagecontent.startsWith("!discordinvite")) {
+                   if (messagecontent.startsWith("!supportdiscord")) {
                        channel.createEmbed(EmbedCreateSpec -> {
-                            EmbedCreateSpec.setTitle("**VoltiacBot Support**").setUrl("AvH9E5wXcA")
+                            EmbedCreateSpec.setTitle("**VoltiacBot Support**").setUrl("https://discord.gg/AvH9E5wXcA")
                                     .setFooter("Command Executed By: " + username, avatarurl)
                                     .setColor(Color.of(51, 153, 255));
                        }).block();
-                       message.delete().block();
                    }
                     } catch (Exception e) {
                     }

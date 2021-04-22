@@ -45,7 +45,6 @@ public class Say {
                    } else if (messagecontent.toLowerCase().startsWith("!say") && !member.isBot()) {
                        if (messagecontent.toLowerCase().contains("@") || !m2.find() || !m.find()) {
                            channel.createMessage(mention + ", Please do not try pinging people/roles or posting links, it will not work.").block();
-                           message.delete().block();
                        }
 
                        }

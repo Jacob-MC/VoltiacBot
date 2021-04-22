@@ -30,11 +30,9 @@ public class CloseTicket {
                     Guild guild = message1.getGuild().block();
                     if ("!close".equalsIgnoreCase(messagecontent)) {
                         if(channelname.contains("ticket")) {
-                            int index = channelname.lastIndexOf("-") + 1;
+                            int index = channelname.lastIndexOf("-id-") + 4;
                             String ticketid = channelname.substring(index);
-                            TextChannel delete = (TextChannel) client.getChannelById(Snowflake.of(channel)).block();
-                            assert delete != null;
-                            delete.delete("Ticket Closed.").block();
+                            message1.getChannel().block().delete("Ticket Closed.").block();
                             System.out.println("Ticket Closed By: " + username);
                             String channels = guild.getChannels().collectList().block().toString();
                             Snowflake ID = null;
@@ -51,7 +49,7 @@ public class CloseTicket {
                             assert channel2 != null;
                             channel2.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("**Ticket Closed**")
                                     .setDescription("Ticket #" + ticketid + " closed by " + authormention)
-                                    .setColor(Color.of(51, 153, 255))
+                                    .setColor(Color.RED)
                                     .setTimestamp(instant)).block();
                         }
                     }

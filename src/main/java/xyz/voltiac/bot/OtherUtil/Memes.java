@@ -55,7 +55,7 @@ public class Memes {
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
-                            message.delete().block();
+
                             System.out.println("r/memes Command Executed By: " + username);
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
@@ -85,7 +85,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/surrealmemes Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
@@ -114,7 +114,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/all Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
@@ -143,7 +143,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/rareinsults Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
@@ -172,7 +172,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/cursedcomments Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
@@ -201,7 +201,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/facepalm Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
@@ -230,7 +230,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/wholesomememes Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
@@ -259,7 +259,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/dankmemes Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
@@ -288,7 +288,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/therewasanattempt Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
@@ -317,7 +317,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/starterpacks Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
@@ -346,7 +346,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/clevercomebacks Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
@@ -375,7 +375,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/aww Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
@@ -404,7 +404,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/gaming Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
@@ -433,7 +433,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/bonehurtingjuice Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
@@ -462,7 +462,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/programmerhumor Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
@@ -491,7 +491,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/eyebleach Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
@@ -520,7 +520,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/minecraft Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }
@@ -549,7 +549,7 @@ public class Memes {
                                         .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                             }).block();
                             System.out.println("r/animalcrossing Command Executed By: " + username);
-                            message.delete().block();
+
                         } catch (Exception e) {
                             channel.createMessage("An error occured. Please try again later.").block();
                         }

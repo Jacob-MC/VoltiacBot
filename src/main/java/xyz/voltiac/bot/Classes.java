@@ -11,5 +11,8 @@ public class Classes {
         RollCommand.RollCommand(client);
         RPSCommand.RPSCommand(client);
         SetBotStatus.SetBotStatus(client);
+        TicketSetup.ticketsetup(client);
+        Tickets.tickets(client);
+        AdminCommands.admincommands(client);
     }
 }
