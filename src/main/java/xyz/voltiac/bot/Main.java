@@ -75,7 +75,7 @@ public class Main {
                         int endIndex = messagecontent.lastIndexOf(" ");
                         String botprefix = messagecontent.substring(index, endIndex);
                         prefix = botprefix;
-                        client.updatePresence(Presence.online(Activity.playing(botprefix))).block();
+                        client.updatePresence(Presence.online(Activity.playing(botprefix + "help"))).block();
                         channel.createMessage("Bot prefix updated.").block();
                         System.out.println("Bot prefix set to: " + botprefix);
 
