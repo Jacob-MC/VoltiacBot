@@ -29,7 +29,7 @@ public class CloseTicket {
                     Instant instant = Instant.now();
                     Guild guild = message1.getGuild().block();
                     if ("!close".equalsIgnoreCase(messagecontent)) {
-                        if(channelname.contains("ticket")) {
+                        if (channelname.contains("ticket")) {
                             int index = channelname.lastIndexOf("-id-") + 4;
                             String ticketid = channelname.substring(index);
                             message1.getChannel().block().delete("Ticket Closed.").block();
@@ -37,8 +37,8 @@ public class CloseTicket {
                             String channels = guild.getChannels().collectList().block().toString();
                             Snowflake ID = null;
                             String channelsinfo = guild.getChannels().collectList().block().toString();
-                            if (channels.toLowerCase().contains("logs")) { ;
-                                int beginindex = channelsinfo.indexOf("logs");
+                            if (channels.toLowerCase().contains("server-logs")) { ;
+                                int beginindex = channelsinfo.indexOf("server-logs");
                                 String channelinfo = channelsinfo.substring(beginindex);
                                 int channelidbeginindex = channelinfo.indexOf("BaseChannel{data=ChannelData{id=") + 32;
                                 int channelidendindex = channelidbeginindex + 18;
