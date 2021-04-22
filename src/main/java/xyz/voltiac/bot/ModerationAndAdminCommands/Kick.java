@@ -10,6 +10,7 @@ import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
 import discord4j.rest.util.Permission;
+import xyz.voltiac.bot.Main;
 
 public class Kick {
     public static void kick(GatewayDiscordClient client) {
@@ -24,7 +25,7 @@ public class Kick {
                     String adminusername = admin.getUsername();
                     Guild guild = event.getGuild().block();
                     MessageChannel channel = message.getChannel().block();
-                    if (messagecontent.startsWith("!kick") && message.getContent().length() > 26 && admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                    if (messagecontent.toLowerCase().startsWith(Main.prefix + "kick") && message.getContent().length() > 26 && admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                         try {
                             int index = messagecontent.indexOf(' ') + 1;
                             String mention = messagecontent.substring(index);
@@ -46,11 +47,11 @@ public class Kick {
                             }
                         } catch (Exception e) {
                         }
-                    } else if (messagecontent.startsWith("!kick") && message.getContent().length() > 26 && !admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                    } else if (messagecontent.toLowerCase().startsWith(Main.prefix + "kick") && message.getContent().length() > 26 && !admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                         channel.createMessage("You do not have permission to use this command!").block();
                     }
 
-                    if (message.getContent().toLowerCase().startsWith("!kick") && message.getContent().length() <= 26 && admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                    if (message.getContent().toLowerCase().startsWith(Main.prefix + "kick") && message.getContent().length() <= 26 && admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                         try {
                             String userid = message.getContent().substring(6);
                             User user = client.getUserById(Snowflake.of(userid)).block();
@@ -70,7 +71,7 @@ public class Kick {
                             }
                         } catch (Exception e) {
                         }
-                    } else if (messagecontent.startsWith("!kick") && message.getContent().length() > 26 && !admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                    } else if (messagecontent.toLowerCase().startsWith(Main.prefix + "kick") && message.getContent().length() > 26 && !admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                         channel.createMessage("You do not have permission to use this command!").block();
                     }
                     } catch (Exception e) {

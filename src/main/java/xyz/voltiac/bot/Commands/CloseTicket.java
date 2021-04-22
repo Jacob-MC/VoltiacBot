@@ -9,6 +9,7 @@ import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.object.entity.channel.TextChannel;
 import discord4j.rest.util.Color;
+import xyz.voltiac.bot.Main;
 
 import java.time.Instant;
 
@@ -28,7 +29,7 @@ public class CloseTicket {
                     String channelname = channel1.getName();
                     Instant instant = Instant.now();
                     Guild guild = message1.getGuild().block();
-                    if ("!close".equalsIgnoreCase(messagecontent)) {
+                    if (messagecontent.equalsIgnoreCase(Main.prefix + "close")) {
                         if (channelname.contains("ticket")) {
                             int index = channelname.lastIndexOf("-id-") + 4;
                             String ticketid = channelname.substring(index);
@@ -51,6 +52,7 @@ public class CloseTicket {
                                     .setDescription("Ticket #" + ticketid + " closed by " + authormention)
                                     .setColor(Color.RED)
                                     .setTimestamp(instant)).block();
+                            System.out.println("Ticket Close Command Executed By: " + username);
                         }
                     }
                     } catch (Exception e) {

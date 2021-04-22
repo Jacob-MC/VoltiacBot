@@ -7,6 +7,7 @@ import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.rest.util.Color;
+import xyz.voltiac.bot.Main;
 
 public class DiscordInvite {
     public static void discordinvite(GatewayDiscordClient client) {
@@ -20,12 +21,13 @@ public class DiscordInvite {
                     assert username != null;
                    String avatarurl = member.getAvatarUrl();
                     MessageChannel channel = (MessageChannel) message.getChannel().block();
-                   if (messagecontent.startsWith("!supportdiscord")) {
+                   if (messagecontent.equalsIgnoreCase(Main.prefix + "supportdiscord")) {
                        channel.createEmbed(EmbedCreateSpec -> {
                             EmbedCreateSpec.setTitle("**VoltiacBot Support**").setUrl("https://discord.gg/AvH9E5wXcA")
                                     .setFooter("Command Executed By: " + username, avatarurl)
                                     .setColor(Color.of(51, 153, 255));
                        }).block();
+                       System.out.println("DiscordInvite Command Executed By: " + username);
                    }
                     } catch (Exception e) {
                     }

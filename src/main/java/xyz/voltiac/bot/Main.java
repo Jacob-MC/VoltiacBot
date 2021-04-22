@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+    public static String prefix = "vb.";
     public static void main(String[] args) {
         String token = null;
         try {
@@ -39,7 +40,7 @@ public class Main {
                     System.out.printf(
                             "Logged in as %s#%s%n", self.getUsername(), self.getDiscriminator()
                    );
-                    client.updatePresence(Presence.online(Activity.playing("!help"))).block();
+                    client.updatePresence(Presence.online(Activity.playing("vb.help"))).block();
                 });
         client.onDisconnect().block();
     }

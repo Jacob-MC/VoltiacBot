@@ -7,6 +7,7 @@ import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.rest.util.Color;
+import xyz.voltiac.bot.Main;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,7 +31,7 @@ public class Say {
                         Pattern p2 = Pattern.compile("(discord\\.(gg|io|me|li)|discordapp\\.com\\/invite)\\/.+[a-z]");
                         Matcher m2 = p2.matcher(content);
                         Matcher m = p.matcher(content);
-                   if (messagecontent.equalsIgnoreCase("!say")) {
+                   if (messagecontent.equalsIgnoreCase(Main.prefix + "say")) {
                        channel.createEmbed(EmbedCreateSpec -> {
                            EmbedCreateSpec.setTitle("**!say**")
                                    .setDescription("Repeats whatever you say")
@@ -39,10 +40,12 @@ public class Say {
                                    .setFooter("Command Executed By: " + username, avatarurl)
                                    .setColor(Color.of(51, 153, 255));
                        }).block();
+                       System.out.println("Say Command Executed By: " + username);
                    }
-                   if (messagecontent.toLowerCase().startsWith("!say") && messagecontent.length() > 4 && !messagecontent.toLowerCase().contains("@") && !m.find() && !m2.find() && !member.isBot()) {
+                   if (messagecontent.toLowerCase().startsWith(Main.prefix + "say") && messagecontent.length() > 4 && !messagecontent.toLowerCase().contains("@") && !m.find() && !m2.find() && !member.isBot()) {
                        channel.createMessage(content).block();
-                   } else if (messagecontent.toLowerCase().startsWith("!say") && !member.isBot()) {
+                       System.out.println("Say Command Executed By: " + username);
+                   } else if (messagecontent.toLowerCase().startsWith(Main.prefix + "say") && !member.isBot()) {
                        if (messagecontent.toLowerCase().contains("@") || !m2.find() || !m.find()) {
                            channel.createMessage(mention + ", Please do not try pinging people/roles or posting links, it will not work.").block();
                        }

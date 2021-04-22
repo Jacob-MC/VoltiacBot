@@ -11,6 +11,7 @@ import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.BanQuerySpec;
 import discord4j.rest.util.Color;
 import discord4j.rest.util.Permission;
+import xyz.voltiac.bot.Main;
 
 import java.util.Objects;
 
@@ -31,7 +32,7 @@ public class Ban {
                     Snowflake guildid = guild.getId();
                     MessageChannel channel = message.getChannel().block();
                     try {
-                        if (messagecontent.startsWith("!ban") && message.getContent().length() > 26 && admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                        if (messagecontent.startsWith(Main.prefix + "ban") && message.getContent().length() > 26 && admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                             int index = messagecontent.indexOf(' ') + 1;
                             String mention = messagecontent.substring(index);
                             Snowflake id = Snowflake.of(mention.substring(3, 21));
@@ -52,7 +53,7 @@ public class Ban {
                                     assert channel != null;
                                     channel.createMessage("I do not have permission to kick users! Please give me the `BAN_MEMBERS` permission.").block();
                                 }
-                            } else if (messagecontent.toLowerCase().startsWith("!ban") && !admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                            } else if (messagecontent.toLowerCase().startsWith(Main.prefix + "ban") && !admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                             channel.createMessage("You do not have permission to use this command!").block();
                             }
                     } catch (Exception e) {
@@ -60,7 +61,7 @@ public class Ban {
                         channel.createMessage("An error occured. Please check that you mentioned a valid user and that the user is in the guild.").block();
                     }
                     try {
-                    if (message.getContent().toLowerCase().startsWith("!ban") && message.getContent().length() <= 26 && admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                    if (message.getContent().toLowerCase().startsWith(Main.prefix + "ban") && message.getContent().length() <= 26 && admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                         String userid = message.getContent().substring(5);
                         User user = client.getUserById(Snowflake.of(userid)).block();
                         assert user != null;
@@ -80,7 +81,7 @@ public class Ban {
                                 assert channel != null;
                                 channel.createMessage("I do not have permission to kick users! Please give me the `BAN_MEMBERS` permission.").block();
                             }
-                        } else if (messagecontent.toLowerCase().startsWith("!ban") && !admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)){
+                        } else if (messagecontent.toLowerCase().startsWith(Main.prefix + "ban") && !admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)){
                             channel.createMessage("You do not have permission to use this command!").block();
                         }
                         }

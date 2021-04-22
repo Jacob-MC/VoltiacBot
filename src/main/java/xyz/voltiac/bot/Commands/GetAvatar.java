@@ -8,6 +8,7 @@ import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.Channel;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
+import xyz.voltiac.bot.Main;
 
 import java.util.Optional;
 
@@ -23,19 +24,19 @@ public class GetAvatar {
                    String messageavatar = messageuser.getAvatarUrl();
 
                    try {
-                       if (message.getContent().equalsIgnoreCase("!avatar") && message.getContent().length() == 7) {
+                       if (message.getContent().equalsIgnoreCase(Main.prefix + "avatar") && message.getContent().length() == 7) {
                            channel.createEmbed(embedCreateSpec -> {
                                embedCreateSpec.setTitle("**!avatar**")
                                        .setDescription("Get a user's avatar!")
-                                       .addField("**Usage:**", "!avatar (mention user or enter their ID)", false)
-                                       .addField("Example:", "!avatar <@!778742764908183612>", false)
-                                       .addField("Example:", "!avatar 778742764908183612", false)
+                                       .addField("**Usage:**",  Main.prefix + "avatar (mention user or enter their ID)", false)
+                                       .addField("Example:", Main.prefix + "avatar <@!778742764908183612>", false)
+                                       .addField("Example:", Main.prefix + "avatar 778742764908183612", false)
                                        .setFooter("Command Executed By: " + messageusername, messageavatar)
                                        .setColor(Color.of(51, 153, 255));
                            }).block();
                            message.delete().block();
                        }
-                       if (message.getContent().startsWith("!avatar") && message.getContent().length() > 26) {
+                       if (message.getContent().startsWith(Main.prefix + "avatar") && message.getContent().length() > 26) {
                            String messagecontent = message.getContent();
                            int index = messagecontent.indexOf(' ') + 1;
                            String mention = messagecontent.substring(index);
@@ -48,11 +49,12 @@ public class GetAvatar {
                                        .setColor(Color.of(51, 153, 255))
                                        .setImage(avatarurl)
                                        .setFooter("Command Executed By: " + messageusername, messageavatar);
+                               System.out.println("GetAvatar Command Executed By: " + username);
                            }).block();
                            message.delete().block();
                        }
 
-                       if (message.getContent().toLowerCase().startsWith("!avatar ") && message.getContent().length() <= 26) {
+                       if (message.getContent().toLowerCase().startsWith(Main.prefix + "avatar ") && message.getContent().length() <= 26) {
                            String userid = message.getContent().substring(8);
                            User user = client.getUserById(Snowflake.of(userid)).block();
                            String username = user.getUsername();
@@ -62,6 +64,7 @@ public class GetAvatar {
                                        .setColor(Color.of(51, 153, 255))
                                        .setImage(avatarurl)
                                        .setFooter("Command Executed By: " + messageusername, messageavatar);
+                               System.out.println("GetAvatar Command Executed By: " + username);
                            }).block();
                        }
                    } catch(Exception e) {

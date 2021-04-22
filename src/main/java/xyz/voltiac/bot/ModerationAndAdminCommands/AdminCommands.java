@@ -8,6 +8,7 @@ import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
 import discord4j.rest.util.Permission;
+import xyz.voltiac.bot.Main;
 
 public class AdminCommands {
     public static void admincommands(GatewayDiscordClient client) {
@@ -20,16 +21,16 @@ public class AdminCommands {
                         String username = message.getAuthor().get().getUsername();
                         String avatar = message.getAuthor().get().getAvatarUrl();
                         MessageChannel channel = message.getChannel().block();
-                        if ("!admincommands".equalsIgnoreCase(message.getContent()) && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                        if (message.getContent().equalsIgnoreCase(Main.prefix + "admincommands") && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                             channel.createEmbed(embedCreateSpec -> {
                                 embedCreateSpec.setTitle("**Admin Commands**")
-                                        .addField("**!ban [user]**", "Bans the specified user. Can be used with mentions or ID's", false)
-                                        .addField("**!kick [user]**", "Bans the specified user. Can be used with mentions or ID's", false)
-                                        .addField("**!ticketsetup**", "Type in channel where you want the ticket creation message to be", false)
+                                        .addField("**" + Main.prefix + "ban [user]**", "Bans the specified user. Can be used with mentions or ID's", false)
+                                        .addField("**" + Main.prefix + "kick [user]**", "Bans the specified user. Can be used with mentions or ID's", false)
+                                        .addField("**" + Main.prefix + "ticketsetup**", "Type in channel where you want the ticket creation message to be", false)
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Command Executed By: " + username, avatar);
                             }).block();
-                            System.out.println("Commands Command Executed By: " + username);
+                            System.out.println("AdminCommands Command Executed By: " + username);
                         } else if ("!admincommands".equalsIgnoreCase(message.getContent()) && !member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                             channel.createMessage("You do not have permission to use this command!").block();
                         }

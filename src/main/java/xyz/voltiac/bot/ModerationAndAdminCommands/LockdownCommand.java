@@ -11,8 +11,10 @@ import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Permission;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import xyz.voltiac.bot.Main;
 
 import java.util.List;
+import java.util.Locale;
 
 public class LockdownCommand {
     public static void LockdownCommand(GatewayDiscordClient client) {
@@ -21,7 +23,7 @@ public class LockdownCommand {
                     try {
                     Message Command = event.getMessage();
                     Member member = Command.getAuthorAsMember().block();
-                    if ("!lockdown".equalsIgnoreCase(Command.getContent()) && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                    if (Command.getContent().toLowerCase().startsWith(Main.prefix + "lockdown") && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                         String username = Command.getAuthor().get().getUsername();
                         String avatar = Command.getAuthor().get().getAvatarUrl();
                         MessageChannel channel = Command.getChannel().block();
@@ -32,7 +34,7 @@ public class LockdownCommand {
                         System.out.println("Lockdown Start Command Executed By: " + username);
 
                     }
-                    if ("!lockdown end".equalsIgnoreCase(Command.getContent()) && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                    if (Command.getContent().toLowerCase().startsWith(Main.prefix + "lockdown end") && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                         String username = Command.getAuthor().get().getUsername();
                         String avatar = Command.getAuthor().get().getAvatarUrl();
                         MessageChannel channel = Command.getChannel().block();

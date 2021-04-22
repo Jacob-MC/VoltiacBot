@@ -6,6 +6,7 @@ import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
+import xyz.voltiac.bot.Main;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +23,7 @@ public class RPSCommand {
                    String username = user.getUsername();
                     assert username != null;
                    String avatar = user.getAvatarUrl();
-                    if (messagecontent.equalsIgnoreCase("!rps") || messagecontent.equalsIgnoreCase("!rps ")) {
+                    if (messagecontent.equalsIgnoreCase(Main.prefix + "rps") || messagecontent.equalsIgnoreCase(Main.prefix + "rps ")) {
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle("**!rps**")
                                     .setDescription("Play Rock, Paper, Scissors with the bot!")
@@ -32,7 +33,7 @@ public class RPSCommand {
                                     .setColor(Color.of(51, 153, 255));
                             System.out.println("RPS Command Executed By: " + username);
                         }).block();
-                    } else if (messagecontent.equalsIgnoreCase("!rps rock") || messagecontent.equalsIgnoreCase("!rps paper") || messagecontent.equalsIgnoreCase("!rps scissors")) {
+                    } else if (messagecontent.equalsIgnoreCase( Main.prefix + "rps rock") || messagecontent.equalsIgnoreCase(Main.prefix + "rps paper") || messagecontent.equalsIgnoreCase(Main.prefix + "rps scissors")) {
                         System.out.println("RPS Command Executed By: " + username);
                         int index = messagecontent.indexOf(' ') + 1;
                         String choice = messagecontent.substring(index);

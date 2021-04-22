@@ -12,6 +12,7 @@ import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.object.reaction.ReactionEmoji;
 import discord4j.rest.util.Color;
 import discord4j.rest.util.Permission;
+import xyz.voltiac.bot.Main;
 
 import java.time.Duration;
 
@@ -25,7 +26,8 @@ public class TicketSetup {
                     MessageChannel channel = message.getChannel().block();
                     Message embed = null;
                     Guild guild = event.getGuild().block();
-                    if ("!ticketsetup".equalsIgnoreCase(messagecontent) && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                    String username = member.getUsername();
+                    if (messagecontent.equalsIgnoreCase(Main.prefix + "ticketsetup") && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                         try {
                             message.delete().block();
                         } catch (Exception e) {
@@ -46,13 +48,14 @@ public class TicketSetup {
                                             .setFooter("VoltiacBot v2.1", "https://cdn.discordapp.com/avatars/809487051564908576/32795fb85b74f559994f66fef8d9669b.png")
                                             .setColor(Color.of(51, 153, 255));
                                 }).block();
+                                System.out.println("TicketSetup Command Executed By: " + username);
                                 embed.addReaction(ReactionEmoji.unicode("✉")).block();
                             } catch(Exception e) {
                                 channel.createMessage("Staff role not found. Please create a role titled `staff` and assign it to the users you want to be able to access all tickets.").block().delete().timeout(Duration.ofSeconds(5)).block();
                             }
                         } catch (Exception e) {
                         }
-                        } else if ("!ticketsetup".equalsIgnoreCase(messagecontent) && !member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                        } else if (messagecontent.equalsIgnoreCase(Main.prefix + "ticketsetup") && !member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                             channel.createMessage("You do not have permission to use this command!").block();
                     }
                 });

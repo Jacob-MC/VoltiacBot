@@ -8,6 +8,7 @@ import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.rest.util.Color;
+import xyz.voltiac.bot.Main;
 
 import java.io.File;
 
@@ -23,31 +24,32 @@ public class Subreddits {
                     assert username != null;
                     String avatar = member.getAvatarUrl();
                     MessageChannel channel = (MessageChannel) message.getChannel().block();
-                   if (messagecontent.equalsIgnoreCase("!subreddits")) {
+                   if (messagecontent.equalsIgnoreCase(Main.prefix + "subreddits")) {
                        channel.createEmbed(EmbedCreateSpec -> {
                            EmbedCreateSpec.setTitle("**Subreddits**")
                                    .addField("**How to Use:**", "To use these commands, just type in any of these subreddits, and press enter. Example: ```!memes```", false)
-                                   .addField("**!memes**", "Fetches a random meme from !memes", true)
-                                   .addField("**!dankmemes**", "Fetches a random meme from !dankmemes", true)
-                                   .addField("**!surrealmemes**", "Fetches a random meme from !surrealmemes", true)
-                                   .addField("**!wholesomememes**", "Fetches a random meme from !wholesomememes", true)
-                                   .addField("**!facepalm**", "Fetches a random post from !facepalm", true)
-                                   .addField("**!cursedcomments**", "Fetches a random post from !cursedcomments", true)
-                                   .addField("**!rareinsults**", "Fetches a random post from !rareinsults", true)
-                                   .addField("**!therewasanattempt**", "Fetches a random post from !therewasanattempt", true)
-                                   .addField("**!starterpacks**", "Fetches a random post from !starterpacks", true)
-                                   .addField("**!clevercomebacks**", "Fetches a random post from !clevercomebacks", true)
-                                   .addField("**!aww**", "Fetches a random post from !aww", true)
-                                   .addField("**!gaming**", "Fetches a random post from !gaming", true)
-                                   .addField("**!bonehurtingjuice**", "Fetches a random post from !bonehurtingjuice", true)
-                                   .addField("**!programmerhumor**", "Fetches a random post from !programmerhumor", true)
-                                   .addField("**!eyebleach**", "Fetches a random post from !eyebleach", true)
-                                   .addField("**!minecraft**", "Fetches a random post from !minecraft", true)
-                                   .addField("**!animalcrossing**", "Fetches a random post from !animalcrossing", true)
-                                   .addField("**!all**", "Fetches a random post from !all", true)
+                                   .addField("**" + Main.prefix + "memes**", "Fetches a random meme from r/memes", true)
+                                   .addField("**" + Main.prefix + "dankmemes**", "Fetches a random meme from r/dankmemes", true)
+                                   .addField("**" + Main.prefix + "surrealmemes**", "Fetches a random meme from r/surrealmemes", true)
+                                   .addField("**" + Main.prefix + "wholesomememes**", "Fetches a random meme from r/wholesomememes", true)
+                                   .addField("**" + Main.prefix + "facepalm**", "Fetches a random post from r/facepalm", true)
+                                   .addField("**" + Main.prefix + "cursedcomments**", "Fetches a random post from r/cursedcomments", true)
+                                   .addField("**" + Main.prefix + "rareinsults**", "Fetches a random post from r/rareinsults", true)
+                                   .addField("**" + Main.prefix + "therewasanattempt**", "Fetches a random post from r/therewasanattempt", true)
+                                   .addField("**" + Main.prefix + "starterpacks**", "Fetches a random post from r/starterpacks", true)
+                                   .addField("**" + Main.prefix + "clevercomebacks**", "Fetches a random post from r/clevercomebacks", true)
+                                   .addField("**" + Main.prefix + "aww**", "Fetches a random post from r/aww", true)
+                                   .addField("**" + Main.prefix + "gaming**", "Fetches a random post from r/gaming", true)
+                                   .addField("**" + Main.prefix + "bonehurtingjuice**", "Fetches a random post from r/bonehurtingjuice", true)
+                                   .addField("**" + Main.prefix + "programmerhumor**", "Fetches a random post from r/programmerhumor", true)
+                                   .addField("**" + Main.prefix + "eyebleach**", "Fetches a random post from r/eyebleach", true)
+                                   .addField("**" + Main.prefix + "minecraft**", "Fetches a random post from r/minecraft", true)
+                                   .addField("**" + Main.prefix + "animalcrossing**", "Fetches a random post from r/animalcrossing", true)
+                                   .addField("**" + Main.prefix + "all**", "Fetches a random post from r/all", true)
                                    .setColor(Color.of(51, 153, 255))
                                    .setFooter("Command Executed By: " + username, avatar);
                        }).block();
+                       System.out.println("Subreddits Command Executed By: " + username);
                    }
                     } catch (Exception e) {
                     }

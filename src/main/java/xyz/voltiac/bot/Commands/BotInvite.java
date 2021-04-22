@@ -7,6 +7,9 @@ import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
+import xyz.voltiac.bot.Main;
+
+import java.util.Locale;
 
 public class BotInvite {
     public static void botinvite(GatewayDiscordClient client) {
@@ -20,12 +23,13 @@ public class BotInvite {
                     assert username != null;
                     String avatarurl = member.getAvatarUrl();
                     MessageChannel channel = (MessageChannel) message.getChannel().block();
-                    if (messagecontent.startsWith("!botinvite")) {
+                    if (messagecontent.equalsIgnoreCase(Main.prefix + "botinvite")) {
                         channel.createEmbed(EmbedCreateSpec -> {
                             EmbedCreateSpec.setTitle("**VoltiacBot Invite**").setUrl("https://discord.com/oauth2/authorize?client_id=809487051564908576&scope=bot&permissions=8")
                                     .setFooter("Command Executed By: " + username, avatarurl)
                                     .setColor(Color.of(51, 153, 255));
                         }).block();
+                        System.out.println("BotInvite Command Executed By: " + username);
                     }
                     } catch (Exception e) {
                     }

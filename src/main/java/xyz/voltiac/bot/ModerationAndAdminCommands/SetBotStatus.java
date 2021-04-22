@@ -11,6 +11,7 @@ import discord4j.core.object.presence.Presence;
 import discord4j.rest.util.Color;
 import discord4j.rest.util.Permission;
 import reactor.core.publisher.Mono;
+import xyz.voltiac.bot.Main;
 
 import java.time.Duration;
 import java.util.Optional;
@@ -30,17 +31,17 @@ public class SetBotStatus {
                    MessageChannel channel = message.getChannel().block();
                    Guild guild = event.getGuild().block();
                    assert channel != null;
-                    if (messagecontent.equalsIgnoreCase("!setbotstatus") && member.getId().asString().equals("778742764908183612")) {
+                    if (messagecontent.equalsIgnoreCase(Main.prefix + "setbotstatus") && member.getId().asString().equals("778742764908183612")) {
                         channel.createEmbed(embedCreateSpec -> {
-                            embedCreateSpec.setTitle("**!setbotstatus**")
+                            embedCreateSpec.setTitle("**" + Main.prefix + "setbotstatus**")
                                     .setDescription("Sets the bots status!")
-                                    .addField("**Usage:**", "!setbotstatus (status)", false)
-                                    .addField("Example:", "!setbotstatus Moderating Voltiac Network", false)
+                                    .addField("**Usage:**",  Main.prefix + "setbotstatus (status)", false)
+                                    .addField("Example:",  Main.prefix + "setbotstatus Moderating Voltiac Network", false)
                                     .setFooter("Command Executed By: " + username, avatar)
                                     .setColor(Color.of(51, 153, 255));
                         }).block();
                         message.delete().block();
-                    } else if(messagecontent.toLowerCase().startsWith("!setbotstatus ") && member.getId().asString().equals("778742764908183612")) {
+                    } else if(messagecontent.toLowerCase().startsWith(Main.prefix + "setbotstatus ") && member.getId().asString().equals("778742764908183612")) {
                         int index = messagecontent.indexOf(" ");
                         String botstatus = messagecontent.substring(index);
                         client.updatePresence(Presence.online(Activity.playing(botstatus))).block();

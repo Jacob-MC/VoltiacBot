@@ -12,9 +12,11 @@ import discord4j.core.object.entity.Role;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.core.object.entity.channel.TextChannel;
 import discord4j.core.object.reaction.ReactionEmoji;
+import discord4j.core.spec.TextChannelEditSpec;
 import discord4j.rest.util.Color;
 import discord4j.rest.util.Permission;
 import discord4j.rest.util.PermissionSet;
+import xyz.voltiac.bot.Main;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -72,6 +74,9 @@ public class Tickets {
                                        overwrites.add(PermissionOverwrite.forRole(Snowflake.of(roleid), PermissionSet.of(new Permission[]{Permission.VIEW_CHANNEL, Permission.SEND_MESSAGES}), PermissionSet.of(new Permission[]{Permission.MENTION_EVERYONE, Permission.MANAGE_MESSAGES})));
                                        TextChannel ticketchannel = guild.createTextChannel(TextChannelCreateSpec -> TextChannelCreateSpec.setName("ticket-" + username + "-id-" + shuffledtext2).setPermissionOverwrites(overwrites)).block();
                                        message.removeReaction(reaction, member.getId()).block();
+                                       ticketchannel.edit(TextChannelEditSpec -> {
+                                           TextChannelEditSpec.setTopic("Once you are done, you can close this ticket with " + Main.prefix + "close");
+                                       }).block();
                                        ticketchannel.createMessage("Please be patient, " + membermention + ", " + staffrolemention + " will be with you soon.").block();
                                    } catch (Exception e) {
                                    }

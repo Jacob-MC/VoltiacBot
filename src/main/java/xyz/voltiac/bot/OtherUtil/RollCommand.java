@@ -8,6 +8,7 @@ import discord4j.core.object.entity.channel.Channel;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
 import reactor.core.publisher.Mono;
+import xyz.voltiac.bot.Main;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -27,18 +28,18 @@ public class RollCommand {
                    String username = author.getUsername();
                     assert username != null;
                    String useravatar = author.getAvatarUrl();
-                   if (messagecontent.equalsIgnoreCase("!roll") || messagecontent.equalsIgnoreCase("roll ")) {
+                   if (messagecontent.equalsIgnoreCase(Main.prefix + "roll") || messagecontent.equalsIgnoreCase(Main.prefix + "roll ")) {
                        channel.createEmbed(embedCreateSpec -> {
-                           embedCreateSpec.setTitle("**!roll**")
+                           embedCreateSpec.setTitle("**" + Main.prefix + "roll**")
                                    .setDescription("Roll a specified number of dice!")
-                                   .addField("**Usage:**", "!roll (number of dice)", false)
-                                   .addField("Example:", "!roll 5", false)
+                                   .addField("**Usage:**",  Main.prefix + "roll (number of dice)", false)
+                                   .addField("Example:",  Main.prefix + "roll 5", false)
                                    .setFooter("Command Executed By: " + username, useravatar)
                                    .setColor(Color.of(51, 153, 255));
                        }).block();
                        System.out.println("Roll Command Executed By: " + username);
                    }
-                   if (messagecontent.toLowerCase().contains("!roll ")) {
+                   if (messagecontent.toLowerCase().startsWith(Main.prefix + "roll ")) {
                        System.out.println("Roll Command Executed By: " + username);
                        String rollnumberdice = messagecontent.substring(6);
                        if (rollnumberdice.matches(".*[a-z].*") ) {
