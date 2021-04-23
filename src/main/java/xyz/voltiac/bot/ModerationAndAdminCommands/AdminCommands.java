@@ -32,7 +32,7 @@ public class AdminCommands {
                                         .setFooter("Command Executed By: " + username, avatar);
                             }).block();
                             System.out.println("AdminCommands Command Executed By: " + username);
-                        } else if ("!admincommands".equalsIgnoreCase(message.getContent()) && !member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                        } else if (message.getContent().equalsIgnoreCase(Main.prefix + "admincommands") && !member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                             channel.createMessage("You do not have permission to use this command!").block();
                         }
                     } catch (Exception e) {
