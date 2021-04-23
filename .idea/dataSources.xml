@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="VoltiacBot" uuid="3b013fdb-7722-4f2e-8e40-2ff43fd4e67d">
-      <driver-ref>h2.unified</driver-ref>
+    <data-source source="LOCAL" name="SQLite - database.sqlite" uuid="92ad81da-5077-41e8-bab5-b615a3dde7b9">
+      <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.h2.Driver</jdbc-driver>
-      <jdbc-url>jdbc:h2:file:C:\Users\jacob\IdeaProjects\VoltiacBot;MV_STORE=false;AUTO_SERVER=TRUE</jdbc-url>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:database.sqlite</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
