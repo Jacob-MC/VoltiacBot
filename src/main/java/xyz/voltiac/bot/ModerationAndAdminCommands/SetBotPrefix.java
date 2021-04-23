@@ -38,7 +38,7 @@ public class SetBotPrefix {
                             int index = messagecontent.indexOf(" ") + 1;
                             String botprefix = messagecontent.substring(index);
                             Main.prefix = botprefix;
-                            client.updatePresence(Presence.online(Activity.playing(botprefix + "help"))).block();
+                            client.updatePresence(Presence.online(Activity.playing(botprefix + "help | In " + client.getGuilds().collectList().block().size() + " Guilds"))).block();
                             channel.createMessage("Bot prefix updated.").block();
                             System.out.println("Bot prefix set to: " + botprefix);
                             message.delete().block();
