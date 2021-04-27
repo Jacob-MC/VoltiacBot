@@ -21,7 +21,7 @@ public class DiscordInvite {
                     assert username != null;
                    String avatarurl = member.getAvatarUrl();
                     MessageChannel channel = (MessageChannel) message.getChannel().block();
-                   if (messagecontent.equalsIgnoreCase(Main.prefix + "supportdiscord")) {
+                   if (messagecontent.equalsIgnoreCase(Main.prefix + "supportdiscord") && !member.isBot()) {
                        channel.createEmbed(EmbedCreateSpec -> {
                             EmbedCreateSpec.setTitle("**VoltiacBot Support**").setUrl("https://discord.gg/AvH9E5wXcA")
                                     .setFooter("Command Executed By: " + username, avatarurl)

@@ -2,6 +2,7 @@ package xyz.voltiac.bot.Commands;
 
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
+import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
@@ -12,8 +13,9 @@ public class FunCommands {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
                     try {
-                    Message message = event.getMessage();
-                    if (message.getContent().equalsIgnoreCase(Main.prefix + "funcommands")) {
+                        Member member = event.getMember().get();
+                        Message message = event.getMessage();
+                    if (message.getContent().equalsIgnoreCase(Main.prefix + "help fun") && !member.isBot()) {
                         String username = message.getAuthor().get().getUsername();
                         String avatar = message.getAuthor().get().getAvatarUrl();
                         MessageChannel channel = message.getChannel().block();

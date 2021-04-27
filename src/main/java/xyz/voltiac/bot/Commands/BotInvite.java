@@ -23,7 +23,7 @@ public class BotInvite {
                     assert username != null;
                     String avatarurl = member.getAvatarUrl();
                     MessageChannel channel = (MessageChannel) message.getChannel().block();
-                    if (messagecontent.equalsIgnoreCase(Main.prefix + "botinvite")) {
+                    if (messagecontent.equalsIgnoreCase(Main.prefix + "botinvite") && !member.isBot()) {
                         channel.createEmbed(EmbedCreateSpec -> {
                             EmbedCreateSpec.setTitle("**VoltiacBot Invite**").setUrl("https://discord.com/oauth2/authorize?client_id=809487051564908576&scope=bot&permissions=8")
                                     .setFooter("Command Executed By: " + username, avatarurl)

@@ -2,6 +2,7 @@ package xyz.voltiac.bot.OtherUtil;
 
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
+import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.MessageChannel;
@@ -17,13 +18,14 @@ public class RPSCommand {
                 .subscribe(event -> {
                     try {
                    Message message = event.getMessage();
+                   Member member = event.getMember().get();
                    String messagecontent = message.getContent();
                    MessageChannel channel = message.getChannel().block();
                    User user = message.getAuthorAsMember().block();
                    String username = user.getUsername();
                     assert username != null;
                    String avatar = user.getAvatarUrl();
-                    if (messagecontent.equalsIgnoreCase(Main.prefix + "rps") || messagecontent.equalsIgnoreCase(Main.prefix + "rps ")) {
+                    if (messagecontent.equalsIgnoreCase(Main.prefix + "rps") || messagecontent.equalsIgnoreCase(Main.prefix + "rps ") && !member.isBot()) {
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle("**!rps**")
                                     .setDescription("Play Rock, Paper, Scissors with the bot!")
@@ -33,9 +35,9 @@ public class RPSCommand {
                                     .setColor(Color.of(51, 153, 255));
                             System.out.println("RPS Command Executed By: " + username);
                         }).block();
-                    } else if (messagecontent.equalsIgnoreCase( Main.prefix + "rps rock") || messagecontent.equalsIgnoreCase(Main.prefix + "rps paper") || messagecontent.equalsIgnoreCase(Main.prefix + "rps scissors")) {
+                    } else if (messagecontent.equalsIgnoreCase( Main.prefix + "rps rock") || messagecontent.equalsIgnoreCase(Main.prefix + "rps paper") || messagecontent.equalsIgnoreCase(Main.prefix + "rps scissors") && !member.isBot()) {
                         System.out.println("RPS Command Executed By: " + username);
-                        int index = messagecontent.indexOf(' ') + 1;
+                        int index = messagecontent.indexOf(" ") + 1;
                         String choice = messagecontent.substring(index);
                         ArrayList<Integer> list = new ArrayList<Integer>();
                         for (int i = 1; i < 4; i++) {

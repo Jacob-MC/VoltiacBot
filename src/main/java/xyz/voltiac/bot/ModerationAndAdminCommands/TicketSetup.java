@@ -28,7 +28,7 @@ public class TicketSetup {
                         Message embed = null;
                         Guild guild = event.getGuild().block();
                         String username = member.getUsername();
-                        if (messagecontent.equalsIgnoreCase(Main.prefix + "ticketsetup") && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                        if (messagecontent.equalsIgnoreCase(Main.prefix + "ticketsetup") && member.getBasePermissions().block().contains(Permission.ADMINISTRATOR) && !member.isBot()) {
                             try {
                                 message.delete().block();
                             } catch (Exception e) {
@@ -52,11 +52,11 @@ public class TicketSetup {
                                     System.out.println("TicketSetup Command Executed By: " + username);
                                     embed.addReaction(ReactionEmoji.unicode("✉")).block();
                                 } catch (Exception e) {
-                                    channel.createMessage("Staff role not found. Please create a role titled `staff` and assign it to the users you want to be able to access all tickets.").block().delete().timeout(Duration.ofSeconds(5)).block();
+                                    channel.createMessage("Staff role not found. Please create a role titled `staff` and assign it to the users you want to be able to access all tickets.").block().delete();
                                 }
                             } catch (Exception e) {
                             }
-                        } else if (messagecontent.equalsIgnoreCase(Main.prefix + "ticketsetup") && !member.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
+                        } else if (messagecontent.equalsIgnoreCase(Main.prefix + "ticketsetup") && !member.getBasePermissions().block().contains(Permission.ADMINISTRATOR) && !member.isBot()) {
                             channel.createMessage("You do not have permission to use this command!").block();
                         }
                     } catch (Exception e) {

@@ -24,7 +24,7 @@ public class GetAvatar {
                    String messageavatar = messageuser.getAvatarUrl();
 
                    try {
-                       if (message.getContent().equalsIgnoreCase(Main.prefix + "avatar") && message.getContent().length() == 7) {
+                       if (message.getContent().equalsIgnoreCase(Main.prefix + "avatar") && message.getContent().length() == 7 && !messageuser.isBot()) {
                            channel.createEmbed(embedCreateSpec -> {
                                embedCreateSpec.setTitle("**!avatar**")
                                        .setDescription("Get a user's avatar!")
@@ -36,7 +36,7 @@ public class GetAvatar {
                            }).block();
                            message.delete().block();
                        }
-                       if (message.getContent().startsWith(Main.prefix + "avatar") && message.getContent().length() > 26) {
+                       if (message.getContent().startsWith(Main.prefix + "avatar") && message.getContent().length() > 26 && !messageuser.isBot()) {
                            String messagecontent = message.getContent();
                            int index = messagecontent.indexOf(' ') + 1;
                            String mention = messagecontent.substring(index);
@@ -54,8 +54,8 @@ public class GetAvatar {
                            message.delete().block();
                        }
 
-                       if (message.getContent().toLowerCase().startsWith(Main.prefix + "avatar ") && message.getContent().length() <= 26) {
-                           String userid = message.getContent().substring(8);
+                       if (message.getContent().toLowerCase().startsWith(Main.prefix + "avatar ") && message.getContent().length() <= 26 && !messageuser.isBot()) {
+                           String userid = message.getContent().substring(' ') + 1;
                            User user = client.getUserById(Snowflake.of(userid)).block();
                            String username = user.getUsername();
                            String avatarurl = user.getAvatarUrl();

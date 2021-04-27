@@ -2,6 +2,7 @@ package xyz.voltiac.bot.OtherUtil;
 
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
+import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.Channel;
@@ -21,6 +22,7 @@ public class RollCommand {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
                     try {
+                        Member member = event.getMember().get();
                    Message message = event.getMessage();
                    String messagecontent = message.getContent();
                    MessageChannel channel = message.getChannel().block();
@@ -28,7 +30,7 @@ public class RollCommand {
                    String username = author.getUsername();
                     assert username != null;
                    String useravatar = author.getAvatarUrl();
-                   if (messagecontent.equalsIgnoreCase(Main.prefix + "roll") || messagecontent.equalsIgnoreCase(Main.prefix + "roll ")) {
+                   if (messagecontent.equalsIgnoreCase(Main.prefix + "roll") || messagecontent.equalsIgnoreCase(Main.prefix + "roll ") && !member.isBot()) {
                        channel.createEmbed(embedCreateSpec -> {
                            embedCreateSpec.setTitle("**" + Main.prefix + "roll**")
                                    .setDescription("Roll a specified number of dice!")
@@ -39,14 +41,14 @@ public class RollCommand {
                        }).block();
                        System.out.println("Roll Command Executed By: " + username);
                    }
-                   if (messagecontent.toLowerCase().startsWith(Main.prefix + "roll ")) {
+                   if (messagecontent.toLowerCase().startsWith(Main.prefix + "roll ") && !member.isBot()) {
                        System.out.println("Roll Command Executed By: " + username);
-                       String rollnumberdice = messagecontent.substring(6);
-                       if (rollnumberdice.matches(".*[a-z].*") ) {
+                       int index = messagecontent.indexOf(" ") + 1;
+                       String rollnumberdice = messagecontent.substring(index);
+                       if (!rollnumberdice.matches("^[0-9]*$") ) {
                            channel.createMessage("Invalid number. Please enter a number between 1 and 5.").block();
                        } else {
-                           int numberdice = Integer.valueOf(rollnumberdice);
-
+                               int numberdice = Integer.valueOf(rollnumberdice);
                            ArrayList<Integer> list = new ArrayList<Integer>();
                            for (int i = 1; i < 7; i++) {
                                list.add(new Integer(i));
@@ -60,24 +62,19 @@ public class RollCommand {
                            if (numberdice == 1) {
                                channel.createMessage(username + ", you rolled " + rand1).block();
                            }
-
-                           if (numberdice == 2 && Integer.valueOf(rand1) != Integer.valueOf(rand2)) {
+                           if (numberdice == 2) {
                                channel.createMessage(username + ", you rolled " + rand1 + ", " + rand2).block();
                            }
-
                            if (numberdice == 3) {
                                channel.createMessage(username + ", you rolled " + rand1 + ", " + rand2 + ", " + rand3).block();
                            }
-
                            if (numberdice == 4) {
                                channel.createMessage(username + ", you rolled " + rand1 + ", " + rand2 + ", " + rand3 + ", " + rand4).block();
                            }
-
                            if (numberdice == 5) {
                                channel.createMessage(username + ", you rolled " + rand1 + ", " + rand2 + ", " + rand3 + ", " + rand4 + ", " + rand5).block();
                            }
-
-                           if (numberdice > 5) {
+                           if (numberdice > 5 || numberdice < 1) {
                                channel.createMessage("Invalid number. Please enter a number between 1 and 5.").block();
                            }
                        }

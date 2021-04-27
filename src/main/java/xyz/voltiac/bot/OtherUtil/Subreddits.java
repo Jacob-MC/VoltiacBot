@@ -24,7 +24,7 @@ public class Subreddits {
                     assert username != null;
                     String avatar = member.getAvatarUrl();
                     MessageChannel channel = (MessageChannel) message.getChannel().block();
-                   if (messagecontent.equalsIgnoreCase(Main.prefix + "subreddits")) {
+                   if (messagecontent.equalsIgnoreCase(Main.prefix + "subreddits") && !member.isBot()) {
                        channel.createEmbed(EmbedCreateSpec -> {
                            EmbedCreateSpec.setTitle("**Subreddits**")
                                    .addField("**How to Use:**", "To use these commands, just type in any of these subreddits, and press enter. Example: ```" + Main.prefix + "memes```", false)

@@ -2,6 +2,7 @@ package xyz.voltiac.bot.Commands;
 
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
+import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
@@ -12,15 +13,16 @@ public class Help {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
                     try {
-                   Message message = event.getMessage();
-                    if (message.getContent().equalsIgnoreCase(Main.prefix + "help")) {
+                        Member member = event.getMember().get();
+                        Message message = event.getMessage();
+                    if (message.getContent().equalsIgnoreCase(Main.prefix + "help") && !member.isBot()) {
                         String username = message.getAuthor().get().getUsername();
                         String avatar = message.getAuthor().get().getAvatarUrl();
                         MessageChannel channel = message.getChannel().block();
                         assert channel != null;
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle("**Help**")
-                                    .setDescription("Hello, " + username + "! If you need help joining the server check <#805640788692303902>. You can view a list of commands by typing " + Main.prefix + "commands")
+                                    .setDescription("Hello, " + username + ", my prefix is `" + Main.prefix + "`! You can view a list of commands by typing " + Main.prefix + "commands")
                                     .setColor(Color.of(51, 153, 255))
                                     .setFooter("Command Executed By: " + username, avatar);
                         }).block();

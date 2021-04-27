@@ -31,7 +31,7 @@ public class Say {
                         Pattern p2 = Pattern.compile("(discord\\.(gg|io|me|li)|discordapp\\.com\\/invite)\\/.+[a-z]");
                         Matcher m2 = p2.matcher(content);
                         Matcher m = p.matcher(content);
-                   if (messagecontent.equalsIgnoreCase(Main.prefix + "say")) {
+                   if (messagecontent.equalsIgnoreCase(Main.prefix + "say") && !member.isBot()) {
                        channel.createEmbed(EmbedCreateSpec -> {
                            EmbedCreateSpec.setTitle("**!say**")
                                    .setDescription("Repeats whatever you say")
