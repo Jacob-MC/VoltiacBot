@@ -23,7 +23,7 @@ public class DiscordInvite {
                     MessageChannel channel = (MessageChannel) message.getChannel().block();
                    if (messagecontent.equalsIgnoreCase(Main.prefix + "supportdiscord") && !member.isBot()) {
                        channel.createEmbed(EmbedCreateSpec -> {
-                            EmbedCreateSpec.setTitle("**VoltiacBot Support**").setUrl("https://discord.gg/AvH9E5wXcA")
+                            EmbedCreateSpec.setTitle("**VoltiacBot Support**").setUrl("https://discord.gg/8n6NRcSnGv")
                                     .setFooter("Command Executed By: " + username, avatarurl)
                                     .setColor(Color.of(51, 153, 255));
                        }).block();
