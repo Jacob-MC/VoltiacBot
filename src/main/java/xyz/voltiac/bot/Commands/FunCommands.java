@@ -22,10 +22,10 @@ public class FunCommands {
                         assert channel != null;
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle("**Fun Commands**")
-                                    .addField("**" + Main.prefix + "avatar (user)**", "Gets a user's avatar - Works by mentioning the user or by using the user's ID", false)
-                                    .addField("**" + Main.prefix + "roll (number of dice)**", "Rolls a specified amount of dice (Maximum 5)", false)
-                                    .addField("**" + Main.prefix + "rps (choice)**", "Plays rock, paper, scissors with the bot", false)
-                                    .addField("**" + Main.prefix + "say**", "Repeats what you say", false)
+                                    .addField("**" + Main.prefix + "avatar (user)**", "Gets a user's avatar - Works by mentioning the user or by using the user's ID", true)
+                                    .addField("**" + Main.prefix + "roll (number of dice)**", "Rolls a specified amount of dice (Maximum 5)", true)
+                                    .addField("**" + Main.prefix + "rps (choice)**", "Plays rock, paper, scissors with the bot", true)
+                                    .addField("**" + Main.prefix + "say**", "Repeats what you say", true)
                                     .addField("**" + Main.prefix + "subreddits**", "Displays the list of subreddits you can fetch posts from", true)
                                     .setColor(Color.of(51, 153, 255))
                                     .setFooter("Command Executed By: " + username, avatar);
