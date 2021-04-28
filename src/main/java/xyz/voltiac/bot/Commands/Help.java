@@ -15,7 +15,7 @@ public class Help {
                     try {
                         Member member = event.getMember().get();
                         Message message = event.getMessage();
-                    if (message.getContent().equalsIgnoreCase(Main.prefix + "help") && !member.isBot()) {
+                    if (message.getContent().equalsIgnoreCase(Main.prefix + "help") || message.getContent().equals("<@!809487051564908576>") && !member.isBot()) {
                         String username = message.getAuthor().get().getUsername();
                         String avatar = message.getAuthor().get().getAvatarUrl();
                         MessageChannel channel = message.getChannel().block();
