@@ -27,9 +27,9 @@ public class Kick {
                     MessageChannel channel = message.getChannel().block();
                     if (messagecontent.toLowerCase().startsWith(Main.prefix + "kick") && message.getContent().length() > 26 && admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR) && !admin.isBot()) {
                         try {
-                            int index = messagecontent.indexOf(' ') + 1;
-                            String mention = messagecontent.substring(index);
-                            Snowflake id = Snowflake.of(mention.substring(3, 21));
+                            int index = messagecontent.indexOf(' ') + 4;
+                            String mention = messagecontent.substring(index, index + 18);
+                            Snowflake id = Snowflake.of(mention);
                             User user = client.getUserById(id).block();
                             assert user != null;
                             String username = user.getUsername();
@@ -57,8 +57,8 @@ public class Kick {
 
                     if (message.getContent().toLowerCase().startsWith(Main.prefix + "kick") && message.getContent().length() <= 26 && admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR) && !admin.isBot()) {
                         try {
-                            int index = messagecontent.indexOf(' ');
-                            String userid = message.getContent().substring(index);
+                            int index = messagecontent.indexOf(' ') + 1;
+                            String userid = messagecontent.substring(index, index + 18);
                             User user = client.getUserById(Snowflake.of(userid)).block();
                             assert user != null;
                             String username = user.getUsername();

@@ -32,10 +32,10 @@ public class Ban {
                     Snowflake guildid = guild.getId();
                     MessageChannel channel = message.getChannel().block();
                     try {
-                        if (messagecontent.startsWith(Main.prefix + "ban") && message.getContent().length() > 26 && admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR) && !admin.isBot()) {
-                            int index = messagecontent.indexOf(' ') + 1;
-                            String mention = messagecontent.substring(index);
-                            Snowflake id = Snowflake.of(mention.substring(3, 21));
+                        if (messagecontent.startsWith(Main.prefix + "ban") && message.getContent().length() > Main.prefix.length() + 25 && admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR) && !admin.isBot()) {
+                            int index = messagecontent.indexOf(' ') + 4;
+                            String mention = messagecontent.substring(index, index + 18);
+                            Snowflake id = Snowflake.of(mention);
                             User user = client.getUserById(id).block();
                             assert user != null;
                             Member member = user.asMember(guildid).block();
@@ -65,9 +65,9 @@ public class Ban {
                         channel.createMessage("An error occured. Please check that you mentioned a valid user and that the user is in the guild.").block();
                     }
                     try {
-                    if (message.getContent().toLowerCase().startsWith(Main.prefix + "ban") && message.getContent().length() <= 26 && admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR) && !admin.isBot()) {
+                    if (message.getContent().toLowerCase().startsWith(Main.prefix + "ban") && message.getContent().length() <= Main.prefix.length() + 25 && admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR) && !admin.isBot()) {
                         int index = messagecontent.indexOf(' ');
-                        String userid = message.getContent().substring(index);
+                        String userid = message.getContent().substring(index, index + 18);
                         User user = client.getUserById(Snowflake.of(userid)).block();
                         assert user != null;
                         String username = user.getUsername();
