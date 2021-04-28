@@ -20,11 +20,11 @@ public class GetAvatar {
                    Message message = event.getMessage();
                    MessageChannel channel = message.getChannel().block();
                    User messageuser = message.getAuthorAsMember().block();
+                   String messagecontent = message.getContent();
                    String messageusername = messageuser.getUsername();
                    String messageavatar = messageuser.getAvatarUrl();
-
                    try {
-                       if (message.getContent().equalsIgnoreCase(Main.prefix + "avatar") && message.getContent().length() == 7 && !messageuser.isBot()) {
+                       if (messagecontent.equalsIgnoreCase(Main.prefix + "avatar") && message.getContent().length() == 7 && !messageuser.isBot()) {
                            channel.createEmbed(embedCreateSpec -> {
                                embedCreateSpec.setTitle("**!avatar**")
                                        .setDescription("Get a user's avatar!")
@@ -36,11 +36,10 @@ public class GetAvatar {
                            }).block();
                            message.delete().block();
                        }
-                       if (message.getContent().startsWith(Main.prefix + "avatar") && message.getContent().length() > 26 && !messageuser.isBot()) {
-                           String messagecontent = message.getContent();
-                           int index = messagecontent.indexOf(' ') + 1;
-                           String mention = messagecontent.substring(index);
-                           Snowflake id = Snowflake.of(mention.substring(3, 21));
+                       if (messagecontent.startsWith(Main.prefix + "avatar") && message.getContent().length() > Main.prefix.length() + 25 && !messageuser.isBot()) {
+                           int index = messagecontent.indexOf(' ') + 4;
+                           String mention = messagecontent.substring(index, index + 18);
+                           Snowflake id = Snowflake.of(mention);
                            User user = client.getUserById(id).block();
                            String username = user.getUsername();
                            String avatarurl = user.getAvatarUrl();
@@ -49,13 +48,14 @@ public class GetAvatar {
                                        .setColor(Color.of(51, 153, 255))
                                        .setImage(avatarurl)
                                        .setFooter("Command Executed By: " + messageusername, messageavatar);
-                               System.out.println("GetAvatar Command Executed By: " + username);
+                               System.out.println("GetAvatar Command Executed By: " + messageusername);
                            }).block();
                            message.delete().block();
                        }
 
-                       if (message.getContent().toLowerCase().startsWith(Main.prefix + "avatar ") && message.getContent().length() <= 26 && !messageuser.isBot()) {
-                           String userid = message.getContent().substring(' ') + 1;
+                       if (messagecontent.toLowerCase().startsWith(Main.prefix + "avatar ") && message.getContent().length() <= Main.prefix.length() + 25 && !messageuser.isBot()) {
+                           int index = messagecontent.indexOf(' ') + 1;
+                           String userid = messagecontent.substring(index, index + 18);
                            User user = client.getUserById(Snowflake.of(userid)).block();
                            String username = user.getUsername();
                            String avatarurl = user.getAvatarUrl();
@@ -64,10 +64,11 @@ public class GetAvatar {
                                        .setColor(Color.of(51, 153, 255))
                                        .setImage(avatarurl)
                                        .setFooter("Command Executed By: " + messageusername, messageavatar);
-                               System.out.println("GetAvatar Command Executed By: " + username);
+                               System.out.println("GetAvatar Command Executed By: " + messageusername);
                            }).block();
                        }
                    } catch(Exception e) {
+                       e.printStackTrace();
                        channel.createMessage("An error occured. Please check that you are mentioning a valid user or using the correct ID.").block();
                    }
                     } catch (Exception e) {
