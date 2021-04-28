@@ -27,10 +27,11 @@ public class Commands {
                         MessageChannel channel = message.getChannel().block();
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle("**Commands - Prefix is: `" + Main.prefix + "`**")
-                                    .addField("**\uD83D\uDE02 Fun Commands**", Main.prefix + "help fun", true)
-                                    .addField("**\uD83E\uDD16 Bot Invite**", Main.prefix + "botinvite", true)
-                                    .addField("**❓ Support Discord**", Main.prefix + "supportdiscord", true)
-                                    .addField("**\uD83D\uDC6E Admin Commands**", Main.prefix + "help admin",  true)
+                                    .addField("**\uD83D\uDE02 Fun Commands**", Main.prefix + "help fun - Fun Commands", true)
+                                    .addField("**\uD83E\uDD16 Bot Invite**", Main.prefix + "botinvite - VoltiacBot Invite", true)
+                                    .addField("**❓ Support Discord**", Main.prefix + "supportdiscord - VoltiacBot Support Discord Server", true)
+                                    .addField("**\uD83D\uDC6E Admin Commands**", Main.prefix + "help admin - Administrator Commands",  true)
+                                    .addField("**\uD83C\uDFD3 Ping**", Main.prefix + "ping - Checks the bot's response time", true)
                                     .setColor(Color.of(51, 153, 255))
                                     .setFooter("Command Executed By: " + username, avatar);
                         }).block();

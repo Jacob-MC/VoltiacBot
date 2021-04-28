@@ -22,5 +22,6 @@ public class CommandHandler {
         Kick.kick(client);
         DiscordInvite.discordinvite(client);
         BotInvite.botinvite(client);
+        Ping.ping(client);
     }
 }

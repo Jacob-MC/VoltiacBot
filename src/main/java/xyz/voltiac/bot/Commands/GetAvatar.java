@@ -5,12 +5,9 @@ import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
-import discord4j.core.object.entity.channel.Channel;
 import discord4j.core.object.entity.channel.MessageChannel;
 import discord4j.rest.util.Color;
 import xyz.voltiac.bot.Main;
-
-import java.util.Optional;
 
 public class GetAvatar {
     public static void GetAvatar(GatewayDiscordClient client) {
@@ -48,9 +45,9 @@ public class GetAvatar {
                                        .setColor(Color.of(51, 153, 255))
                                        .setImage(avatarurl)
                                        .setFooter("Command Executed By: " + messageusername, messageavatar);
-                               System.out.println("GetAvatar Command Executed By: " + messageusername);
                            }).block();
                            message.delete().block();
+                           System.out.println("GetAvatar Command Executed By: " + messageusername);
                        }
 
                        if (messagecontent.toLowerCase().startsWith(Main.prefix + "avatar ") && message.getContent().length() <= Main.prefix.length() + 25 && !messageuser.isBot()) {
@@ -64,10 +61,11 @@ public class GetAvatar {
                                        .setColor(Color.of(51, 153, 255))
                                        .setImage(avatarurl)
                                        .setFooter("Command Executed By: " + messageusername, messageavatar);
+                               message.delete().block();
                                System.out.println("GetAvatar Command Executed By: " + messageusername);
                            }).block();
                        }
-                   } catch(Exception e) {
+                   } catch (Exception e) {
                        e.printStackTrace();
                        channel.createMessage("An error occured. Please check that you are mentioning a valid user or using the correct ID.").block();
                    }
