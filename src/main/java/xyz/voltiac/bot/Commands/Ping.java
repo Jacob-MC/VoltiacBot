@@ -13,19 +13,22 @@ public class Ping {
     public static void ping(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
-                    int ping = client.getGatewayClient(event.getShardInfo().getIndex()).get().getResponseTime().getNano() / 1000000;
-                    Message message = event.getMessage();
-                    Member member = message.getAuthorAsMember().block();
-                    String username = member.getUsername();
-                    String avatar = member.getAvatarUrl();
-                    MessageChannel channel = message.getChannel().block();
-                    if (message.getContent().equals(Main.prefix + "ping") && !member.isBot()) {
-                        channel.createEmbed(embedCreateSpec -> {
-                            embedCreateSpec.setTitle("**Ping!**")
-                                    .setDescription("\uD83C\uDFD3 Pong!\nBot Response Time: " + ping + "ms")
-                                    .setColor(Color.of(51, 153, 255))
-                                    .setFooter("Command Executed By: " + username, avatar);
-                        }).block();
+                    try {
+                        int ping = client.getGatewayClient(event.getShardInfo().getIndex()).get().getResponseTime().getNano() / 1000000;
+                        Message message = event.getMessage();
+                        Member member = message.getAuthorAsMember().block();
+                        String username = member.getUsername();
+                        String avatar = member.getAvatarUrl();
+                        MessageChannel channel = message.getChannel().block();
+                        if (message.getContent().equalsIgnoreCase(Main.prefix + "ping") && !member.isBot()) {
+                            channel.createEmbed(embedCreateSpec -> {
+                                embedCreateSpec.setTitle("**Ping!**")
+                                        .setDescription("\uD83C\uDFD3 Pong!\nBot Response Time: " + ping + "ms")
+                                        .setColor(Color.of(51, 153, 255))
+                                        .setFooter("Command Executed By: " + username, avatar);
+                            }).block();
+                        }
+                    } catch (Exception e) {
                     }
                 });
     }
