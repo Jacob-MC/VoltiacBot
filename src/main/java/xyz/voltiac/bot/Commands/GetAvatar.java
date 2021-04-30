@@ -46,7 +46,6 @@ public class GetAvatar {
                                        .setImage(avatarurl)
                                        .setFooter("Command Executed By: " + messageusername, messageavatar);
                            }).block();
-                           message.delete().block();
                            System.out.println("GetAvatar Command Executed By: " + messageusername);
                        }
 
@@ -61,7 +60,6 @@ public class GetAvatar {
                                        .setColor(Color.of(51, 153, 255))
                                        .setImage(avatarurl)
                                        .setFooter("Command Executed By: " + messageusername, messageavatar);
-                               message.delete().block();
                                System.out.println("GetAvatar Command Executed By: " + messageusername);
                            }).block();
                        }

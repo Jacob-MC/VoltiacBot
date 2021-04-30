@@ -40,14 +40,12 @@ public class SetBotStatus {
                                     .setFooter("Command Executed By: " + username, avatar)
                                     .setColor(Color.of(51, 153, 255));
                         }).block();
-                        message.delete().block();
                     } else if(messagecontent.toLowerCase().startsWith(Main.prefix + "setbotstatus ") && member.getId().asString().equals("778742764908183612")) {
                         int index = messagecontent.indexOf(" ") + 1;
                         String botstatus = messagecontent.substring(index);
                         client.updatePresence(Presence.online(Activity.playing(botstatus))).block();
                         channel.createMessage("Bot status updated.").block();
                            System.out.println("Bot status set to: " + botstatus + "\nby " + username);
-                        message.delete().block();
                    }
                     } catch (Exception e) {
                     }

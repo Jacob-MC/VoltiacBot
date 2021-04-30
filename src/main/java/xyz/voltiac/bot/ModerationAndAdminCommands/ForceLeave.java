@@ -3,6 +3,7 @@ package xyz.voltiac.bot.ModerationAndAdminCommands;
 import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
+import discord4j.core.object.entity.Guild;
 import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
@@ -11,9 +12,8 @@ import discord4j.core.object.presence.Presence;
 import discord4j.rest.util.Color;
 import xyz.voltiac.bot.Main;
 
-public class SetBotPrefix {
-
-    public static void setbotprefix(GatewayDiscordClient client) {
+public class ForceLeave {
+    public static void forceleave(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(event -> {
                     try {
@@ -24,22 +24,18 @@ public class SetBotPrefix {
                         String username = member.getUsername();
                         String avatar = member.getAvatarUrl();
                         MessageChannel channel = message.getChannel().block();
-                        if (messagecontent.equalsIgnoreCase(Main.prefix + "setbotprefix") && userid.equals(Snowflake.of(778742764908183612L))) {
+                        if (messagecontent.equalsIgnoreCase(Main.prefix + "forceleave") && userid.equals(Snowflake.of(778742764908183612L))) {
                             channel.createEmbed(embedCreateSpec -> {
-                                embedCreateSpec.setTitle("**" + Main.prefix + "setbotprefix**")
-                                        .setDescription("Sets the bots preifx!")
-                                        .addField("**Usage:**", Main.prefix + "setbotprefix (prefix)", false)
-                                        .addField("Example:", Main.prefix + "setbotprefix !", false)
+                                embedCreateSpec.setTitle("**" + Main.prefix + "forceleave**")
+                                        .setDescription("Forces the bot to leave the server the command is executed in.")
+                                        .addField("**Usage:**", Main.prefix + "forceleave", false)
                                         .setFooter("Command Executed By: " + username, avatar)
                                         .setColor(Color.of(51, 153, 255));
                             }).block();
-                        } else if (messagecontent.toLowerCase().startsWith(Main.prefix + "setbotprefix ") && userid.equals(Snowflake.of(778742764908183612L))) {
-                            int index = messagecontent.indexOf(" ") + 1;
-                            String botprefix = messagecontent.substring(index);
-                            Main.prefix = botprefix;
-                            client.updatePresence(Presence.online(Activity.playing(botprefix + "help | In " + client.getGuilds().collectList().block().size() + " Guilds"))).block();
-                            channel.createMessage("Bot prefix updated.").block();
-                            System.out.println("Bot prefix set to: " + botprefix);
+                        } else if (messagecontent.equalsIgnoreCase(Main.prefix + "forceleave") && userid.equals(Snowflake.of(778742764908183612L))) {
+                            Snowflake guild = event.getGuildId().get();
+                            channel.createMessage("Force Leaving Server.").block();
+                            client.getGuildById(guild).block().leave().block();
                         }
                     } catch (Exception e) {
                     }
