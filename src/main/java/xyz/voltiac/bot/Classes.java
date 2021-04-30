@@ -15,5 +15,6 @@ public class Classes {
         Tickets.tickets(client);
         AdminCommands.admincommands(client);
         SetBotPrefix.setbotprefix(client);
+        ForceLeave.forceleave(client);
     }
 }
