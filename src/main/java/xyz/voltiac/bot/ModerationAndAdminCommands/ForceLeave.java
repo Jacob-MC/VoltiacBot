@@ -25,14 +25,6 @@ public class ForceLeave {
                         String avatar = member.getAvatarUrl();
                         MessageChannel channel = message.getChannel().block();
                         if (messagecontent.equalsIgnoreCase(Main.prefix + "forceleave") && userid.equals(Snowflake.of(778742764908183612L))) {
-                            channel.createEmbed(embedCreateSpec -> {
-                                embedCreateSpec.setTitle("**" + Main.prefix + "forceleave**")
-                                        .setDescription("Forces the bot to leave the server the command is executed in.")
-                                        .addField("**Usage:**", Main.prefix + "forceleave", false)
-                                        .setFooter("Command Executed By: " + username, avatar)
-                                        .setColor(Color.of(51, 153, 255));
-                            }).block();
-                        } else if (messagecontent.equalsIgnoreCase(Main.prefix + "forceleave") && userid.equals(Snowflake.of(778742764908183612L))) {
                             Snowflake guild = event.getGuildId().get();
                             channel.createMessage("Force Leaving Server.").block();
                             client.getGuildById(guild).block().leave().block();
