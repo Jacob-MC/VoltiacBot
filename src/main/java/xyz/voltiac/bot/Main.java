@@ -6,7 +6,6 @@ import discord4j.core.event.domain.lifecycle.ReadyEvent;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.presence.Activity;
 import discord4j.core.object.presence.Presence;
-import org.xerial.SQLite;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
