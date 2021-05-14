@@ -35,6 +35,6 @@ jobs:
       uses: actions/upload-artifact@v2
       if: success()
       with:
-          name: Voltiac Bot 2.0
+          name: Voltiac Bot 2.1
           path: target/
     
