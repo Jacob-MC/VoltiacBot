@@ -7,18 +7,11 @@ import discord4j.core.object.entity.Guild;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.Channel;
-import discord4j.core.object.entity.channel.GuildChannel;
 import discord4j.core.object.entity.channel.MessageChannel;
-import discord4j.core.object.entity.channel.TextChannel;
 import discord4j.rest.util.Color;
-import reactor.core.publisher.Flux;
 
-import javax.xml.soap.Text;
-import java.lang.reflect.Array;
 import java.time.Instant;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 public class MessageLogs {
     public static void MessageLogs(GatewayDiscordClient client) {

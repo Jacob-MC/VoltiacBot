@@ -3,7 +3,7 @@ package xyz.voltiac.bot;
 import discord4j.core.GatewayDiscordClient;
 import xyz.voltiac.bot.Commands.*;
 import xyz.voltiac.bot.ModerationAndAdminCommands.*;
-import xyz.voltiac.bot.OtherUtil.*;
+import xyz.voltiac.bot.FunAndUtil.*;
 
 public class Classes {
     public static void Classes(GatewayDiscordClient client) {
@@ -16,5 +16,6 @@ public class Classes {
         AdminCommands.admincommands(client);
         SetBotPrefix.setbotprefix(client);
         ForceLeave.forceleave(client);
+        YouTubeTogether.YouTubeTogether(client);
     }
 }

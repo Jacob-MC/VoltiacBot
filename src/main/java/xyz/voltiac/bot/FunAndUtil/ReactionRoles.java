@@ -1,4 +1,4 @@
-package xyz.voltiac.bot.OtherUtil;
+package xyz.voltiac.bot.FunAndUtil;
 
 import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;

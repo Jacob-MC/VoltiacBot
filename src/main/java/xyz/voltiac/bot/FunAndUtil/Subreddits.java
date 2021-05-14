@@ -1,16 +1,12 @@
-package xyz.voltiac.bot.OtherUtil;
+package xyz.voltiac.bot.FunAndUtil;
 
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
-import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.MessageChannel;
-import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.rest.util.Color;
 import xyz.voltiac.bot.Main;
-
-import java.io.File;
 
 public class Subreddits {
     public static void subreddits(GatewayDiscordClient client) {

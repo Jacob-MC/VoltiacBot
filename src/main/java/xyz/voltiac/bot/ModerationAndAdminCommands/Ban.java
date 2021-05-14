@@ -13,8 +13,6 @@ import discord4j.rest.util.Color;
 import discord4j.rest.util.Permission;
 import xyz.voltiac.bot.Main;
 
-import java.util.Objects;
-
 public class Ban {
     public static void ban(GatewayDiscordClient client) {
         client.getEventDispatcher().on(MessageCreateEvent.class)
@@ -42,7 +40,7 @@ public class Ban {
                             String username = user.getUsername();
                             String discriminator = user.getDiscriminator();
                             assert member != null;
-                                try {
+                            try {
                                     if (client.getSelf().block().asMember(guildid).block().getBasePermissions().block().contains(Permission.BAN_MEMBERS)) {
                                         guild.ban(id, BanQuerySpec::asRequest).block();
                                         assert channel != null;
@@ -77,7 +75,6 @@ public class Ban {
                         if (admin.getBasePermissions().block().contains(Permission.ADMINISTRATOR)) {
                             try {
                                 if (client.getSelf().block().asMember(guildid).block().getBasePermissions().block().contains(Permission.BAN_MEMBERS)) {
-                                    guild.ban(Snowflake.of(userid), BanQuerySpec::asRequest).block();
                                     assert channel != null;
                                     channel.createEmbed(embedCreateSpec -> embedCreateSpec.setTitle("\uD83D\uDC6E \uD83D\uDD12 " + username + "#" + discriminator + " Has Been Banned!")
                                             .setColor(Color.of(51, 153, 255))

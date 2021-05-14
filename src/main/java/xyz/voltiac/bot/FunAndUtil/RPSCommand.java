@@ -1,4 +1,4 @@
-package xyz.voltiac.bot.OtherUtil;
+package xyz.voltiac.bot.FunAndUtil;
 
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
@@ -27,10 +27,10 @@ public class RPSCommand {
                    String avatar = user.getAvatarUrl();
                     if (messagecontent.equalsIgnoreCase(Main.prefix + "rps") || messagecontent.equalsIgnoreCase(Main.prefix + "rps ") && !member.isBot()) {
                         channel.createEmbed(embedCreateSpec -> {
-                            embedCreateSpec.setTitle("**!rps**")
+                            embedCreateSpec.setTitle("**" + Main.prefix + "rps**")
                                     .setDescription("Play Rock, Paper, Scissors with the bot!")
-                                    .addField("**Usage:**", "!rps (choice)", false)
-                                    .addField("**Example:**", "!rps paper", false)
+                                    .addField("**Usage:**", Main.prefix + "rps (choice)", false)
+                                    .addField("**Example:**", Main.prefix + "rps paper", false)
                                     .setFooter("Command Executed By: " + username, avatar)
                                     .setColor(Color.of(51, 153, 255));
                             System.out.println("RPS Command Executed By: " + username);

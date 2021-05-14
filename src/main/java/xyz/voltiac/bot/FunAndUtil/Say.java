@@ -1,11 +1,10 @@
-package xyz.voltiac.bot.OtherUtil;
+package xyz.voltiac.bot.FunAndUtil;
 
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
-import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.rest.util.Color;
 import xyz.voltiac.bot.Main;
 
@@ -33,10 +32,10 @@ public class Say {
                         Matcher m = p.matcher(content);
                    if (messagecontent.equalsIgnoreCase(Main.prefix + "say") && !member.isBot()) {
                        channel.createEmbed(EmbedCreateSpec -> {
-                           EmbedCreateSpec.setTitle("**!say**")
+                           EmbedCreateSpec.setTitle("**" + Main.prefix + "say**")
                                    .setDescription("Repeats whatever you say")
-                                   .addField("**Usage**:", "!say (message)", false)
-                                   .addField("**Example:**", "!say hello", false)
+                                   .addField("**Usage**:", Main.prefix + "say (message)", false)
+                                   .addField("**Example:**", Main.prefix + "say hello", false)
                                    .setFooter("Command Executed By: " + username, avatarurl)
                                    .setColor(Color.of(51, 153, 255));
                        }).block();

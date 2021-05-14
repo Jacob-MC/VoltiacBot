@@ -1,21 +1,31 @@
 package xyz.voltiac.bot;
 
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
+import com.sedmelluq.discord.lavaplayer.track.playback.NonAllocatingAudioFrameBuffer;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.lifecycle.ReadyEvent;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.presence.Activity;
+import discord4j.core.object.presence.ClientActivity;
+import discord4j.core.object.presence.ClientPresence;
 import discord4j.core.object.presence.Presence;
-import xyz.voltiac.bot.Databases.SQLite;
+import discord4j.voice.AudioProvider;
+import xyz.voltiac.bot.Databases.SQLiteDataSource;
+import xyz.voltiac.bot.LavaPlayer.LavaPlayerAudioProvider;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.sql.*;
+import java.sql.SQLException;
 
 public class Main {
     public static String prefix = "vb.";
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        SQLiteDataSource.getConnection();
         String token = null;
         try {
             System.out.println("Fetching token.");
@@ -27,10 +37,12 @@ public class Main {
         } catch (Exception var15) {
             System.out.println("Fetching token failed. File may be missing, named incorrectly, or in the wrong directory. Please place the file in the root of the jar.");
         }
+
         GatewayDiscordClient client = DiscordClientBuilder.create(token)
                 .build()
                 .login()
                 .block();
+
         Classes.Classes(client);
         int numberguilds = client.getGuilds().collectList().block().size();
         client.getEventDispatcher().on(ReadyEvent.class)
@@ -39,7 +51,7 @@ public class Main {
                         System.out.printf(
                                 "Logged in as %s#%s%n", self.getUsername(), self.getDiscriminator()
                         );
-                        client.updatePresence(Presence.online(Activity.playing(prefix + "help | In " + numberguilds + " Guilds"))).block();
+                        client.updatePresence(ClientPresence.online(ClientActivity.playing(prefix + "help | In " + numberguilds + " Guilds"))).block();
                 });
         client.onDisconnect().block();
     }

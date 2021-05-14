@@ -1,3 +1,4 @@
 target/
 src/main/java/xyz/voltiac/bot/main.java~
 src/main/java/xyz/voltiac/bot/main.java.bak
+src/main/java/xyz/voltiac/bot/database.db

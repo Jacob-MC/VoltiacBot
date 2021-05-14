@@ -23,7 +23,7 @@ public class GetAvatar {
                    try {
                        if (messagecontent.equalsIgnoreCase(Main.prefix + "avatar") && message.getContent().length() == 7 && !messageuser.isBot()) {
                            channel.createEmbed(embedCreateSpec -> {
-                               embedCreateSpec.setTitle("**!avatar**")
+                               embedCreateSpec.setTitle("**" + Main.prefix + "avatar**")
                                        .setDescription("Get a user's avatar!")
                                        .addField("**Usage:**",  Main.prefix + "avatar (mention user or enter their ID)", false)
                                        .addField("Example:", Main.prefix + "avatar <@!778742764908183612>", false)

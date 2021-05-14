@@ -30,7 +30,7 @@ public class FunCommands {
                                     .setColor(Color.of(51, 153, 255))
                                     .setFooter("Command Executed By: " + username, avatar);
                         }).block();
-                        System.out.println("Funcommands Command Executed By: " + username);
+                        System.out.println("Fun commands Command Executed By: " + username);
                     }
                     } catch (Exception e) {
                     }

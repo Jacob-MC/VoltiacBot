@@ -2,7 +2,6 @@ package xyz.voltiac.bot.Commands;
 
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
-import discord4j.core.object.entity.Guild;
 import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
@@ -22,8 +21,8 @@ public class Ping {
                         MessageChannel channel = message.getChannel().block();
                         if (message.getContent().equalsIgnoreCase(Main.prefix + "ping") && !member.isBot()) {
                             channel.createEmbed(embedCreateSpec -> {
-                                embedCreateSpec.setTitle("**Ping!**")
-                                        .setDescription("\uD83C\uDFD3 Pong!\nBot Response Time: " + ping + "ms")
+                                embedCreateSpec.setTitle("**\uD83C\uDFD3 Pong!**")
+                                        .setDescription("Bot Response Time: " + ping + "ms")
                                         .setColor(Color.of(51, 153, 255))
                                         .setFooter("Command Executed By: " + username, avatar);
                             }).block();

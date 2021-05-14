@@ -1,20 +1,16 @@
 package xyz.voltiac.bot.ModerationAndAdminCommands;
 
-import discord4j.common.util.Snowflake;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
-import discord4j.core.object.entity.*;
-import discord4j.core.object.entity.channel.Channel;
+import discord4j.core.object.entity.Guild;
+import discord4j.core.object.entity.Member;
+import discord4j.core.object.entity.Message;
+import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.MessageChannel;
-import discord4j.core.object.presence.Activity;
-import discord4j.core.object.presence.Presence;
+import discord4j.core.object.presence.ClientActivity;
+import discord4j.core.object.presence.ClientPresence;
 import discord4j.rest.util.Color;
-import discord4j.rest.util.Permission;
-import reactor.core.publisher.Mono;
 import xyz.voltiac.bot.Main;
-
-import java.time.Duration;
-import java.util.Optional;
 
 public class SetBotStatus {
     public static void SetBotStatus(GatewayDiscordClient client) {
@@ -43,7 +39,7 @@ public class SetBotStatus {
                     } else if(messagecontent.toLowerCase().startsWith(Main.prefix + "setbotstatus ") && member.getId().asString().equals("778742764908183612")) {
                         int index = messagecontent.indexOf(" ") + 1;
                         String botstatus = messagecontent.substring(index);
-                        client.updatePresence(Presence.online(Activity.playing(botstatus))).block();
+                        client.updatePresence(ClientPresence.online(ClientActivity.playing(botstatus + " | " + Main.prefix + "help | " + client.getGuilds().collectList().block().size() + " Guilds"))).block();
                         channel.createMessage("Bot status updated.").block();
                            System.out.println("Bot status set to: " + botstatus + "\nby " + username);
                    }

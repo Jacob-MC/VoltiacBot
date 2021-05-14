@@ -6,8 +6,8 @@ import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.MessageChannel;
-import discord4j.core.object.presence.Activity;
-import discord4j.core.object.presence.Presence;
+import discord4j.core.object.presence.ClientActivity;
+import discord4j.core.object.presence.ClientPresence;
 import discord4j.rest.util.Color;
 import xyz.voltiac.bot.Main;
 
@@ -37,7 +37,7 @@ public class SetBotPrefix {
                             int index = messagecontent.indexOf(" ") + 1;
                             String botprefix = messagecontent.substring(index);
                             Main.prefix = botprefix;
-                            client.updatePresence(Presence.online(Activity.playing(botprefix + "help | In " + client.getGuilds().collectList().block().size() + " Guilds"))).block();
+                            client.updatePresence(ClientPresence.online(ClientActivity.playing(botprefix + "help | " + client.getGuilds().collectList().block().size() + " Guilds"))).block();
                             channel.createMessage("Bot prefix updated.").block();
                             System.out.println("Bot prefix set to: " + botprefix);
                         }

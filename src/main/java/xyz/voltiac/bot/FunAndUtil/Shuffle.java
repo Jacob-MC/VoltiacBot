@@ -1,4 +1,4 @@
-package xyz.voltiac.bot.OtherUtil;
+package xyz.voltiac.bot.FunAndUtil;
 
 import java.util.ArrayList;
 import java.util.List;
