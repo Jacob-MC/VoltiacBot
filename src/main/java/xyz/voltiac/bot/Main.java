@@ -1,21 +1,12 @@
 package xyz.voltiac.bot;
 
-import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
-import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
-import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
-import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
-import com.sedmelluq.discord.lavaplayer.track.playback.NonAllocatingAudioFrameBuffer;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.lifecycle.ReadyEvent;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.presence.Activity;
-import discord4j.core.object.presence.ClientActivity;
-import discord4j.core.object.presence.ClientPresence;
 import discord4j.core.object.presence.Presence;
-import discord4j.voice.AudioProvider;
 import xyz.voltiac.bot.Databases.SQLiteDataSource;
-import xyz.voltiac.bot.LavaPlayer.LavaPlayerAudioProvider;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -51,7 +42,7 @@ public class Main {
                         System.out.printf(
                                 "Logged in as %s#%s%n", self.getUsername(), self.getDiscriminator()
                         );
-                        client.updatePresence(ClientPresence.online(ClientActivity.playing(prefix + "help | In " + numberguilds + " Guilds"))).block();
+                        client.updatePresence(Presence.online(Activity.playing(prefix + "help | In " + numberguilds + " Guilds"))).block();
                 });
         client.onDisconnect().block();
     }

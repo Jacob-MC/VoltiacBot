@@ -25,7 +25,6 @@ public class Commands {
                         String ytemoji = client.getGuildEmojiById(Snowflake.of(110373943822540800l), Snowflake.of(314349922885566475l)).block().asFormat();
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle("**Commands - Prefix is: `" + Main.prefix + "`**")
-                                    .addField("**" + ytemoji + " YT Together Commands**", Main.prefix + "help yt - YouTube Together Commands\n\n**Please be patient when using YouTube commands as they may take a bit longer.**", true)
                                     .addField("**\uD83D\uDE02 Fun Commands**", Main.prefix + "help fun - Fun Commands", true)
                                     .addField("**\uD83D\uDC6E Admin Commands**", Main.prefix + "help admin - Administrator Commands",  true)
                                     .addField("**\uD83C\uDFD3 Ping**", Main.prefix + "ping - Checks the bot's response time", true)
@@ -37,7 +36,6 @@ public class Commands {
                         System.out.println("Commands Command Executed By: " + username);
                     }
                     } catch (Exception e) {
-                        e.printStackTrace();
                     }
                 });
     }

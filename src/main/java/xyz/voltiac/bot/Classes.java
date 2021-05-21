@@ -16,6 +16,5 @@ public class Classes {
         AdminCommands.admincommands(client);
         SetBotPrefix.setbotprefix(client);
         ForceLeave.forceleave(client);
-        YouTubeTogether.YouTubeTogether(client);
     }
 }

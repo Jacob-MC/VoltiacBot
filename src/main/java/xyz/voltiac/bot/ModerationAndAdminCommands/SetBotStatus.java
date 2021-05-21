@@ -7,8 +7,8 @@ import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.MessageChannel;
-import discord4j.core.object.presence.ClientActivity;
-import discord4j.core.object.presence.ClientPresence;
+import discord4j.core.object.presence.Activity;
+import discord4j.core.object.presence.Presence;
 import discord4j.rest.util.Color;
 import xyz.voltiac.bot.Main;
 
@@ -39,7 +39,7 @@ public class SetBotStatus {
                     } else if(messagecontent.toLowerCase().startsWith(Main.prefix + "setbotstatus ") && member.getId().asString().equals("778742764908183612")) {
                         int index = messagecontent.indexOf(" ") + 1;
                         String botstatus = messagecontent.substring(index);
-                        client.updatePresence(ClientPresence.online(ClientActivity.playing(botstatus + " | " + Main.prefix + "help | " + client.getGuilds().collectList().block().size() + " Guilds"))).block();
+                        client.updatePresence(Presence.online(Activity.playing(botstatus + " | " + Main.prefix + "help | " + client.getGuilds().collectList().block().size() + " Guilds"))).block();
                         channel.createMessage("Bot status updated.").block();
                            System.out.println("Bot status set to: " + botstatus + "\nby " + username);
                    }
