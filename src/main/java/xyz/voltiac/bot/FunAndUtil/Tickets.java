@@ -106,9 +106,13 @@ public class Tickets {
                                         }
                                     }
                                 } catch (Exception e) {
+                                    System.out.println("ERROR:");
+                                    e.printStackTrace();
                                 }
                             }
                         } catch (Exception e) {
+                            System.out.println("ERROR:");
+                            e.printStackTrace();
                         }
                     });
     }

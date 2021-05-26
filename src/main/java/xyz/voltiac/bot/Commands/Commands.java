@@ -22,10 +22,10 @@ public class Commands {
                         String username = message.getAuthor().get().getUsername();
                         String avatar = message.getAuthor().get().getAvatarUrl();
                         MessageChannel channel = message.getChannel().block();
-                        String ytemoji = client.getGuildEmojiById(Snowflake.of(110373943822540800l), Snowflake.of(314349922885566475l)).block().asFormat();
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle("**Commands - Prefix is: `" + Main.prefix + "`**")
                                     .addField("**\uD83D\uDE02 Fun Commands**", Main.prefix + "help fun - Fun Commands", true)
+                                    .addField("**\uD83D\uDCA1 Miscellaneous Commands**", Main.prefix + "help misc - Miscellaneous Commands", true)
                                     .addField("**\uD83D\uDC6E Admin Commands**", Main.prefix + "help admin - Administrator Commands",  true)
                                     .addField("**\uD83C\uDFD3 Ping**", Main.prefix + "ping - Checks the bot's response time", true)
                                     .addField("**\uD83E\uDD16 Bot Invite**", Main.prefix + "botinvite - VoltiacBot Invite", true)
@@ -36,6 +36,8 @@ public class Commands {
                         System.out.println("Commands Command Executed By: " + username);
                     }
                     } catch (Exception e) {
+                        System.out.println("ERROR:");
+                        e.printStackTrace();
                     }
                 });
     }

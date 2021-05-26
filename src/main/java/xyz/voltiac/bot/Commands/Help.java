@@ -22,13 +22,15 @@ public class Help {
                         assert channel != null;
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle("**Help**")
-                                    .setDescription("Hello, " + username + ", my prefix is `" + Main.prefix + "`! You can view a list of commands by typing " + Main.prefix + "commands")
+                                    .setDescription("Hello, " + username + ", my prefix is `" + Main.prefix + "`! You can view a list of commands by typing `" + Main.prefix + "commands`")
                                     .setColor(Color.of(51, 153, 255))
                                     .setFooter("Command Executed By: " + username, avatar);
                         }).block();
                         System.out.println("Help Command Executed By: " + username);
                     }
                     } catch (Exception e) {
+                        System.out.println("ERROR:");
+                        e.printStackTrace();
                     }
                 });
     }

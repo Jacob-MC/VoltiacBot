@@ -28,6 +28,8 @@ public class Ping {
                             }).block();
                         }
                     } catch (Exception e) {
+                        System.out.println("ERROR:");
+                        e.printStackTrace();
                     }
                 });
     }

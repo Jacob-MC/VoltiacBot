@@ -48,6 +48,8 @@ public class Subreddits {
                        System.out.println("Subreddits Command Executed By: " + username);
                    }
                     } catch (Exception e) {
+                        System.out.println("ERROR:");
+                        e.printStackTrace();
                     }
                 });
     }

@@ -51,6 +51,8 @@ public class Say {
 
                        }
                     } catch (Exception e) {
+                        System.out.println("ERROR:");
+                        e.printStackTrace();
                     }
                 });
     }

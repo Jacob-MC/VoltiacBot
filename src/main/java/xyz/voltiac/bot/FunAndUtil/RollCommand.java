@@ -45,7 +45,7 @@ public class RollCommand {
                        } else {
                                int numberdice = Integer.valueOf(rollnumberdice);
                            ArrayList<Integer> list = new ArrayList<Integer>();
-                           for (int i = 1; i < 7; i++) {
+                           for (int i = 1; i < 11; i++) {
                                list.add(new Integer(i));
                            }
                            Collections.shuffle(list);
@@ -75,6 +75,8 @@ public class RollCommand {
                        }
                    }
                     } catch (Exception e) {
+                        System.out.println("ERROR:");
+                        e.printStackTrace();
                     }
                 });
     }

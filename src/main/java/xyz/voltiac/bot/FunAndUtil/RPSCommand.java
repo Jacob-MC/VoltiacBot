@@ -68,7 +68,6 @@ public class RPSCommand {
                             }
                         }
                         if (rand == 3) {
-                            String choice1 = "Scissors";
                             if (choice.equalsIgnoreCase("Rock")) {
                                 channel.createMessage("You chose ***Rock***. I choose ***Scissors***.\n" + "Rock wins!").block();
                             }
@@ -81,6 +80,8 @@ public class RPSCommand {
                         }
                     }
                     } catch (Exception e) {
+                        System.out.println("ERROR:");
+                        e.printStackTrace();
                     }
                 });
     }

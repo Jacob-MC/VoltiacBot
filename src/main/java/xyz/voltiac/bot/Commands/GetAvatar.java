@@ -21,7 +21,7 @@ public class GetAvatar {
                    String messageusername = messageuser.getUsername();
                    String messageavatar = messageuser.getAvatarUrl();
                    try {
-                       if (messagecontent.equalsIgnoreCase(Main.prefix + "avatar") && message.getContent().length() == 7 && !messageuser.isBot()) {
+                       if (messagecontent.equalsIgnoreCase(Main.prefix + "avatar") && !messageuser.isBot()) {
                            channel.createEmbed(embedCreateSpec -> {
                                embedCreateSpec.setTitle("**" + Main.prefix + "avatar**")
                                        .setDescription("Get a user's avatar!")
@@ -31,7 +31,6 @@ public class GetAvatar {
                                        .setFooter("Command Executed By: " + messageusername, messageavatar)
                                        .setColor(Color.of(51, 153, 255));
                            }).block();
-                           message.delete().block();
                        }
                        if (messagecontent.startsWith(Main.prefix + "avatar") && message.getContent().length() > Main.prefix.length() + 25 && !messageuser.isBot()) {
                            int index = messagecontent.indexOf(' ') + 4;
@@ -68,6 +67,8 @@ public class GetAvatar {
                        channel.createMessage("An error occured. Please check that you are mentioning a valid user or using the correct ID.").block();
                    }
                     } catch (Exception e) {
+                        System.out.println("ERROR:");
+                        e.printStackTrace();
                     }
                 });
     }

@@ -22,5 +22,7 @@ public class CommandHandler {
         DiscordInvite.discordinvite(client);
         BotInvite.botinvite(client);
         Ping.ping(client);
+        MiscCommands.misccommands(client);
+        ServerInfo.serverinfo(client);
     }
 }

@@ -30,6 +30,8 @@ public class BotInvite {
                         System.out.println("BotInvite Command Executed By: " + username);
                     }
                     } catch (Exception e) {
+                        System.out.println("ERROR:");
+                        e.printStackTrace();
                     }
                 });
     }

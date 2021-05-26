@@ -83,7 +83,7 @@ public class Memes {
                                                 .setColor(Color.of(51, 153, 255))
                                                 .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                                     }).block();
-                                    System.out.println("Surrealmemes Command Executed By: " + username);
+                                    System.out.println("Surreal Memes Command Executed By: " + username);
 
                                 } catch (Exception e) {
                                     channel.createMessage("An error occured. Please try again later.").block();
@@ -141,7 +141,7 @@ public class Memes {
                                                 .setColor(Color.of(51, 153, 255))
                                                 .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                                     }).block();
-                                    System.out.println("Rareinsults Command Executed By: " + username);
+                                    System.out.println("Rare insults Command Executed By: " + username);
 
                                 } catch (Exception e) {
                                     channel.createMessage("An error occured. Please try again later.").block();
@@ -170,7 +170,7 @@ public class Memes {
                                                 .setColor(Color.of(51, 153, 255))
                                                 .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                                     }).block();
-                                    System.out.println("Cursedcomments Command Executed By: " + username);
+                                    System.out.println("Cursed comments Command Executed By: " + username);
 
                                 } catch (Exception e) {
                                     channel.createMessage("An error occured. Please try again later.").block();
@@ -228,7 +228,7 @@ public class Memes {
                                                 .setColor(Color.of(51, 153, 255))
                                                 .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                                     }).block();
-                                    System.out.println("Wholesomememes Command Executed By: " + username);
+                                    System.out.println("Wholesome memes Command Executed By: " + username);
 
                                 } catch (Exception e) {
                                     channel.createMessage("An error occured. Please try again later.").block();
@@ -257,7 +257,7 @@ public class Memes {
                                                 .setColor(Color.of(51, 153, 255))
                                                 .setFooter("Requested By: " + username + "#" + discriminator + " | u/" + finalAuthor + " | \uD83D\uDC4D: " + finalUps, avatarurl);
                                     }).block();
-                                    System.out.println("Dankmemes Command Executed By: " + username);
+                                    System.out.println("Dank memes Command Executed By: " + username);
 
                                 } catch (Exception e) {
                                     channel.createMessage("An error occured. Please try again later.").block();

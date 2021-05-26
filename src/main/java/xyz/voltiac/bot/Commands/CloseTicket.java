@@ -56,6 +56,8 @@ public class CloseTicket {
                         }
                     }
                     } catch (Exception e) {
+                        System.out.println("ERROR:");
+                        e.printStackTrace();
                     }
                 });
     }

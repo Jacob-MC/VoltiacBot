@@ -29,6 +29,8 @@ public class DiscordInvite {
                        System.out.println("DiscordInvite Command Executed By: " + username);
                    }
                     } catch (Exception e) {
+                        System.out.println("ERROR:");
+                        e.printStackTrace();
                     }
                 });
     }

@@ -22,7 +22,6 @@ public class FunCommands {
                         assert channel != null;
                         channel.createEmbed(embedCreateSpec -> {
                             embedCreateSpec.setTitle("**Fun Commands**")
-                                    .addField("**" + Main.prefix + "avatar (user)**", "Gets a user's avatar - Works by mentioning the user or by using the user's ID", true)
                                     .addField("**" + Main.prefix + "roll (number of dice)**", "Rolls a specified amount of dice (Maximum 5)", true)
                                     .addField("**" + Main.prefix + "rps (choice)**", "Plays rock, paper, scissors with the bot", true)
                                     .addField("**" + Main.prefix + "say**", "Repeats what you say", true)
@@ -33,6 +32,8 @@ public class FunCommands {
                         System.out.println("Fun commands Command Executed By: " + username);
                     }
                     } catch (Exception e) {
+                        System.out.println("ERROR:");
+                        e.printStackTrace();
                     }
                 });
     }
