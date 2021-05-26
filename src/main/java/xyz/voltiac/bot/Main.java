@@ -14,7 +14,7 @@ public class Main {
     public static String prefix = "vb.";
     public static void main(String[] args) throws SQLException {
         SQLiteDataSource.getConnection();
-        GatewayDiscordClient client = DiscordClientBuilder.create(System.getenv("TOKEN"))
+        GatewayDiscordClient client = DiscordClientBuilder.create("token")
                 .build()
                 .login()
                 .block();
